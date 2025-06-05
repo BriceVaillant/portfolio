@@ -3,18 +3,14 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
-    gap: 35px 35px;
-    padding-top: 90px;
+    gap: 55px 35px;
+    margin-top: 100px;
     padding-bottom: 30px;
 }
 .card {
     width: 650px;
-    height: 450px;
+    height: 350px;
     background: var(--light);
     border-radius: 14px;
     box-shadow: black 0px 5px 10px, black 0px 15px 14px;
@@ -29,8 +25,7 @@
 @media (max-width: 1800px) {
   .cardcontainer{
         width: 100%;
-        gap: 35px 35px;
-        padding-top: 90px;
+        margin-top: 100px;
         align-content: flex-start;
         flex-wrap: wrap;
   }
@@ -38,19 +33,16 @@
         width: 650px;
         height: 350px;
   }
- 
 }
 @media (max-width: 1350px) {
   .cardcontainer{
         width: 100%;
         min-width: 620px;
-        gap: 35px;
         align-content: flex-start;
-        height: 1500px;
-        margin-top: 190px;    
+        margin-top: 100px;   
   }
     .card {
-        width: 550px;
+        width: 650px;
         height: 350px;
   }
 }
