@@ -1,0 +1,18 @@
+.Home {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--light);
+}
+h1 {
+  font-size: 130px;
+  font-weight: 800;
+ }
+h2 {
+  font-size: 70px;
+  font-weight: 200;
+}

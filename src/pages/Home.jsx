@@ -1,6 +1,11 @@
-// src/pages/Home.js
+// src/pages/Home.jsx
 import './Home.css';
 
 export default function Home() {
-  return <h1>Welcome to my portfolio</h1>;
+  return (
+    <div className="Home">
+    <h1>Vaillant Brice</h1>
+    <h2>Web Developer</h2> 
+    </div> 
+  );
 }

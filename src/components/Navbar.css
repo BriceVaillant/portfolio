@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  color: var(--light);
+}
+.name {
+  margin-left: 25px;
+  color: var(--darkgrey);
+  font-size: 38px;
+}
+ul {
+  gap: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+  height: 100%;
+  padding: 9px;
+  margin-right: 55px;
+}
+a {
+  display: inline-block;
+  transition: transform 0.2s ease, border-bottom 0.1s ease;
+  text-decoration: none;
+  font-size: 24px;
+  color: var(--darkgrey);
+}
+a:hover {
+  border-bottom: 2px solid var(--light);
+  transform: translateY(4px) scale(1.02);
+}
