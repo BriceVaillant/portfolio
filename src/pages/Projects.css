@@ -1,27 +1,56 @@
 .cardcontainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1150px;
-  height: 600px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 90px;
-  gap: 25px 25px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    gap: 35px 35px;
+    padding-top: 90px;
+    padding-bottom: 30px;
 }
 .card {
-  width: 300px;
-  height: 200px;
-  background: var(--light);
-  border-radius: 14px;
-  box-shadow: black 0px 5px 10px, black 0px 15px 14px;
-  transition: transform 0.1s ease;
-  /* preserve 3D is usefull if you have something inside the card   */
-  transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
+    width: 650px;
+    height: 450px;
+    background: var(--light);
+    border-radius: 14px;
+    box-shadow: black 0px 5px 10px, black 0px 15px 14px;
+    transition: transform 0.1s ease;
+    /* preserve 3D is usefull if you have something inside the card   */
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+@media (max-width: 1800px) {
+  .cardcontainer{
+        width: 100%;
+        gap: 35px 35px;
+        padding-top: 90px;
+        align-content: flex-start;
+        flex-wrap: wrap;
+  }
+    .card {
+        width: 650px;
+        height: 350px;
+  }
+ 
+}
+@media (max-width: 1350px) {
+  .cardcontainer{
+        width: 100%;
+        min-width: 620px;
+        gap: 35px;
+        align-content: flex-start;
+        height: 1500px;
+        margin-top: 190px;    
+  }
+    .card {
+        width: 550px;
+        height: 350px;
+  }
 }
