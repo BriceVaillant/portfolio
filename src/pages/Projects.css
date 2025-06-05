@@ -1,0 +1,27 @@
+.cardcontainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1150px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 90px;
+  gap: 25px 25px; 
+}
+.card {
+  width: 300px;
+  height: 200px;
+  background: var(--light);
+  border-radius: 14px;
+  box-shadow: black 0px 5px 10px, black 0px 15px 14px;
+  transition: transform 0.1s ease;
+  /* preserve 3D is usefull if you have something inside the card   */
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
