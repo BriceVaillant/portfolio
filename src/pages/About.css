@@ -1,0 +1,20 @@
+.about {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--light);
+  font-size: 45x;
+  font-weight: 800;
+}
+h1 {
+  font-size: 80px;
+  font-weight: 800;
+ }
+p {
+  font-size: 25px;
+  font-weight: 200;
+}
