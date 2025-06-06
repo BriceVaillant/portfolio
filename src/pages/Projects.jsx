@@ -48,7 +48,7 @@ export default function Projects() {
     };
   return (
     <div className="cardcontainer">
-      <a className="cardlink" href="https://codepen.io/nawers/pen/zxxEqeQ" target="_blank" rel="noopener noreferrer">
+      <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
             <h2>Calculator Project</h2>
@@ -66,7 +66,7 @@ export default function Projects() {
           <img className="cardbg" src={drummachine} alt="DrumMachineProject"></img>
         </div>
       </a>
-      <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
+      <a className="cardlink" href="https://codepen.io/nawers/pen/zxxEqeQ" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
             <h2>Pomodoro Clock</h2>
