@@ -1,12 +1,11 @@
 // src/pages/Projects.jsx
 import './Projects.css';
-import { useEffect } from 'react';
 
 export default function Projects() {
     const handleMouseMove = (e) => {
       //select card
       const card = e.currentTarget;
-
+      const content = card.querySelector('.cardcontent');
       //getBoundingClientRect get the size and position of the cards
       //ex 100px from the top 50 from the left etc
       const rect = card.getBoundingClientRect();
@@ -26,41 +25,70 @@ export default function Projects() {
       const rotateX = ((y - centerY) / centerY) * 10;
       const rotateY = ((x - centerX) / centerX) * 10;
 
+      //this is the calcul for the inner content
+      const moveX = ((x - centerX) / centerX) * -10;
+      const moveY = ((y - centerY) / centerY) * -10;
+
       //card.style.transform influence the css of the card
         //perspective(1000px) give the 3D effect
         //rotate tilt the card
       card.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      content.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
     };
 
     const handleMouseLeave = (e) => {
       const card = e.currentTarget;
+      const content = card.querySelector('.card-content');
+
       card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+      content.style.transform = 'translateX(0) translateY(0)';
     };
   return (
     <div className="cardcontainer">
+      <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-          <h2>Project Title</h2>
-          <p>Description goes here.</p>
+          <div className="cardcontent">
+            <h2>Calculator Project</h2>
+            <p>Description goes here.</p>
+          </div>
+          <img className="cardbg" src="/src/assets/calculator.PNG" alt="calculatorProject"></img>
         </div>
+      </a>
+      <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-          <h2>Project Title</h2>
-          <p>Description goes here.</p>
+          <div className="cardcontent">
+            <h2>Drum Machine</h2>
+            <p>Description goes here.</p>
+          </div>
+          <img className="cardbg" src="/src/assets/DrumMachinePNG.PNG" alt="DrumMachineProject"></img>
         </div>
+      </a>
+      <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-          <h2>Project Title</h2>
-          <p>Description goes here.</p>
+          <div className="cardcontent">
+            <h2>Pomodoro Clock</h2>
+            <p>Description goes here.</p>
+          </div>
+          <img className="cardbg" src="/src/assets/PomodoroClock.PNG" alt="PomodoroClockProject"></img>
         </div>
+      </a>
         <div className="card"onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}> 
-          <h2>Project Title</h2>
-          <p>Description goes here.</p>
+          <div className="cardcontent">
+            <h2>Project Title</h2>
+            <p>Description goes here.</p>
+          </div>
         </div>
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-          <h2>Project Title</h2>
-          <p>Description goes here.</p>
+          <div className="cardcontent">
+            <h2>Project Title</h2>
+            <p>Description goes here.</p>
+          </div>
         </div>
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-          <h2>Project Title</h2>
-          <p>Description goes here.</p>
+          <div className="cardcontent">
+            <h2>Project Title</h2>
+            <p>Description goes here.</p>
+          </div>
         </div>
     </div>
   );

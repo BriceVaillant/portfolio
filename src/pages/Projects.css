@@ -1,48 +1,73 @@
 .cardcontainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 55px 35px;
-    margin-top: 100px;
-    padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 55px 35px;
+  margin-top: 100px;
+  padding-bottom: 30px;
+}
+.cardlink {
+  text-decoration: none;
+  color: inherit;
+  font-size: 55px;
+  font-weight: bold;
 }
 .card {
-    width: 650px;
-    height: 350px;
-    background: var(--light);
-    border-radius: 14px;
-    box-shadow: black 0px 5px 10px, black 0px 15px 14px;
-    transition: transform 0.1s ease;
-    /* preserve 3D is usefull if you have something inside the card   */
-    transform-style: preserve-3d;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+  position: relative;
+  width: 650px;
+  height: 350px;
+  border-radius: 14px;
+  box-shadow: black 0px 5px 10px, black 0px 15px 14px;
+  transition: transform 0.1s ease;
+  /* preserve 3D is usefull if you have something inside the card   */
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.cardcontent {
+  position: relative;
+  transition: transform 0.1s ease;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 1;
+}
+.cardbg {
+  position: absolute;
+  z-index: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease;
+  border-radius: 14px;
+  top: 0;
+  left: 0;
+  filter: blur(5px);
 }
 @media (max-width: 1800px) {
   .cardcontainer{
-        width: 100%;
-        margin-top: 100px;
-        align-content: flex-start;
-        flex-wrap: wrap;
+    width: 100%;
+    margin-top: 100px;
+    align-content: flex-start;
+    flex-wrap: wrap;
   }
     .card {
-        width: 650px;
-        height: 350px;
+      width: 650px;
+      height: 350px;
   }
 }
 @media (max-width: 1350px) {
   .cardcontainer{
-        width: 100%;
-        min-width: 620px;
-        align-content: flex-start;
-        margin-top: 100px;   
+      width: 100%;
+      min-width: 620px;
+      align-content: flex-start;
+      margin-top: 100px;   
   }
     .card {
-        width: 650px;
-        height: 350px;
+      width: 650px;
+      height: 350px;
   }
 }
