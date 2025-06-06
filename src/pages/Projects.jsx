@@ -1,8 +1,8 @@
 // src/pages/Projects.jsx
 import './Projects.css';
-import calculator from './src/assets/calculator.PNG';
-import drummachine from './src/assets/DrumMachine.PNG';
-import clock from './src/assets/PomodoroClock.PNG';
+import calculator from '/src/assets/calculator.PNG';
+import drummachine from '/src/assets/DrumMachine.PNG';
+import clock from '/src/assets/PomodoroClock.PNG';
 
 export default function Projects() {
     const handleMouseMove = (e) => {
