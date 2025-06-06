@@ -1,5 +1,8 @@
 // src/pages/Projects.jsx
 import './Projects.css';
+import calculator from './src/assets/calculator.PNG';
+import drummachine from './src/assets/DrumMachine.PNG';
+import clock from './src/assets/PomodoroClock.PNG';
 
 export default function Projects() {
     const handleMouseMove = (e) => {
@@ -51,7 +54,7 @@ export default function Projects() {
             <h2>Calculator Project</h2>
             <p>Description goes here.</p>
           </div>
-          <img className="cardbg" src="/src/assets/calculator.PNG" alt="calculatorProject"></img>
+          <img className="cardbg" src={calculator} alt="calculatorProject"></img>
         </div>
       </a>
       <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
@@ -60,7 +63,7 @@ export default function Projects() {
             <h2>Drum Machine</h2>
             <p>Description goes here.</p>
           </div>
-          <img className="cardbg" src="/src/assets/DrumMachinePNG.PNG" alt="DrumMachineProject"></img>
+          <img className="cardbg" src={drummachine} alt="DrumMachineProject"></img>
         </div>
       </a>
       <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
@@ -69,7 +72,7 @@ export default function Projects() {
             <h2>Pomodoro Clock</h2>
             <p>Description goes here.</p>
           </div>
-          <img className="cardbg" src="/src/assets/PomodoroClock.PNG" alt="PomodoroClockProject"></img>
+          <img className="cardbg" src={clock} alt="PomodoroClockProject"></img>
         </div>
       </a>
         <div className="card"onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}> 
