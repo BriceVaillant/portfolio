@@ -51,8 +51,7 @@ export default function Projects() {
       <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
-            <h2>Calculator Project</h2>
-            <p>Description goes here.</p>
+            <h1>Calculator Project</h1>
           </div>
           <img className="cardbg" src={calculator} alt="calculatorProject"></img>
         </div>
@@ -60,8 +59,7 @@ export default function Projects() {
       <a className="cardlink" href="https://codepen.io/nawers/pen/KwwNYBE" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
-            <h2>Drum Machine</h2>
-            <p>Description goes here.</p>
+            <h1>Drum Machine</h1>
           </div>
           <img className="cardbg" src={drummachine} alt="DrumMachineProject"></img>
         </div>
@@ -69,27 +67,26 @@ export default function Projects() {
       <a className="cardlink" href="https://codepen.io/nawers/pen/zxxEqeQ" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
-            <h2>Pomodoro Clock</h2>
-            <p>Description goes here.</p>
+            <h1>Pomodoro Clock</h1>
           </div>
           <img className="cardbg" src={clock} alt="PomodoroClockProject"></img>
         </div>
       </a>
         <div className="card"onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}> 
           <div className="cardcontent">
-            <h2>Project Title</h2>
+            <h1>Project Title</h1>
             <p>Description goes here.</p>
           </div>
         </div>
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
-            <h2>Project Title</h2>
+            <h1>Project Title</h1>
             <p>Description goes here.</p>
           </div>
         </div>
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
-            <h2>Project Title</h2>
+            <h1>Project Title</h1>
             <p>Description goes here.</p>
           </div>
         </div>

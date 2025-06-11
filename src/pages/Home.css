@@ -1,6 +1,6 @@
 .home {
   position: absolute;
-  width: 1140px;
+  width: 80vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -8,11 +8,25 @@
   text-align: center;
   color: var(--light);
 }
-h1 {
-  font-size: 130px;
+
+.home h1 {
+  font-size: 9vw;
   font-weight: 800;
- }
-h2 {
-  font-size: 70px;
+}
+
+.home h2 {
+  font-size: 7vw;
   font-weight: 200;
+}
+
+@media (max-width: 400px) {
+  .home h1 {
+    font-size: 16vw;
+    font-weight: 800;
+  }
+
+  .home h2 {
+    font-size: 9vw;
+    font-weight: 200;
+  }
 }

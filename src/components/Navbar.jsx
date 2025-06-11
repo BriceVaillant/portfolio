@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <nav>
       <div className="name">BV.</div>
-      <ul>
+      <ul className="navbarlead">
         <li><Link to="/" className="navbarlink">Home</Link></li>
         <li><Link to="/about" className="navbarlink">About</Link></li>
         <li><Link to="/projects" className="navbarlink">Projects</Link></li>

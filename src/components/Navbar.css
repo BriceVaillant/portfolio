@@ -8,9 +8,9 @@ nav {
 .name {
   margin-left: 25px;
   color: var(--darkgrey);
-  font-size: 38px;
+  font-size: 44px;
 }
-ul {
+.navbarlead {
   gap: 45px;
   display: flex;
   align-items: center;
@@ -30,4 +30,30 @@ ul {
 .navbarlink:hover {
   border-bottom: 2px solid var(--light);
   transform: translateY(4px) scale(1.02);
+}
+@media (max-width: 500px) {
+  .navbarlead {
+    gap: 4vw;
+    padding: 9px;
+    margin: 0 auto;
+  }
+  .navbarlink {
+    font-size: 5vw;
+  }
+  .name {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .navbarlead {
+    gap: 3vw;
+    padding: 9px;
+    margin: 0 auto;
+  }
+  .navbarlink {
+    font-size: 7vw;
+  }
+  .name {
+    display: none;
+  }
 }
