@@ -3,6 +3,7 @@ import './Projects.css';
 import calculator from '/src/assets/calculator.PNG';
 import drummachine from '/src/assets/DrumMachine.PNG';
 import clock from '/src/assets/PomodoroClock.PNG';
+import { Link } from 'react-router-dom';
 
 export default function Projects() {
     const handleMouseMove = (e) => {
@@ -72,12 +73,14 @@ export default function Projects() {
           <img className="cardbg" src={clock} alt="PomodoroClockProject"></img>
         </div>
       </a>
-        <div className="card"onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}> 
+      <Link to="/projects/recipe/home">
+        <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}> 
           <div className="cardcontent">
-            <h1>Project Title</h1>
-            <p>Description goes here.</p>
+            <h1>Recipe Website</h1>
+            <p>website description</p>
           </div>
         </div>
+        </Link>
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
             <h1>Project Title</h1>
