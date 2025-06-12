@@ -1,22 +1,22 @@
 
-.imgplacement {
+.homepage .imgplacement {
   height: 450px;
   width: 100%;
   background-color: red;
   border: 2px solid green;
 }
-.ideacontainer {
+.homepage .ideacontainer {
   text-transform: uppercase;
   text-align: center;
   color: var(--light);
   border:2px solid green;
 }
-.title {
+.homepage .title {
   height: 35px;
   font-size: 35px;
   text-align: start;
 }
-.scroll-btn {
+.homepage .scroll-btn {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
@@ -28,7 +28,7 @@
   font-size: 2rem;
   z-index: 1;
 }
-.scrollcontainer {
+.homepage .scrollcontainer {
   position: relative;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@
   overflow: hidden;
 }
 
-.cardscontainer {
+.homepage .cardscontainer {
   display: flex;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -47,14 +47,14 @@
   border: 2px solid white;
    z-index: 0;
 }
-.scroll-btn.left {
+.homepage .scroll-btn.left {
   left: 10px;
 }
 
-.scroll-btn.right {
+.homepage .scroll-btn.right {
   right: 10px;
 }
-.card {
+.homepage .card {
   flex: 0 0 auto;
   width: 250px;
   height: 200px;
