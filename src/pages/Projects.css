@@ -1,4 +1,4 @@
-.cardcontainer {
+.project-cardcontainer {
   width: 80vw;
   display: flex;
   flex-direction: row;
@@ -8,13 +8,13 @@
   padding-top: 100px;
   margin: 0 auto;
 }
-.cardlink {
+.project-cardcontainer .cardlink {
   text-decoration: none;
   color: inherit;
   font-size: 55px;
   font-weight: bold;
 }
-.card {
+.project-cardcontainer .card {
   width: 650px;
   height: 350px;
   border-radius: 14px;
@@ -27,22 +27,22 @@
   flex-direction: column;
   text-align: center;
 }
-.cardcontent {
+.project-cardcontainer .cardcontent {
   position: relative;
   transition: transform 0.1s ease;
   transform-style: preserve-3d;
   pointer-events: none;
   z-index: 1;
 }
-.cardcontainer h1 {
+.project-cardcontainer h1 {
   font-size: 90%;
   color: var(--light);
 }
-.cardcontainer p {
+.project-cardcontainer p {
   font-size: 60%;
   color: var(--light);
 }
-.cardbg {
+.project-cardcontainer .cardbg {
   position: absolute;
   z-index: 0;
   object-fit: cover;
@@ -53,41 +53,41 @@
   filter: blur(9px);
 }
 @media (max-width: 1800px) {
-  .cardcontainer{
+  .project-cardcontainer{
     margin-top: 100px;
     align-content: flex-start;
     flex-wrap: wrap;
   }
-    .card {
+    .project-cardcontainer .card {
       width: 650px;
       height: 350px;
   }
 }
 @media (max-width: 1350px) {
-  .cardcontainer{
+  .project-cardcontainer{
       min-width: 620px;
       align-content: flex-start;
       margin-top: 100px;   
   }
-    .card {
+    .project-cardcontainer .card {
       width: 650px;
       height: 350px;
   }
 }
 @media (max-width: 650px) {
-  .cardcontainer{
+  .project-cardcontainer{
     min-width: 300px;
     margin: 0 auto;
     padding-top: 40px;
   }
-  .card {
+  .project-cardcontainer .card {
     width: 80vw;
     height: 15vh;
   }
-  .cardcontainer h1 {
+  .project-cardcontainer h1 {
   font-size: 80%;
 }
-.cardcontainer p {
+.project-cardcontainer p {
   font-size: 50%;
 }
 }

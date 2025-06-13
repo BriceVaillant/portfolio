@@ -1,16 +1,16 @@
-nav {
+.mainnavbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100px;
   color: var(--light);
 }
-.name {
+.mainnavbar-name {
   margin-left: 25px;
   color: var(--darkgrey);
   font-size: 44px;
 }
-.navbarlead {
+.mainnavbar-lead {
   gap: 45px;
   display: flex;
   align-items: center;
@@ -20,40 +20,40 @@ nav {
   padding: 9px;
   margin-right: 55px;
 }
-.navbarlink {
+.mainnavbar-lead .navbarlink {
   display: inline-block;
   transition: transform 0.2s ease, border-bottom 0.1s ease;
   text-decoration: none;
   font-size: 24px;
   color: var(--darkgrey);
 }
-.navbarlink:hover {
+.mainnavbar-lead .navbarlink:hover {
   border-bottom: 2px solid var(--light);
   transform: translateY(4px) scale(1.02);
 }
 @media (max-width: 500px) {
-  .navbarlead {
+  .mainnavbar-lead {
     gap: 4vw;
     padding: 9px;
     margin: 0 auto;
   }
-  .navbarlink {
+  .mainnavbar-lead .navbarlink {
     font-size: 5vw;
   }
-  .name {
+  .mainnavbar-name {
     display: none;
   }
 }
 @media (max-width: 400px) {
-  .navbarlead {
+  .mainnavbar-lead {
     gap: 3vw;
     padding: 9px;
     margin: 0 auto;
   }
-  .navbarlink {
+  .mainnavbar-lead .navbarlink {
     font-size: 7vw;
   }
-  .name {
+  .mainnavbar-name {
     display: none;
   }
 }

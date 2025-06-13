@@ -48,7 +48,7 @@ export default function Projects() {
       content.style.transform = 'translateX(0) translateY(0)';
     };
   return (
-    <div className="cardcontainer">
+    <div className="project-cardcontainer">
       <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">
