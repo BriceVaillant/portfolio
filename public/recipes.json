@@ -2,6 +2,7 @@
   {
     "id": 9722061307128,
     "title": "Spaghetti Carbonara",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pasta",
@@ -15,6 +16,7 @@
   {
     "id": 7789579137254,
     "title": "Chicken Fried Rice",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "rice",
@@ -29,6 +31,7 @@
   {
     "id": 3365580898627,
     "title": "Creamy Mushroom Chicken",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "chicken",
@@ -42,6 +45,7 @@
   {
     "id": 7506379903118,
     "title": "Beef Stroganoff",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "beef",
@@ -55,6 +59,7 @@
   {
     "id": 3798990331120,
     "title": "Vegetable Stir Fry",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "broccoli",
@@ -68,6 +73,7 @@
   {
     "id": 3184132750558,
     "title": "Grilled Salmon",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "salmon",
@@ -81,6 +87,7 @@
   {
     "id": 4745638122723,
     "title": "Tuna Pasta Salad",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pasta",
@@ -94,6 +101,7 @@
   {
     "id": 3468306564656,
     "title": "Chili Con Carne",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "beef",
@@ -107,6 +115,7 @@
   {
     "id": 3882940366895,
     "title": "Lentil Soup",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "lentils",
@@ -120,6 +129,7 @@
   {
     "id": 5002318688607,
     "title": "Baked Ziti",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pasta",
@@ -132,6 +142,7 @@
   {
     "id": 3182647167288,
     "title": "Shepherd's Pie",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "ground beef",
@@ -145,6 +156,7 @@
   {
     "id": 7883474020972,
     "title": "Stuffed Peppers",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "rice",
@@ -157,6 +169,7 @@
   {
     "id": 8308554064017,
     "title": "Mac and Cheese",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pasta",
@@ -170,6 +183,7 @@
   {
     "id": 7783740365500,
     "title": "Shrimp Scampi",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "shrimp",
@@ -183,6 +197,7 @@
   {
     "id": 4949245325309,
     "title": "Fajitas",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "chicken",
@@ -196,6 +211,7 @@
   {
     "id": 9052048854405,
     "title": "Beef Tacos",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "beef",
@@ -209,6 +225,7 @@
   {
     "id": 2011981632357,
     "title": "Chicken Alfredo",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pasta",
@@ -222,6 +239,7 @@
   {
     "id": 2018508207013,
     "title": "Minestrone Soup",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "beans",
@@ -235,6 +253,7 @@
   {
     "id": 8625607866570,
     "title": "Bulgur Salad",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "bulgur",
@@ -248,6 +267,7 @@
   {
     "id": 4221088573087,
     "title": "Pasta Primavera",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pasta",
@@ -261,6 +281,7 @@
   {
     "id": 5584998830943,
     "title": "Sloppy Joes",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "ground beef",
@@ -274,6 +295,7 @@
   {
     "id": 1947125124308,
     "title": "Falafel Wrap",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "chickpeas",
@@ -287,6 +309,7 @@
   {
     "id": 6476062215296,
     "title": "Sweet and Sour Chicken",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "chicken",
@@ -300,6 +323,7 @@
   {
     "id": 1347030376991,
     "title": "Gnocchi with Pesto",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "gnocchi",
@@ -312,6 +336,7 @@
   {
     "id": 4154376150049,
     "title": "Pork Chops with Apples",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "pork chops",
@@ -324,6 +349,7 @@
   {
     "id": 3121451542184,
     "title": "Eggplant Parmesan",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "eggplant",
@@ -336,6 +362,7 @@
   {
     "id": 1201870759364,
     "title": "Quiche Lorraine",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "eggs",
@@ -349,6 +376,7 @@
   {
     "id": 1840707573689,
     "title": "Turkey Meatballs",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "ground turkey",
@@ -362,6 +390,7 @@
   {
     "id": 6701865023581,
     "title": "Ratatouille",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "eggplant",
@@ -375,6 +404,7 @@
   {
     "id": 9254603384557,
     "title": "Tofu Stir Fry",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "tofu",
@@ -388,6 +418,7 @@
   {
     "id": 1200692210947,
     "title": "Curry Chickpeas",
+    "type": "meal",
     "favorite": false,
     "ingredients": [
       "chickpeas",
@@ -397,5 +428,245 @@
       "tomato"
     ],
     "instructions": "Simmer chickpeas in coconut curry sauce."
+  },
+  {
+    "id": 1000000000001,
+    "title": "Chocolate Mousse",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["chocolate", "cream", "sugar", "eggs"],
+    "instructions": "Melt chocolate and fold in whipped cream. Chill until set."
+  },
+  {
+    "id": 1000000000002,
+    "title": "Lemon Tart",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["lemon", "eggs", "sugar", "flour", "butter"],
+    "instructions": "Bake tart crust, then fill with lemon custard. Chill before serving."
+  },
+  {
+    "id": 1000000000003,
+    "title": "Strawberry Shortcake",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["strawberries", "cream", "sugar", "flour", "butter"],
+    "instructions": "Layer biscuits with cream and strawberries. Serve chilled."
+  },
+  {
+    "id": 1000000000004,
+    "title": "Banana Bread",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["bananas", "flour", "eggs", "sugar", "baking soda"],
+    "instructions": "Mix mashed bananas with batter. Bake until golden."
+  },
+  {
+    "id": 1000000000005,
+    "title": "Apple Crisp",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["apples", "oats", "sugar", "cinnamon", "butter"],
+    "instructions": "Top sliced apples with oat mixture. Bake until bubbly."
+  },
+  {
+    "id": 1000000000006,
+    "title": "Vanilla Pudding",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["milk", "sugar", "cornstarch", "vanilla"],
+    "instructions": "Cook milk with sugar and cornstarch. Add vanilla and cool."
+  },
+  {
+    "id": 1000000000007,
+    "title": "Peach Cobbler",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["peaches", "sugar", "flour", "butter"],
+    "instructions": "Layer peaches in pan and cover with batter. Bake until browned."
+  },
+  {
+    "id": 1000000000008,
+    "title": "Tiramisu",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["mascarpone", "coffee", "ladyfingers", "cocoa", "sugar"],
+    "instructions": "Layer coffee-soaked ladyfingers with mascarpone mix. Chill overnight."
+  },
+  {
+    "id": 1000000000009,
+    "title": "Rice Pudding",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["rice", "milk", "sugar", "cinnamon"],
+    "instructions": "Simmer rice in milk with sugar. Add cinnamon and serve warm or cold."
+  },
+  {
+    "id": 1000000000010,
+    "title": "Coconut Macaroons",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["coconut", "egg whites", "sugar", "vanilla"],
+    "instructions": "Mix ingredients, form into balls. Bake until golden."
+  },
+  {
+    "id": 1000000000011,
+    "title": "Brownies",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["chocolate", "flour", "sugar", "eggs", "butter"],
+    "instructions": "Mix and bake until center is just set. Cool before cutting."
+  },
+  {
+    "id": 1000000000012,
+    "title": "Pumpkin Pie",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["pumpkin", "eggs", "milk", "sugar", "spices"],
+    "instructions": "Pour filling into pie shell. Bake until center is firm."
+  },
+  {
+    "id": 1000000000013,
+    "title": "Creme Brulee",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["cream", "vanilla", "egg yolks", "sugar"],
+    "instructions": "Bake custard in water bath. Chill and torch sugar top."
+  },
+  {
+    "id": 1000000000014,
+    "title": "Pineapple Upside-Down Cake",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["pineapple", "cherries", "cake mix", "butter", "sugar"],
+    "instructions": "Arrange fruit at bottom, pour batter on top. Bake and invert."
+  },
+  {
+    "id": 1000000000015,
+    "title": "Molten Lava Cake",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["chocolate", "butter", "eggs", "flour", "sugar"],
+    "instructions": "Bake until edges are set but center is gooey. Serve warm."
+  },
+  {
+    "id": 1000000000016,
+    "title": "Panna Cotta",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["cream", "sugar", "gelatin", "vanilla"],
+    "instructions": "Heat cream with sugar and vanilla. Add gelatin and chill."
+  },
+  {
+    "id": 1000000000017,
+    "title": "Blueberry Muffins",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["blueberries", "flour", "eggs", "sugar", "milk"],
+    "instructions": "Fold berries into batter. Bake until golden."
+  },
+  {
+    "id": 1000000000018,
+    "title": "Carrot Cake",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["carrots", "flour", "sugar", "eggs", "cinnamon"],
+    "instructions": "Mix shredded carrots with batter. Bake and frost if desired."
+  },
+  {
+    "id": 1000000000019,
+    "title": "Peanut Butter Cookies",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["peanut butter", "sugar", "egg", "vanilla"],
+    "instructions": "Mix and shape dough. Press with fork and bake."
+  },
+  {
+    "id": 1000000000020,
+    "title": "Cheesecake",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["cream cheese", "sugar", "eggs", "crust"],
+    "instructions": "Pour filling into crust. Bake, then chill thoroughly."
+  },
+  {
+    "id": 1000000000021,
+    "title": "Baklava",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["phyllo", "nuts", "honey", "butter", "sugar"],
+    "instructions": "Layer phyllo with nuts and bake. Pour syrup on top."
+  },
+  {
+    "id": 1000000000022,
+    "title": "Chocolate Chip Cookies",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["chocolate chips", "flour", "butter", "eggs", "sugar"],
+    "instructions": "Mix ingredients, drop dough on tray. Bake until golden."
+  },
+  {
+    "id": 1000000000023,
+    "title": "Fruit Salad",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["berries", "melon", "grapes", "honey", "mint"],
+    "instructions": "Chop fruit, drizzle with honey. Garnish with mint."
+  },
+  {
+    "id": 1000000000024,
+    "title": "Cinnamon Rolls",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["flour", "yeast", "cinnamon", "sugar", "butter"],
+    "instructions": "Roll dough with cinnamon filling. Bake and glaze."
+  },
+  {
+    "id": 1000000000025,
+    "title": "Chocolate Truffles",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["chocolate", "cream", "cocoa powder"],
+    "instructions": "Chill ganache, roll into balls. Dust with cocoa."
+  },
+  {
+    "id": 1000000000026,
+    "title": "Bread Pudding",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["bread", "milk", "eggs", "sugar", "raisins"],
+    "instructions": "Soak bread in custard mix. Bake until set."
+  },
+  {
+    "id": 1000000000027,
+    "title": "Profiteroles",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["choux pastry", "cream", "chocolate sauce"],
+    "instructions": "Fill puffs with cream. Drizzle with chocolate."
+  },
+  {
+    "id": 1000000000028,
+    "title": "Ice Cream Sandwiches",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["cookies", "ice cream"],
+    "instructions": "Scoop ice cream between cookies. Freeze until firm."
+  },
+  {
+    "id": 1000000000029,
+    "title": "Eclairs",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["choux pastry", "cream", "chocolate glaze"],
+    "instructions": "Pipe pastry, bake and fill with cream. Top with glaze."
+  },
+  {
+    "id": 1000000000030,
+    "title": "Tres Leches Cake",
+    "type": "dessert",
+    "favorite": false,
+    "ingredients": ["milk", "evaporated milk", "condensed milk", "flour", "eggs"],
+    "instructions": "Soak sponge cake with milk mixture. Chill and serve."
   }
 ]
