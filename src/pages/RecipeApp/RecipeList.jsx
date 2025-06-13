@@ -4,6 +4,7 @@ import './RecipeList.css';
 
 export default function RecipeList() {
     const [recipes, setRecipes] = useState([]);
+    const [selectedRecipe, setSelectedRecipe] = useState(null);
     const meals = recipes.filter(r => r.type === "meal");
     const desserts = recipes.filter(r => r.type === "dessert");
     const uniqueIngredients = Array.from(
@@ -31,8 +32,8 @@ export default function RecipeList() {
         setShowAddRecipeModal(true);
     };
 
-    const handleFoodCardClick = () => {
-        setShowFoodModal(true);
+    const handleFoodCardClick = (recipe) => {
+        setSelectedRecipe(recipe);
     };
 
     const handleBackdropClick = (e, closeModal) => {
@@ -79,27 +80,11 @@ export default function RecipeList() {
                     <div className="newrecipecard" onClick={handleCardClick}>
                         <h2>Add a new recipe</h2>
                     </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>Pizzamozza</h2>
-                    </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>guacamole</h2>
-                    </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>tiramisu</h2>
-                    </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>crepes</h2>
-                    </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>muffin</h2>
-                    </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>pate bolognese</h2>
-                    </div>
-                    <div className="foodcard" onClick={handleFoodCardClick}>
-                        <h2>pate bolognese</h2>
-                    </div>
+                    {recipes.map(recipe => (
+                        <div className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
+                            <h2>{recipe.title}</h2>
+                        </div>
+                    ))}
                 </div>
                 {showAddRecipeModal && (
                     <div className="addrecipecontainer" onClick={(e) => handleBackdropClick(e, setShowAddRecipeModal)}>
@@ -134,23 +119,22 @@ export default function RecipeList() {
                         </form>
                     </div>
                 )}
-                {showFoodModal && (
-                    <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setShowFoodModal)}>
+                {selectedRecipe && (
+                    <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setSelectedRecipe)}>
                         <div className="currentrecipe">
-                            <h3>Title</h3>
+                            <h3>{selectedRecipe.title}</h3>
                             <div className="halfcontainer">
                                 <div className="recipe-ingredients">
                                     <h4>Ingredients:</h4>
                                     <ul>
-                                        <li>tomates</li>
-                                        <li>pasta</li>
-                                        <li>rice</li>
-                                        <li>chicken</li>
+                                        {selectedRecipe.ingredients.map((ingredient, index) => (
+                                            <li key={index}>{ingredient}</li>
+                                        ))}
                                     </ul>
                                 </div>
                                 <div className="recipe-instruction">
                                     <h4>Instructions:</h4>
-                                    <p>Some instructions here...</p>
+                                    <p>{selectedRecipe.instructions}</p>
                                 </div>
                             </div>
                         </div>
