@@ -1,0 +1,401 @@
+[
+  {
+    "id": 9722061307128,
+    "title": "Spaghetti Carbonara",
+    "favorite": false,
+    "ingredients": [
+      "pasta",
+      "eggs",
+      "cream",
+      "cheese",
+      "pepper"
+    ],
+    "instructions": "Cook pasta, mix with eggs and cheese, and combine with cooked bacon."
+  },
+  {
+    "id": 7789579137254,
+    "title": "Chicken Fried Rice",
+    "favorite": false,
+    "ingredients": [
+      "rice",
+      "chicken",
+      "egg",
+      "carrot",
+      "peas",
+      "soy sauce"
+    ],
+    "instructions": "Cook rice and stir-fry with chicken, vegetables, and soy sauce."
+  },
+  {
+    "id": 3365580898627,
+    "title": "Creamy Mushroom Chicken",
+    "favorite": false,
+    "ingredients": [
+      "chicken",
+      "mushrooms",
+      "cream",
+      "garlic",
+      "onion"
+    ],
+    "instructions": "Saute chicken and mushrooms, add cream, and simmer."
+  },
+  {
+    "id": 7506379903118,
+    "title": "Beef Stroganoff",
+    "favorite": false,
+    "ingredients": [
+      "beef",
+      "mushrooms",
+      "onion",
+      "sour cream",
+      "pasta"
+    ],
+    "instructions": "Cook beef with mushrooms, stir in sour cream, serve over pasta."
+  },
+  {
+    "id": 3798990331120,
+    "title": "Vegetable Stir Fry",
+    "favorite": false,
+    "ingredients": [
+      "broccoli",
+      "carrot",
+      "bell pepper",
+      "soy sauce",
+      "garlic"
+    ],
+    "instructions": "Stir-fry vegetables in soy sauce and garlic."
+  },
+  {
+    "id": 3184132750558,
+    "title": "Grilled Salmon",
+    "favorite": false,
+    "ingredients": [
+      "salmon",
+      "lemon",
+      "olive oil",
+      "garlic",
+      "herbs"
+    ],
+    "instructions": "Grill salmon with lemon, garlic, and herbs."
+  },
+  {
+    "id": 4745638122723,
+    "title": "Tuna Pasta Salad",
+    "favorite": false,
+    "ingredients": [
+      "pasta",
+      "tuna",
+      "mayonnaise",
+      "corn",
+      "peas"
+    ],
+    "instructions": "Mix cooked pasta with tuna, mayo, and veggies."
+  },
+  {
+    "id": 3468306564656,
+    "title": "Chili Con Carne",
+    "favorite": false,
+    "ingredients": [
+      "beef",
+      "beans",
+      "tomatoes",
+      "onion",
+      "chili"
+    ],
+    "instructions": "Cook beef with beans and tomatoes. Add chili."
+  },
+  {
+    "id": 3882940366895,
+    "title": "Lentil Soup",
+    "favorite": false,
+    "ingredients": [
+      "lentils",
+      "carrots",
+      "onion",
+      "celery",
+      "spices"
+    ],
+    "instructions": "Boil lentils with vegetables and spices."
+  },
+  {
+    "id": 5002318688607,
+    "title": "Baked Ziti",
+    "favorite": false,
+    "ingredients": [
+      "pasta",
+      "cheese",
+      "tomato sauce",
+      "ground beef"
+    ],
+    "instructions": "Layer pasta with meat sauce and cheese. Bake until bubbly."
+  },
+  {
+    "id": 3182647167288,
+    "title": "Shepherd's Pie",
+    "favorite": false,
+    "ingredients": [
+      "ground beef",
+      "potatoes",
+      "peas",
+      "carrots",
+      "onion"
+    ],
+    "instructions": "Layer cooked beef and vegetables under mashed potatoes. Bake."
+  },
+  {
+    "id": 7883474020972,
+    "title": "Stuffed Peppers",
+    "favorite": false,
+    "ingredients": [
+      "rice",
+      "bell peppers",
+      "ground beef",
+      "tomato sauce"
+    ],
+    "instructions": "Stuff peppers with meat and rice mixture. Bake."
+  },
+  {
+    "id": 8308554064017,
+    "title": "Mac and Cheese",
+    "favorite": false,
+    "ingredients": [
+      "pasta",
+      "cheese",
+      "milk",
+      "butter",
+      "flour"
+    ],
+    "instructions": "Make cheese sauce, mix with pasta, and bake."
+  },
+  {
+    "id": 7783740365500,
+    "title": "Shrimp Scampi",
+    "favorite": false,
+    "ingredients": [
+      "shrimp",
+      "garlic",
+      "butter",
+      "lemon",
+      "pasta"
+    ],
+    "instructions": "Saute shrimp in garlic butter, serve over pasta."
+  },
+  {
+    "id": 4949245325309,
+    "title": "Fajitas",
+    "favorite": false,
+    "ingredients": [
+      "chicken",
+      "bell peppers",
+      "onion",
+      "spices",
+      "tortilla"
+    ],
+    "instructions": "Cook chicken with peppers and spices. Serve in tortillas."
+  },
+  {
+    "id": 9052048854405,
+    "title": "Beef Tacos",
+    "favorite": false,
+    "ingredients": [
+      "beef",
+      "taco shells",
+      "lettuce",
+      "cheese",
+      "salsa"
+    ],
+    "instructions": "Cook beef with spices. Fill taco shells with beef and toppings."
+  },
+  {
+    "id": 2011981632357,
+    "title": "Chicken Alfredo",
+    "favorite": false,
+    "ingredients": [
+      "pasta",
+      "chicken",
+      "cream",
+      "parmesan",
+      "garlic"
+    ],
+    "instructions": "Cook pasta and mix with Alfredo sauce and chicken."
+  },
+  {
+    "id": 2018508207013,
+    "title": "Minestrone Soup",
+    "favorite": false,
+    "ingredients": [
+      "beans",
+      "carrots",
+      "celery",
+      "pasta",
+      "tomatoes"
+    ],
+    "instructions": "Boil vegetables and beans. Add pasta and cook until tender."
+  },
+  {
+    "id": 8625607866570,
+    "title": "Bulgur Salad",
+    "favorite": false,
+    "ingredients": [
+      "bulgur",
+      "tomato",
+      "cucumber",
+      "mint",
+      "lemon"
+    ],
+    "instructions": "Mix cooked bulgur with chopped vegetables and lemon juice."
+  },
+  {
+    "id": 4221088573087,
+    "title": "Pasta Primavera",
+    "favorite": false,
+    "ingredients": [
+      "pasta",
+      "zucchini",
+      "bell pepper",
+      "carrot",
+      "olive oil"
+    ],
+    "instructions": "Cook pasta and toss with sauteed vegetables."
+  },
+  {
+    "id": 5584998830943,
+    "title": "Sloppy Joes",
+    "favorite": false,
+    "ingredients": [
+      "ground beef",
+      "ketchup",
+      "mustard",
+      "buns",
+      "onion"
+    ],
+    "instructions": "Cook beef with sauce and serve on buns."
+  },
+  {
+    "id": 1947125124308,
+    "title": "Falafel Wrap",
+    "favorite": false,
+    "ingredients": [
+      "chickpeas",
+      "onion",
+      "garlic",
+      "spices",
+      "tortilla"
+    ],
+    "instructions": "Blend chickpeas with spices, form patties, fry, and wrap."
+  },
+  {
+    "id": 6476062215296,
+    "title": "Sweet and Sour Chicken",
+    "favorite": false,
+    "ingredients": [
+      "chicken",
+      "pineapple",
+      "bell pepper",
+      "vinegar",
+      "sugar"
+    ],
+    "instructions": "Cook chicken with sauce ingredients and veggies."
+  },
+  {
+    "id": 1347030376991,
+    "title": "Gnocchi with Pesto",
+    "favorite": false,
+    "ingredients": [
+      "gnocchi",
+      "pesto",
+      "parmesan",
+      "garlic"
+    ],
+    "instructions": "Boil gnocchi and mix with pesto sauce."
+  },
+  {
+    "id": 4154376150049,
+    "title": "Pork Chops with Apples",
+    "favorite": false,
+    "ingredients": [
+      "pork chops",
+      "apples",
+      "onion",
+      "cinnamon"
+    ],
+    "instructions": "Cook pork with apples and onion until tender."
+  },
+  {
+    "id": 3121451542184,
+    "title": "Eggplant Parmesan",
+    "favorite": false,
+    "ingredients": [
+      "eggplant",
+      "cheese",
+      "tomato sauce",
+      "breadcrumbs"
+    ],
+    "instructions": "Layer fried eggplant with sauce and cheese, then bake."
+  },
+  {
+    "id": 1201870759364,
+    "title": "Quiche Lorraine",
+    "favorite": false,
+    "ingredients": [
+      "eggs",
+      "bacon",
+      "cheese",
+      "cream",
+      "pastry crust"
+    ],
+    "instructions": "Fill crust with egg mixture and bake."
+  },
+  {
+    "id": 1840707573689,
+    "title": "Turkey Meatballs",
+    "favorite": false,
+    "ingredients": [
+      "ground turkey",
+      "breadcrumbs",
+      "egg",
+      "herbs",
+      "sauce"
+    ],
+    "instructions": "Form and bake meatballs, then simmer in sauce."
+  },
+  {
+    "id": 6701865023581,
+    "title": "Ratatouille",
+    "favorite": false,
+    "ingredients": [
+      "eggplant",
+      "zucchini",
+      "tomatoes",
+      "bell pepper",
+      "onion"
+    ],
+    "instructions": "Layer and roast vegetables with herbs."
+  },
+  {
+    "id": 9254603384557,
+    "title": "Tofu Stir Fry",
+    "favorite": false,
+    "ingredients": [
+      "tofu",
+      "broccoli",
+      "soy sauce",
+      "carrot",
+      "garlic"
+    ],
+    "instructions": "Fry tofu and mix with stir-fried vegetables and sauce."
+  },
+  {
+    "id": 1200692210947,
+    "title": "Curry Chickpeas",
+    "favorite": false,
+    "ingredients": [
+      "chickpeas",
+      "coconut milk",
+      "curry powder",
+      "onion",
+      "tomato"
+    ],
+    "instructions": "Simmer chickpeas in coconut curry sauce."
+  }
+]
