@@ -1,8 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './RecipeList.css';
 
 
 export default function RecipeList() {
+    const [recipes, setRecipes] = useState([]);
+    const meals = recipes.filter(r => r.type === "meal");
+    const desserts = recipes.filter(r => r.type === "dessert");
+    const uniqueIngredients = Array.from(
+        new Set(
+            meals.flatMap(recipe => recipe.ingredients)
+        )
+    );
+
     const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
     const [showFoodModal, setShowFoodModal] = useState(false);
     const [formData, setFormData] = useState({
@@ -10,6 +19,13 @@ export default function RecipeList() {
         ingredients: '',
         instructions: ''
     });
+
+    function shuffleArray(array) {
+        return array
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value);
+    }
 
     const handleCardClick = () => {
         setShowAddRecipeModal(true);
@@ -30,61 +46,33 @@ export default function RecipeList() {
         //need to save all that into the json
         console.log(formData);
         setShowAddRecipeModal(false);
-         //this reset the form
+        //this reset the form
         setFormData({ title: '', ingredients: '', instructions: '' });
     };
+
+    useEffect(() => {
+        fetch('/recipes.json')
+            .then(res => res.json())
+            .then(data => {
+                const shuffled = shuffleArray(data);
+                setRecipes(shuffled);
+            })
+            .catch(err => console.error('Error loading JSON:', err));
+    }, []);
     return (
-        <div className="maincontainer">
+        <div className="recipelistcontainer">
             <div className="sidecolumn">
                 <div className="filterlgd custom-checkbox">
                     <button className="clrbtn checkmark">X</button>
                     <h1 className="filtertext">Clear Selection:</h1>
                 </div>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="rice"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Rice</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Chicken"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Chicken</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Shrimp"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Shrimp</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Pasta"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Pasta</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Potatoes"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Potatoes</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="rice"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Rice</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Chicken"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Chicken</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Shrimp"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Shrimp</span>
-                </label>
-                <label className="custom-checkbox">
-                    <input type="checkbox" name="filter" value="Pasta"></input>
-                    <span className="checkmark"></span>
-                    <span className="filtertext">Pasta</span>
-                </label>
+                {uniqueIngredients.map(recipe => (
+                    <label className="custom-checkbox" key={recipe.id}>
+                        <input type="checkbox" name="filter" value="rice"></input>
+                        <span className="checkmark"></span>
+                        <span className="filtertext">{recipe}</span>
+                    </label>
+                ))}
             </div>
             <div className="cardcolumn">
                 <div className="listoffood">

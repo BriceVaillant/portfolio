@@ -36,8 +36,10 @@
   width: 100vw;
   overflow: hidden;
 }
-
-.homepage .cardscontainer {
+.homepage h2 {
+  color: black;
+}
+.homepage .mealcardscontainer,.homepage .dessertcardscontainer {
   display: flex;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -54,7 +56,7 @@
 .homepage .scroll-btn.right {
   right: 10px;
 }
-.homepage .card {
+.homepage .mealscard,.homepage .dessertcard {
   flex: 0 0 auto;
   width: 250px;
   height: 200px;
