@@ -14,7 +14,7 @@ export default function Navbar() {
                 </div>
                 <div className="listcontainer">
                     <ul>
-                        <li><Link to="/projects/recipe/home" className="navbarlink" >Home</Link></li>
+                        <li><Link to="/projects/recipe/home" className="navbarlink" >Discover</Link></li>
                         <li><Link to="/projects/recipe/recipelist" className="navbarlink" >Recipes</Link></li>
                     </ul>
                 </div>

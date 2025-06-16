@@ -8,6 +8,7 @@
 :root {
   --dark: #0B0C08;
   --light: #EDFD5D;
+  --darkgrey: darkgrey;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

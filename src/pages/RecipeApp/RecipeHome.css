@@ -1,24 +1,28 @@
-
+.homepage {
+  background-color: white;
+  height: 96vh;
+}
 .homepage .imgplacement {
   height: 450px;
   width: 100%;
   background-color: red;
-  border: 2px solid green;
 }
 .homepage .ideacontainer {
   text-transform: uppercase;
   text-align: center;
   color: var(--light);
-  border:2px solid green;
 }
 .homepage .title {
   height: 35px;
-  font-size: 35px;
+  font-size: 40px;
+  font-weight: bold;
   text-align: start;
+  color: grey;
+  padding-left: 15px;
 }
 .homepage .scroll-btn {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   border: none;
   border-radius: 25px;
@@ -44,9 +48,8 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 1rem 3rem;
   width: 100%;
-  border: 2px solid white;
    z-index: 0;
 }
 .homepage .scroll-btn.left {
@@ -58,9 +61,9 @@
 }
 .homepage .mealscard,.homepage .dessertcard {
   flex: 0 0 auto;
-  width: 250px;
-  height: 200px;
-  background-color : yellow;
+  width: 400px;
+  height: 400px;
+  background-color : darkblue;
   border-radius: 8px;
   display: flex;
   align-items: flex-end;
