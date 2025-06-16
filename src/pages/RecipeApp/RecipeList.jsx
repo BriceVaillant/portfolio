@@ -5,8 +5,10 @@ import './RecipeList.css';
 export default function RecipeList() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const [selectedIngredients, setSelectedIngredients] = useState([]);
+
     const meals = recipes.filter(r => r.type === "meal");
-    const desserts = recipes.filter(r => r.type === "dessert");
+    // const desserts = recipes.filter(r => r.type === "dessert");
     const uniqueIngredients = Array.from(
         new Set(
             meals.flatMap(recipe => recipe.ingredients)
@@ -14,7 +16,7 @@ export default function RecipeList() {
     );
 
     const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
-    const [showFoodModal, setShowFoodModal] = useState(false);
+    //const [showFoodModal, setShowFoodModal] = useState(false);
     const [formData, setFormData] = useState({
         title: '',
         ingredients: '',
@@ -27,6 +29,16 @@ export default function RecipeList() {
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value);
     }
+
+    //handle filter with checkmark
+    const filteredRecipes = recipes.filter(recipe => {
+        if (selectedIngredients.length === 0) return true;
+
+
+        return selectedIngredients.some(ingredient =>
+            recipe.ingredients.includes(ingredient)
+        );
+    });
 
     const handleCardClick = () => {
         setShowAddRecipeModal(true);
@@ -67,11 +79,22 @@ export default function RecipeList() {
                     <button className="clrbtn checkmark">X</button>
                     <h1 className="filtertext">Clear Selection:</h1>
                 </div>
-                {uniqueIngredients.map(recipe => (
-                    <label className="custom-checkbox" key={recipe.id}>
-                        <input type="checkbox" name="filter" value="rice"></input>
+                {uniqueIngredients.map((ingredient) => (
+                    <label className="custom-checkbox" key={ingredient}>
+                        <input
+                            type="checkbox"
+                            name="filter"
+                            value={ingredient}
+                            onChange={(e) => {
+                                if (e.target.checked) {
+                                    setSelectedIngredients(prev => [...prev, ingredient]);
+                                } else {
+                                    setSelectedIngredients(prev => prev.filter(i => i !== ingredient));
+                                }
+                            }}
+                        />
                         <span className="checkmark"></span>
-                        <span className="filtertext">{recipe}</span>
+                        <span className="filtertext">{ingredient}</span>
                     </label>
                 ))}
             </div>
@@ -80,7 +103,7 @@ export default function RecipeList() {
                     <div className="newrecipecard" onClick={handleCardClick}>
                         <h2>Add a new recipe</h2>
                     </div>
-                    {recipes.map(recipe => (
+                    {filteredRecipes.map(recipe => (
                         <div className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
                             <h2>{recipe.title}</h2>
                         </div>
