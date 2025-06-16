@@ -23,7 +23,7 @@ export default function RecipeHome() {
         container.scrollLeft += direction * scrollStep;
     }
     useEffect(() => {
-        fetch('/recipes.json')
+        fetch('/.netlify/functions/getRecipes')
             .then(res => res.json())
             .then(data => {
                 const shuffled = shuffleArray(data);

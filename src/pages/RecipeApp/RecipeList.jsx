@@ -13,7 +13,7 @@ export default function RecipeList() {
 
     //fetch data from json to generate card
     useEffect(() => {
-        fetch('/recipes.json')
+        fetch('/.netlify/functions/getRecipes')
             .then(res => res.json())
             .then(data => {
                 const shuffled = shuffleArray(data);
