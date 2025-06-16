@@ -6,16 +6,30 @@ export default function RecipeList() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
+    const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
 
     const meals = recipes.filter(r => r.type === "meal");
     // const desserts = recipes.filter(r => r.type === "dessert");
+
+    //fetch data from json to generate card
+    useEffect(() => {
+        fetch('/recipes.json')
+            .then(res => res.json())
+            .then(data => {
+                const shuffled = shuffleArray(data);
+                setRecipes(shuffled);
+            })
+            .catch(err => console.error('Error loading JSON:', err));
+    }, []);
+
+    //allow to filter to only display unique ingredients
     const uniqueIngredients = Array.from(
         new Set(
             meals.flatMap(recipe => recipe.ingredients)
         )
     );
 
-    const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
+
     //const [showFoodModal, setShowFoodModal] = useState(false);
     const [formData, setFormData] = useState({
         title: '',
@@ -23,6 +37,7 @@ export default function RecipeList() {
         instructions: ''
     });
 
+    //shuffle card array 
     function shuffleArray(array) {
         return array
             .map(value => ({ value, sort: Math.random() }))
@@ -40,20 +55,24 @@ export default function RecipeList() {
         );
     });
 
+    //show add recipe modal when card is clicked
     const handleCardClick = () => {
         setShowAddRecipeModal(true);
     };
 
+    //show recipe modal when card is clicked
     const handleFoodCardClick = (recipe) => {
         setSelectedRecipe(recipe);
     };
 
+    //exit modal when background is clicked
     const handleBackdropClick = (e, closeModal) => {
         if (e.target === e.currentTarget) {
             closeModal(false);
         }
     };
 
+    //add recipe logic
     const handleSubmit = (e) => {
         e.preventDefault();
         //need to save all that into the json
@@ -63,21 +82,13 @@ export default function RecipeList() {
         setFormData({ title: '', ingredients: '', instructions: '' });
     };
 
-    useEffect(() => {
-        fetch('/recipes.json')
-            .then(res => res.json())
-            .then(data => {
-                const shuffled = shuffleArray(data);
-                setRecipes(shuffled);
-            })
-            .catch(err => console.error('Error loading JSON:', err));
-    }, []);
     return (
         <div className="recipelistcontainer">
-            <div className="sidecolumn">
-                <div className="filterlgd custom-checkbox">
-                    <button className="clrbtn checkmark">X</button>
-                    <h1 className="filtertext">Clear Selection:</h1>
+            <div className="sidecolumn" key={selectedIngredients.join(',')}>
+                <div className="filterlgd">
+                    <button className="clrbtn" onClick={() => setSelectedIngredients([])}>
+                        Clear Selection
+                    </button>
                 </div>
                 {uniqueIngredients.map((ingredient) => (
                     <label className="custom-checkbox" key={ingredient}>
@@ -85,6 +96,7 @@ export default function RecipeList() {
                             type="checkbox"
                             name="filter"
                             value={ingredient}
+                            checked={selectedIngredients.includes(ingredient)}
                             onChange={(e) => {
                                 if (e.target.checked) {
                                     setSelectedIngredients(prev => [...prev, ingredient]);
