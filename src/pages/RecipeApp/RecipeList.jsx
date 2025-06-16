@@ -85,11 +85,9 @@ export default function RecipeList() {
     return (
         <div className="recipelistcontainer">
             <div className="sidecolumn" key={selectedIngredients.join(',')}>
-                <div className="filterlgd">
-                    <button className="clrbtn" onClick={() => setSelectedIngredients([])}>
+                    <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
                         Clear Selection
                     </button>
-                </div>
                 {uniqueIngredients.map((ingredient) => (
                     <label className="custom-checkbox" key={ingredient}>
                         <input

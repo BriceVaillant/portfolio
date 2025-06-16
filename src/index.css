@@ -15,8 +15,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-html {
-  height: 100%;
+html, body {
+  height: 100vh;
 }
 body { 
   font-family: "Arsenal", sans-serif;

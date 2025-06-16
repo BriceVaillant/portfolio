@@ -35,7 +35,7 @@
 .recipelistcontainer {
   display: grid;
   grid-template-columns: 1fr 5fr;
-  height: 96vh;
+  height: calc(100vh - 60px);
 }
 
 .recipelistcontainer h1 {
