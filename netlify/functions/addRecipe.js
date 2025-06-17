@@ -36,7 +36,7 @@ export async function handler(event, context) {
     const data = JSON.parse(event.body);
     const { type, title, ingredients, instructions } = data;
 
-    if (!title || !ingredients || !instructions || !type) {
+    if (!title || !type || !ingredients || !instructions) {
       return {
         statusCode: 400,
         body: JSON.stringify({ error: 'Missing required fields' }),

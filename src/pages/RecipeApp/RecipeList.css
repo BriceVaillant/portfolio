@@ -153,36 +153,9 @@
   justify-content: center;
   align-items: center;
 }
-.recipelistcontainer .choicebtn {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 6px 12px;
-    margin: 0 4px;
-    cursor: pointer;
-    border-radius: 4px;
-}
 
-.recipelistcontainer .choicebtn.selected {
-    background-color: #333;
-    color: white;
-    border-color: #333;
-}
-.recipelistcontainer .currentrecipe {
-  width: 60%;
-  height: 30vh;
-  border: 3px solid black;
-  background: white;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-}
-
-.recipelistcontainer .currentrecipecontainer h3 {
-  color: black;
-}
-
+/* add recipe modal */
+/* __________________________________________________________*/
 .recipelistcontainer .addrecipeform {
   width: 60vw;
   max-width: 800px;
@@ -195,16 +168,6 @@
   align-items: center;
   flex-direction: column;
 }
-
-.recipelistcontainer .halfcontainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 100%;
-  height: 80%;
-}
-
 .recipelistcontainer .addrecipeform h2 {
   color: var(--dark);
   text-align: center;
@@ -212,6 +175,19 @@
   margin: 15px;
   font-size: 3rem;
   max-width: 600px;
+}
+.recipelistcontainer .choicebtn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.recipelistcontainer .choicebtn.selected {
+    background-color: #333;
+    color: white;
+    border-color: #333;
 }
 
 .recipelistcontainer #addrecipetitle,
@@ -259,30 +235,74 @@
   transform: scale(1.01);
 }
 
-.recipelistcontainer .recipe-instruction {
-  width: 80%;
+/* __________________________________________________________*/
+/* see recipe modal */
+.recipelistcontainer .currentrecipe {
+  width: 60vw;
+  max-width: 800px;
+  height: 30vh;
+  border: 3px solid black;
+  background: white;
+  border-radius: 12px;
+  padding: 0 20px 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+   background-color: var(--darkgrey);
+}
+
+.recipelistcontainer .currentrecipecontainer h3 {
+  color: black;
+  height: 10%;
+  margin: 10px;
+}
+.recipelistcontainer .recipe-instruction,
+.recipelistcontainer .recipe-ingredients {
   height: 100%;
-  gap: 3rem;
-  padding: 0.1rem;
+  gap: 2rem;
+  padding: 0.4rem;
   padding-left: 2rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  border: 2px solid black;
+  border-radius: 14px;
+  background-color: lightgrey;
 }
-
+.recipelistcontainer .recipe-instruction {
+  width: 80%;
+  margin-left: 1rem;
+}
 .recipelistcontainer .recipe-ingredients {
   width: 20%;
-  height: 100%;
-  gap: 0.5rem;
-  padding: 0.1rem;
-  border-right: 2px solid red;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
 }
-
+.recipelistcontainer .recipe-ingredients li {
+  padding: 7px;
+}
+.recipelistcontainer .currentrecipe .tophalf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 80%;
+}
+.recipelistcontainer .bottomhalf {
+    width: 100%;
+}
+.recipelistcontainer .editbtn,.recipelistcontainer .dltbtn {
+    background-color: darkred;
+    color: white;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    margin: 20px 0 20px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 45%;
+}
+/* __________________________________________________________*/
 @media (min-width: 1600px) {
   .recipelistcontainer .listoffood {
     display: grid;

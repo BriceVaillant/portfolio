@@ -197,9 +197,9 @@ export default function RecipeList() {
                     <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setSelectedRecipe)}>
                         <div className="currentrecipe">
                             <h3>{selectedRecipe.title}</h3>
-                            <div className="halfcontainer">
+                            <div className="tophalf">
                                 <div className="recipe-ingredients">
-                                    <h4>Ingredients:</h4>
+                                    <h4>Ingredients</h4>
                                     <ul>
                                         {selectedRecipe.ingredients.map((ingredient, index) => (
                                             <li key={index}>{ingredient}</li>
@@ -207,9 +207,17 @@ export default function RecipeList() {
                                     </ul>
                                 </div>
                                 <div className="recipe-instruction">
-                                    <h4>Instructions:</h4>
+                                    <h4>Instructions</h4>
                                     <p>{selectedRecipe.instructions}</p>
                                 </div>
+                            </div>
+                            <div class="bottomhalf">
+                                <button  type="button" className="editbtn">
+                                    Edit
+                                </button>
+                            <button type="button" className="dltbtn">
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     </div>
