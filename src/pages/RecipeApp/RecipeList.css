@@ -153,7 +153,20 @@
   justify-content: center;
   align-items: center;
 }
+.recipelistcontainer .choicebtn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    border-radius: 4px;
+}
 
+.recipelistcontainer .choicebtn.selected {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
 .recipelistcontainer .currentrecipe {
   width: 60%;
   height: 30vh;
@@ -171,13 +184,14 @@
 }
 
 .recipelistcontainer .addrecipeform {
-  width: 60%;
-  height: 30vh;
+  width: 60vw;
+  max-width: 800px;
+  height: 50vh;
   border: 3px solid black;
-  background: blue;
+  background: white;
   border-radius: 12px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
 }
@@ -192,21 +206,25 @@
 }
 
 .recipelistcontainer .addrecipeform h2 {
-  color: white;
+  color: var(--dark);
+  text-align: center;
+  width: 100%;
   margin: 15px;
-  font-size: 2rem;
+  font-size: 3rem;
+  max-width: 600px;
 }
 
 .recipelistcontainer #addrecipetitle,
 .recipelistcontainer #addingredients,
 .recipelistcontainer #addinstructions {
-  width: 80%;
+  width: 90%;
   max-width: 600px;
   border-radius: 14px;
   padding: 4px;
   padding-left: 7px;
   resize: none;
   overflow: auto;
+  background-color: lightgrey;
 }
 
 .recipelistcontainer #addingredients,
@@ -222,23 +240,23 @@
 }
 
 .recipelistcontainer textarea:focus {
-  outline: 2px solid #0077ff;
+  outline: 2px solid var(--dark);
   background-color: #f9f9f9;
 }
 
 .recipelistcontainer .addrecipeform #submit {
-  background-color: green;
+  background-color: var(--darkgrey);
   padding: 5px;
   margin: 15px;
   border: none;
   border-radius: 30px;
-  width: 80%;
+  width: 60%;
   font-size: 1.2rem;
 }
 
 .recipelistcontainer .addrecipeform #submit:hover {
-  background-color: yellow;
-  width: 82%;
+  cursor: pointer;
+  transform: scale(1.01);
 }
 
 .recipelistcontainer .recipe-instruction {

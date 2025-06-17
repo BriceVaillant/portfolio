@@ -33,9 +33,15 @@ export default function RecipeList() {
     //const [showFoodModal, setShowFoodModal] = useState(false);
     const [formData, setFormData] = useState({
         title: '',
+        type: '',
         ingredients: '',
         instructions: ''
     });
+
+    //handle the choice of recipe
+    const handleTypeSelect = (selectedType) => {
+        setFormData({ ...formData, type: selectedType });
+    };
 
     //shuffle card array 
     function shuffleArray(array) {
@@ -73,21 +79,40 @@ export default function RecipeList() {
     };
 
     //add recipe logic
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //need to save all that into the json
-        console.log(formData);
-        setShowAddRecipeModal(false);
-        //this reset the form
-        setFormData({ title: '', ingredients: '', instructions: '' });
+
+        try {
+            const res = await fetch('/.netlify/functions/addRecipe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                console.log('Recipe saved:', data.recipe);
+                setFormData({ title: '', ingredients: '', instructions: '' });
+                setShowAddRecipeModal(false);
+            } else {
+                console.error('Failed to save recipe:', data);
+                alert('Failed to save recipe.');
+            }
+        } catch (err) {
+            console.error('Error saving recipe:', err);
+            alert('Something went wrong.');
+        }
     };
 
     return (
         <div className="recipelistcontainer">
             <div className="sidecolumn" key={selectedIngredients.join(',')}>
-                    <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
-                        Clear Selection
-                    </button>
+                <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
+                    Clear Selection
+                </button>
                 {uniqueIngredients.map((ingredient) => (
                     <label className="custom-checkbox" key={ingredient}>
                         <input
@@ -132,6 +157,22 @@ export default function RecipeList() {
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                             />
+                            <div className="choice">
+                                <button
+                                    type="button"
+                                    className={`choicebtn ${formData.type === 'dessert' ? 'selected' : ''}`}
+                                    onClick={() => handleTypeSelect('dessert')}
+                                >
+                                    Dessert
+                                </button>
+                                <button
+                                    type="button"
+                                    className={`choicebtn ${formData.type === 'meal' ? 'selected' : ''}`}
+                                    onClick={() => handleTypeSelect('meal')}
+                                >
+                                    Meal
+                                </button>
+                            </div>
                             <textarea
                                 id="addingredients"
                                 name="ingredients"
@@ -148,7 +189,7 @@ export default function RecipeList() {
                                 value={formData.instructions}
                                 onChange={(e) => setFormData({ ...formData, instructions: e.target.value })}
                             />
-                            <input id="submit" type="submit" value="Add Recipe" />
+                            <input id="submit" type="submit" value="Save" />
                         </form>
                     </div>
                 )}
