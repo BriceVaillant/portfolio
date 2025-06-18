@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
-await mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI);
 
 const RecipeSchema = new mongoose.Schema({}, { collection: 'recipelist' });
 const Recipe = mongoose.model('Recipe', RecipeSchema);
