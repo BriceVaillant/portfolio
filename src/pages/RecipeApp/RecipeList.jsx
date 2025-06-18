@@ -100,10 +100,10 @@ export default function RecipeList() {
 
             const result = await res.json();
             if (res.ok) {
-                // Refresh list, or update state to remove deleted recipe
-                //this close the modal
+                //this Remove deleted recipe
+                setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe._id !== id));
+                //and this closes the modal
                 setSelectedRecipe(null);
-                handleSubmit(); // or however you're refreshing your list
             } else {
                 console.error('Delete failed:', result.error);
             }
@@ -129,6 +129,7 @@ export default function RecipeList() {
 
             if (res.ok) {
                 console.log('Recipe saved:', data.recipe);
+                setRecipes(prev => [data.recipe, ...prev]);
                 setFormData({ title: '', ingredients: '', instructions: '' });
                 setShowAddRecipeModal(false);
             } else {
