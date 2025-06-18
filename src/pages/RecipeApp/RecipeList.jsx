@@ -7,6 +7,9 @@ export default function RecipeList() {
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
+    //this below is used to edit recipe
+    const [isEditing, setIsEditing] = useState(false);
+    const [editData, setEditData] = useState(selectedRecipe);
 
     const meals = recipes.filter(r => r.type === "meal");
     // const desserts = recipes.filter(r => r.type === "dessert");
@@ -84,7 +87,32 @@ export default function RecipeList() {
         }
     };
 
-    //add recipe logic
+    //handle the deleting part of the recipe
+    const handleDelete = async (id) => {
+        const confirmed = window.confirm("Are you sure you want to delete this recipe?");
+        if (!confirmed) return;
+
+        try {
+            const res = await fetch(`/.netlify/functions/deleteRecipe`, {
+                method: 'DELETE',
+                body: JSON.stringify({ id }),
+            });
+
+            const result = await res.json();
+            if (res.ok) {
+                // Refresh list, or update state to remove deleted recipe
+                //this close the modal
+                setSelectedRecipe(null);
+                handleSubmit(); // or however you're refreshing your list
+            } else {
+                console.error('Delete failed:', result.error);
+            }
+        } catch (err) {
+            console.error('Error deleting recipe:', err);
+        }
+    };
+
+    //fetch recipe logic
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -221,7 +249,8 @@ export default function RecipeList() {
                                 <button type="button" className="editbtn">
                                     Edit
                                 </button>
-                                <button type="button" className="dltbtn">
+                                <button type="button" className="dltbtn"
+                                    onClick={() => handleDelete(selectedRecipe._id)}>
                                     Delete
                                 </button>
                             </div>
