@@ -22,13 +22,18 @@ export default function RecipeList() {
             .catch(err => console.error('Error loading JSON:', err));
     }, []);
 
-    //allow to filter to only display unique ingredients
-    const uniqueIngredients = Array.from(
-        new Set(
-            meals.flatMap(recipe => recipe.ingredients)
-        )
-    );
+    //allow to filter to only display ingredients that are u sed multitple times
+    const ingredientCounts = meals
+        .flatMap(recipe => recipe.ingredients)
+        .reduce((acc, ingredient) => {
+            acc[ingredient] = (acc[ingredient] || 0) + 1;
+            return acc;
+        }, {});
 
+    const commonIngredients = Object.entries(ingredientCounts)
+        .filter(([_, count]) => count >= 2)
+        .map(([ingredient]) => ingredient)
+        .sort();
 
     //const [showFoodModal, setShowFoodModal] = useState(false);
     const [formData, setFormData] = useState({
@@ -74,6 +79,7 @@ export default function RecipeList() {
     //exit modal when background is clicked
     const handleBackdropClick = (e, closeModal) => {
         if (e.target === e.currentTarget) {
+            setFormData({ title: '', ingredients: '', instructions: '' });
             closeModal(false);
         }
     };
@@ -109,11 +115,11 @@ export default function RecipeList() {
 
     return (
         <div className="recipelistcontainer">
-            <div className="sidecolumn" key={selectedIngredients.join(',')}>
+            <div className="sidecolumn">
                 <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
                     Clear Selection
                 </button>
-                {uniqueIngredients.map((ingredient) => (
+                {commonIngredients.map((ingredient) => (
                     <label className="custom-checkbox" key={ingredient}>
                         <input
                             type="checkbox"
@@ -212,10 +218,10 @@ export default function RecipeList() {
                                 </div>
                             </div>
                             <div class="bottomhalf">
-                                <button  type="button" className="editbtn">
+                                <button type="button" className="editbtn">
                                     Edit
                                 </button>
-                            <button type="button" className="dltbtn">
+                                <button type="button" className="dltbtn">
                                     Delete
                                 </button>
                             </div>
