@@ -320,7 +320,10 @@
     border-radius: 6px;
     width: 45%;
 }
+
 /* __________________________________________________________*/
+
+
 .editrecipecontainer {
   display: flex;
   position: fixed;
@@ -387,6 +390,7 @@
   outline: 2px solid var(--dark);
   background-color: #f9f9f9;
 }
+
 @media (min-width: 1600px) {
   .recipelistcontainer .listoffood {
     display: grid;
