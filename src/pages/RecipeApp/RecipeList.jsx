@@ -259,32 +259,34 @@ export default function RecipeList() {
                 {selectedRecipe && (
                     isEditing ? (
                         <div className="editrecipecontainer">
-                        <form onSubmit={handleEditSubmit} className="editrecipeform">
-                            <textarea
-                                id="editrecipetitle"
-                                name="Recipetitle"
-                                maxLength="20"
-                                value={editData.title}
-                                onChange={(e) => setEditData({ ...editData, title: e.target.value })}
-                            />
-                            <textarea
-                                id="editingredients"
-                                name="ingredients"
-                                value={editData.ingredients.join(' ')}
-                                onChange={(e) =>
-                                    setEditData({ ...editData, ingredients: e.target.value.split(' ') })
-                                }
-                            />
-                            {/* Optional: ingredients input if you support editing it */}
-                            <textarea
-                                id="editinstructions"
-                                name="instructions"
-                                value={editData.instructions}
-                                onChange={(e) => setEditData({ ...editData, instructions: e.target.value })}
-                            />
-                            <button type="submit">Save</button>
-                            <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-                        </form>
+                            <div className="editrecipe">
+                                <form onSubmit={handleEditSubmit} className="editrecipeform">
+                                    <textarea
+                                        id="editrecipetitle"
+                                        name="Recipetitle"
+                                        maxLength="20"
+                                        value={editData.title}
+                                        onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                                    />
+                                    <textarea
+                                        id="editingredients"
+                                        name="ingredients"
+                                        value={editData.ingredients.join(' ')}
+                                        onChange={(e) =>
+                                            setEditData({ ...editData, ingredients: e.target.value.split(' ') })
+                                        }
+                                    />
+                                    {/* Optional: ingredients input if you support editing it */}
+                                    <textarea
+                                        id="editinstructions"
+                                        name="instructions"
+                                        value={editData.instructions}
+                                        onChange={(e) => setEditData({ ...editData, instructions: e.target.value })}
+                                    />
+                                    <button type="submit">Save</button>
+                                    <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+                                </form>
+                            </div>
                         </div>
                     ) : (
                         <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setSelectedRecipe)}>

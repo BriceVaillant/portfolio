@@ -40,7 +40,9 @@
   width: 100vw;
   overflow: hidden;
 }
-.homepage h2 {
+.homepage h2,
+.homepage ul,
+.homepage p  {
   color: black;
 }
 .homepage .mealcardscontainer,.homepage .dessertcardscontainer {

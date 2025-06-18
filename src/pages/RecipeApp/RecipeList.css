@@ -139,9 +139,8 @@
   align-items: center;
   justify-content: center;
 }
-
-.recipelistcontainer .addrecipecontainer,
-.recipelistcontainer .currentrecipecontainer {
+.addrecipecontainer,
+.currentrecipecontainer {
   display: flex;
   position: fixed;
   top: 0;
@@ -156,7 +155,7 @@
 
 /* add recipe modal */
 /* __________________________________________________________*/
-.recipelistcontainer .addrecipeform {
+.addrecipeform  {
   width: 60vw;
   max-width: 800px;
   height: 50vh;
@@ -214,12 +213,10 @@
   height: 35px;
   font-size: 20px;
 }
-
 .recipelistcontainer textarea:focus {
   outline: 2px solid var(--dark);
   background-color: #f9f9f9;
 }
-
 .recipelistcontainer .addrecipeform #submit {
   background-color: var(--darkgrey);
   padding: 5px;
@@ -229,7 +226,6 @@
   width: 60%;
   font-size: 1.2rem;
 }
-
 .recipelistcontainer .addrecipeform #submit:hover {
   cursor: pointer;
   transform: scale(1.01);
@@ -237,7 +233,7 @@
 
 /* __________________________________________________________*/
 /* see recipe modal */
-.recipelistcontainer .currentrecipe {
+.currentrecipe {
   width: 60vw;
   max-width: 1000px;
   min-width: 600px;
@@ -253,7 +249,8 @@
   flex-direction: column;
   background-color: var(--darkgrey);
 }
-.recipelistcontainer .currentrecipecontainer h3 {
+.currentrecipecontainer h3,
+.currentrecipecontainer h3 {
   color: black;
   height: 10%;
   margin-bottom: 5px;
@@ -261,15 +258,15 @@
   text-transform: uppercase;
   font-weight: bold;
 }
-.recipelistcontainer .currentrecipe .tophalf {
+.currentrecipe .tophalf {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 80%;
 }
-.recipelistcontainer .recipe-instruction,
-.recipelistcontainer .recipe-ingredients {
+.recipe-instruction,
+.recipe-ingredients {
   height: 100%;
   padding: 1rem;
   display: flex;
@@ -278,13 +275,13 @@
   background-color: lightgrey;
   overflow: hidden;
 }
-.recipelistcontainer .recipe-instruction {
+.recipe-instruction {
   font-size: clamp(1rem, 1.2vw, 1.4rem);
   width: 70%;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
 }
-.recipelistcontainer .recipe-ingredients {
+.recipe-ingredients {
   width: 30%;
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
@@ -293,26 +290,27 @@
   justify-content: flex-start;
   flex-direction: column;
 }
-.recipelistcontainer .recipe-ingredients li {
+.recipe-ingredients li {
   font-size: clamp(1rem, 1.2vw, 1.4rem);
   list-style: none;
   text-align: left;
   width: 100%;
 }
-.recipelistcontainer .recipe-ingredients ul {
+.recipe-ingredients ul {
   padding-left: 0;
   margin: 0;
   width: 100%;
 }
-.recipelistcontainer .recipe-ingredients h4,
-.recipelistcontainer .recipe-instruction h4 {
+.recipe-ingredients h4,
+.recipe-instruction h4 {
+  color: black;
   margin: 0 0 0.5rem 0;
   font-size: 1.2rem;
 }
-.recipelistcontainer .bottomhalf {
+.bottomhalf {
     width: 100%;
 }
-.recipelistcontainer .editbtn,.recipelistcontainer .dltbtn {
+.editbtn, .dltbtn {
     background-color: darkred;
     color: white;
     border: 1px solid #ccc;
@@ -323,6 +321,72 @@
     width: 45%;
 }
 /* __________________________________________________________*/
+.editrecipecontainer {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.editrecipe {
+  width: 60vw;
+  max-width: 1000px;
+  min-width: 600px;
+  height: 40vh;
+  min-height: 500px;
+  border: 3px solid black;
+  background: white;
+  border-radius: 14px;
+  padding: 0 20px 0 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--darkgrey);
+}
+
+ #editrecipetitle,
+ #editingredients,
+ #editinstructions {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 14px;
+  padding: 4px;
+  padding-left: 7px;
+  resize: none;
+  overflow: auto;
+  background-color: lightgrey;
+}
+ #editingredients,
+ #editinstructions {
+  height: 30%;
+  font-size: 14px;
+  margin-top: 1rem;
+}
+.editrecipeform #submit {
+  background-color: var(--darkgrey);
+  padding: 5px;
+  margin: 15px;
+  border: none;
+  border-radius: 30px;
+  width: 60%;
+  font-size: 1.2rem;
+}
+#editrecipetitle {
+  height: 35px;
+  font-size: 20px;
+}
+
+.editrecipecontainer textarea:focus {
+  outline: 2px solid var(--dark);
+  background-color: #f9f9f9;
+}
 @media (min-width: 1600px) {
   .recipelistcontainer .listoffood {
     display: grid;
