@@ -239,55 +239,75 @@
 /* see recipe modal */
 .recipelistcontainer .currentrecipe {
   width: 60vw;
-  max-width: 800px;
-  height: 30vh;
+  max-width: 1000px;
+  min-width: 600px;
+  height: 40vh;
+  min-height: 500px;
   border: 3px solid black;
   background: white;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 0 20px 0 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-   background-color: var(--darkgrey);
+  background-color: var(--darkgrey);
 }
-
 .recipelistcontainer .currentrecipecontainer h3 {
   color: black;
   height: 10%;
-  margin: 10px;
-}
-.recipelistcontainer .recipe-instruction,
-.recipelistcontainer .recipe-ingredients {
-  height: 100%;
-  gap: 2rem;
-  padding: 0.4rem;
-  padding-left: 2rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  border: 2px solid black;
-  border-radius: 14px;
-  background-color: lightgrey;
-}
-.recipelistcontainer .recipe-instruction {
-  width: 80%;
-  margin-left: 1rem;
-}
-.recipelistcontainer .recipe-ingredients {
-  width: 20%;
-}
-.recipelistcontainer .recipe-ingredients li {
-  padding: 7px;
+  margin-bottom: 5px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 .recipelistcontainer .currentrecipe .tophalf {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
   width: 100%;
   height: 80%;
+}
+.recipelistcontainer .recipe-instruction,
+.recipelistcontainer .recipe-ingredients {
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: lightgrey;
+  overflow: hidden;
+}
+.recipelistcontainer .recipe-instruction {
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
+  width: 70%;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+.recipelistcontainer .recipe-ingredients {
+  width: 30%;
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+  display: flex;
+  border-right: 4px solid black;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.recipelistcontainer .recipe-ingredients li {
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
+  list-style: none;
+  text-align: left;
+  width: 100%;
+}
+.recipelistcontainer .recipe-ingredients ul {
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+}
+.recipelistcontainer .recipe-ingredients h4,
+.recipelistcontainer .recipe-instruction h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
 }
 .recipelistcontainer .bottomhalf {
     width: 100%;
