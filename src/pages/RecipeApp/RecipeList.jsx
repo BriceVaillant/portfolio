@@ -112,6 +112,34 @@ export default function RecipeList() {
         }
     };
 
+    //this handle the edit function 
+    const handleEditSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch('/.netlify/functions/updateRecipe', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editData),
+            });
+
+            const updated = await res.json();
+
+            if (res.ok) {
+                setRecipes(prev =>
+                    prev.map(r => r._id === updated.recipe._id ? updated.recipe : r)
+                );
+                setSelectedRecipe(updated.recipe);
+                setIsEditing(false);
+            } else {
+                console.error('Failed to update:', updated.error);
+            }
+        } catch (err) {
+            console.error('Error updating recipe:', err);
+        }
+    };
+
     //fetch recipe logic
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -229,36 +257,74 @@ export default function RecipeList() {
                     </div>
                 )}
                 {selectedRecipe && (
-                    <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setSelectedRecipe)}>
-                        <div className="currentrecipe">
-                            <h3>{selectedRecipe.title}</h3>
-                            <div className="tophalf">
-                                <div className="recipe-ingredients">
-                                    <h4>Ingredients</h4>
-                                    <ul>
-                                        {selectedRecipe.ingredients.map((ingredient, index) => (
-                                            <li key={index}>{ingredient}</li>
-                                        ))}
-                                    </ul>
+                    isEditing ? (
+                        <div className="editrecipecontainer">
+                        <form onSubmit={handleEditSubmit} className="editrecipeform">
+                            <textarea
+                                id="editrecipetitle"
+                                name="Recipetitle"
+                                maxLength="20"
+                                value={editData.title}
+                                onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                            />
+                            <textarea
+                                id="editingredients"
+                                name="ingredients"
+                                value={editData.ingredients.join(' ')}
+                                onChange={(e) =>
+                                    setEditData({ ...editData, ingredients: e.target.value.split(' ') })
+                                }
+                            />
+                            {/* Optional: ingredients input if you support editing it */}
+                            <textarea
+                                id="editinstructions"
+                                name="instructions"
+                                value={editData.instructions}
+                                onChange={(e) => setEditData({ ...editData, instructions: e.target.value })}
+                            />
+                            <button type="submit">Save</button>
+                            <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+                        </form>
+                        </div>
+                    ) : (
+                        <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setSelectedRecipe)}>
+                            <div className="currentrecipe">
+                                <h3>{selectedRecipe.title}</h3>
+                                <div className="tophalf">
+                                    <div className="recipe-ingredients">
+                                        <h4>Ingredients</h4>
+                                        <ul>
+                                            {selectedRecipe.ingredients.map((ingredient, index) => (
+                                                <li key={index}>{ingredient}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="recipe-instruction">
+                                        <h4>Instructions</h4>
+                                        <p>{selectedRecipe.instructions}</p>
+                                    </div>
                                 </div>
-                                <div className="recipe-instruction">
-                                    <h4>Instructions</h4>
-                                    <p>{selectedRecipe.instructions}</p>
+                                <div className="bottomhalf">
+                                    <button type="button" className="editbtn" onClick={() => {
+                                        // pre fill form
+                                        setEditData(selectedRecipe);
+                                        setIsEditing(true);
+                                    }}>
+                                        Edit
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="dltbtn"
+                                        onClick={() => handleDelete(selectedRecipe._id)}
+                                    >
+                                        Delete
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="bottomhalf">
-                                <button type="button" className="editbtn">
-                                    Edit
-                                </button>
-                                <button type="button" className="dltbtn"
-                                    onClick={() => handleDelete(selectedRecipe._id)}>
-                                    Delete
-                                </button>
                             </div>
                         </div>
-                    </div>
+                    )
                 )}
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
