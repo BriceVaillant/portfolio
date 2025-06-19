@@ -6,7 +6,7 @@ import './RecipeAppNavbar.css';
 export default function Navbar() {
     return (
         <nav className="recipeappnavbar">
-            <div className="name">foodlogohere</div>
+            <div className="name">D.I.Y.Food</div>
             <div className="inputfieldcontainer">
                 <div className="searchformcontainer">
                     <input className="loop" type="text" id="text-input" placeholder="Search recipes..." required></input>
