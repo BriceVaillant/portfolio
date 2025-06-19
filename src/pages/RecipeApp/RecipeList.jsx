@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
+
 import './RecipeList.css';
 
 
@@ -14,6 +16,10 @@ export default function RecipeList() {
     const meals = recipes.filter(r => r.type === "meal");
     // const desserts = recipes.filter(r => r.type === "dessert");
 
+    //needed for the search bar to function
+    const query = new URLSearchParams(useLocation().search);
+    const searchQuery = query.get("search")?.toLowerCase() || "";
+
     //fetch data from json to generate card
     useEffect(() => {
         fetch('/.netlify/functions/getRecipes')
@@ -24,6 +30,13 @@ export default function RecipeList() {
             })
             .catch(err => console.error('Error loading JSON:', err));
     }, []);
+
+    // this clear filter is search bar is used
+    useEffect(() => {
+    if (searchQuery) {
+        setSelectedIngredients([]);
+    }
+}, [searchQuery]);
 
     //allow to filter to only display ingredients that are u sed multitple times
     const ingredientCounts = meals
@@ -60,13 +73,21 @@ export default function RecipeList() {
     }
 
     //handle filter with checkmark
-    const filteredRecipes = recipes.filter(recipe => {
-        if (selectedIngredients.length === 0) return true;
+    const filteredRecipes = recipes.filter((recipe) => {
+        //handle the filter bar
+        const ingredientMatch =
+            selectedIngredients.length === 0 ||
+            selectedIngredients.some((ingredient) =>
+                recipe.ingredients.includes(ingredient)
+            );
 
+        //needed for search bar
+        const searchMatch =
+            searchQuery === "" ||
+            recipe.title.toLowerCase().includes(searchQuery) ||
+            recipe.ingredients.some((ing) => ing.toLowerCase().includes(searchQuery));
 
-        return selectedIngredients.some(ingredient =>
-            recipe.ingredients.includes(ingredient)
-        );
+        return ingredientMatch && searchMatch;
     });
 
     //show add recipe modal when card is clicked
@@ -202,7 +223,7 @@ export default function RecipeList() {
                         <h2>Add a new recipe</h2>
                     </div>
                     {filteredRecipes.map(recipe => (
-                        <div className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
+                        <div key={recipe._id} className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
                             <h2>{recipe.title}</h2>
                         </div>
                     ))}
