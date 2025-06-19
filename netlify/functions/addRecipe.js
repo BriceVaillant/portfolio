@@ -11,11 +11,17 @@ async function connectDB() {
     conn = await mongoose.connect(process.env.MONGO_URI);
   }
 }
+const IngredientSchema = new mongoose.Schema({
+  name: String,
+  amount: Number,
+  unit: String,
+  _id: false
+});
 
 const RecipeSchema = new mongoose.Schema({
   title: String,
   type: String,
-  ingredients: [String],
+  ingredients: [IngredientSchema],
   favorite: { type: Boolean, default: false },
   instructions: String,
 }, { collection: 'recipelist' });
@@ -43,10 +49,7 @@ export async function handler(event) {
       };
     }
 
-    //transform text from textarea to an array
-    const ingredientsArray = ingredients.trim().split(/\s+/);
-
-    const newRecipe = await Recipe.create({ type, title, ingredients: ingredientsArray, instructions });
+    const newRecipe = await Recipe.create({ type, title, ingredients, instructions });
 
     return {
       statusCode: 200,

@@ -33,23 +33,23 @@ export default function RecipeList() {
 
     // this clear filter is search bar is used
     useEffect(() => {
-    if (searchQuery) {
-        setSelectedIngredients([]);
-    }
-}, [searchQuery]);
+        if (searchQuery) {
+            setSelectedIngredients([]);
+        }
+    }, [searchQuery]);
 
     //allow to filter to only display ingredients that are u sed multitple times
     const ingredientCounts = meals
-        .flatMap(recipe => recipe.ingredients)
-        .reduce((acc, ingredient) => {
-            acc[ingredient] = (acc[ingredient] || 0) + 1;
+        .flatMap(recipe => recipe.ingredients.map(ing => ing.name))
+        .reduce((acc, ingredientName) => {
+            acc[ingredientName] = (acc[ingredientName] || 0) + 1;
             return acc;
         }, {});
 
     const commonIngredients = Object.entries(ingredientCounts)
-        .filter(([_, count]) => count >= 2)
-        .map(([ingredient]) => ingredient)
-        .sort();
+        .filter(([_, count]) => count >= 1)
+        .map(([ingredient, count]) => ({ name: ingredient, count }))
+        .sort((a, b) => a.name.localeCompare(b.name));
 
     //const [showFoodModal, setShowFoodModal] = useState(false);
     const [formData, setFormData] = useState({
@@ -70,6 +70,26 @@ export default function RecipeList() {
             .map(value => ({ value, sort: Math.random() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value);
+    }
+
+    //parse ingredients into correct 
+    function parseIngredients(rawText) {
+        return rawText
+            .split('\n')
+            .map(line => {
+                const [rawName, rawValue] = line.split(':').map(s => s.trim());
+                if (!rawName || !rawValue) return null;
+
+                const match = rawValue.match(/^(\d+)([a-zA-Z]*)$/);
+                if (!match) return null;
+
+                return {
+                    name: rawName,
+                    amount: parseInt(match[1], 10),
+                    unit: match[2] || ''
+                };
+            })
+            .filter(Boolean);
     }
 
     //handle filter with checkmark
@@ -165,13 +185,18 @@ export default function RecipeList() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const parsedIngredients = parseIngredients(formData.ingredients);
+
         try {
             const res = await fetch('/.netlify/functions/addRecipe', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    ingredients: parsedIngredients
+                }),
             });
 
             const data = await res.json();
@@ -197,23 +222,23 @@ export default function RecipeList() {
                 <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
                     Clear Selection
                 </button>
-                {commonIngredients.map((ingredient) => (
-                    <label className="custom-checkbox" key={ingredient}>
+                {commonIngredients.map(({ name }) => (
+                    <label className="custom-checkbox" key={name}>
                         <input
                             type="checkbox"
                             name="filter"
-                            value={ingredient}
-                            checked={selectedIngredients.includes(ingredient)}
+                            value={name}
+                            checked={selectedIngredients.includes(name)}
                             onChange={(e) => {
                                 if (e.target.checked) {
-                                    setSelectedIngredients(prev => [...prev, ingredient]);
+                                    setSelectedIngredients(prev => [...prev, name]);
                                 } else {
-                                    setSelectedIngredients(prev => prev.filter(i => i !== ingredient));
+                                    setSelectedIngredients(prev => prev.filter(i => i !== name));
                                 }
                             }}
                         />
                         <span className="checkmark"></span>
-                        <span className="filtertext">{ingredient}</span>
+                        <span className="filtertext">{name}</span>
                     </label>
                 ))}
             </div>
@@ -231,24 +256,16 @@ export default function RecipeList() {
                 {showAddRecipeModal && (
                     <div className="addrecipecontainer" onClick={(e) => handleBackdropClick(e, setShowAddRecipeModal)}>
                         <form className="addrecipeform" onSubmit={handleSubmit}>
-                            <h2 className="recipename">New Recipe</h2>
-                            <textarea
-                                id="addrecipetitle"
-                                name="Recipetitle"
-                                placeholder="Recipe Title"
-                                maxLength="20"
-                                required
-                                value={formData.title}
-                                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                            />
-                            <div className="choice">
-                                <button
-                                    type="button"
-                                    className={`choicebtn ${formData.type === 'dessert' ? 'selected' : ''}`}
-                                    onClick={() => handleTypeSelect('dessert')}
-                                >
-                                    Dessert
-                                </button>
+                            <div class="top-third-row">
+                                <textarea
+                                    id="addrecipetitle"
+                                    name="Recipetitle"
+                                    placeholder="Recipe Name"
+                                    maxLength="20"
+                                    required
+                                    value={formData.title}
+                                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                                />
                                 <button
                                     type="button"
                                     className={`choicebtn ${formData.type === 'meal' ? 'selected' : ''}`}
@@ -256,23 +273,40 @@ export default function RecipeList() {
                                 >
                                     Meal
                                 </button>
+                                <button
+                                    type="button"
+                                    className={`choicebtn ${formData.type === 'dessert' ? 'selected' : ''}`}
+                                    onClick={() => handleTypeSelect('dessert')}
+                                >
+                                    Dessert
+                                </button>
+
                             </div>
-                            <textarea
-                                id="addingredients"
-                                name="ingredients"
-                                placeholder="Ingredients (separated by a space) example: pasta tomate chicken"
-                                required
-                                value={formData.ingredients}
-                                onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
-                            />
-                            <textarea
-                                id="addinstructions"
-                                name="instructions"
-                                placeholder="Instructions"
-                                required
-                                value={formData.instructions}
-                                onChange={(e) => setFormData({ ...formData, instructions: e.target.value })}
-                            />
+                            <div class="middle-third-row">
+                                <h2 class="formtitle">Ingredients:</h2>
+                                <textarea
+                                    id="addingredients"
+                                    name="ingredients"
+                                    placeholder="Enter ingredients like this: 
+boeuf: 400g
+milk: 40ml
+carrotte: 4"
+                                    required
+                                    value={formData.ingredients}
+                                    onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
+                                />
+                            </div>
+                            <div class="bottom-third-row">
+                                <h2 class="formtitle">Instructions:</h2>
+                                <textarea
+                                    id="addinstructions"
+                                    name="instructions"
+                                    placeholder="Instructions"
+                                    required
+                                    value={formData.instructions}
+                                    onChange={(e) => setFormData({ ...formData, instructions: e.target.value })}
+                                />
+                            </div>
                             <input id="submit" type="submit" value="Save" />
                         </form>
                     </div>
@@ -297,7 +331,6 @@ export default function RecipeList() {
                                             setEditData({ ...editData, ingredients: e.target.value.split(' ') })
                                         }
                                     />
-                                    {/* Optional: ingredients input if you support editing it */}
                                     <textarea
                                         id="editinstructions"
                                         name="instructions"
@@ -329,7 +362,7 @@ export default function RecipeList() {
                                 </div>
                                 <div className="bottomhalf">
                                     <button type="button" className="editbtn" onClick={() => {
-                                        // pre fill form
+                                        // pre fill form with recipe content
                                         setEditData(selectedRecipe);
                                         setIsEditing(true);
                                     }}>
