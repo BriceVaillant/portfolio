@@ -4,7 +4,7 @@ import './Home.css';
 export default function Home() {
   return (
     <div className="home">
-    <h1>Vaillant Brice</h1>
+    <h1>Brice Vaillant</h1>
     <h2>Web Developer</h2> 
     </div> 
   );
