@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
-
+import AddRecipeModal from './components/AddRecipeModal.jsx';
+import EditRecipeModal from './components/EditRecipeModal';
+import RecipeDetails from './components/RecipeDetails';
 import './RecipeList.css';
 
 
@@ -20,6 +22,9 @@ export default function RecipeList() {
     const query = new URLSearchParams(useLocation().search);
     const searchQuery = query.get("search")?.toLowerCase() || "";
 
+    //max size for image upload
+    const MAX_SIZE_MB = 2;
+
     //fetch data from json to generate card
     useEffect(() => {
         fetch('/.netlify/functions/getRecipes')
@@ -38,6 +43,10 @@ export default function RecipeList() {
         }
     }, [searchQuery]);
 
+    useEffect(() => {
+        setEditData(selectedRecipe);
+    }, [selectedRecipe]);
+
     //allow to filter to only display ingredients that are u sed multitple times
     const ingredientCounts = meals
         .flatMap(recipe => recipe.ingredients.map(ing => ing.name))
@@ -47,7 +56,7 @@ export default function RecipeList() {
         }, {});
 
     const commonIngredients = Object.entries(ingredientCounts)
-        .filter(([_, count]) => count >= 1)
+        .filter(([_, count]) => count >= 2)
         .map(([ingredient, count]) => ({ name: ingredient, count }))
         .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -72,40 +81,19 @@ export default function RecipeList() {
             .map(({ value }) => value);
     }
 
-    //parse ingredients into correct 
-    function parseIngredients(rawText) {
-        return rawText
-            .split('\n')
-            .map(line => {
-                const [rawName, rawValue] = line.split(':').map(s => s.trim());
-                if (!rawName || !rawValue) return null;
-
-                const match = rawValue.match(/^(\d+)([a-zA-Z]*)$/);
-                if (!match) return null;
-
-                return {
-                    name: rawName,
-                    amount: parseInt(match[1], 10),
-                    unit: match[2] || ''
-                };
-            })
-            .filter(Boolean);
-    }
-
     //handle filter with checkmark
-    const filteredRecipes = recipes.filter((recipe) => {
-        //handle the filter bar
+    const filteredRecipes = recipes.filter(recipe => {
         const ingredientMatch =
             selectedIngredients.length === 0 ||
-            selectedIngredients.some((ingredient) =>
-                recipe.ingredients.includes(ingredient)
+            selectedIngredients.some(ingredient =>
+                recipe.ingredients.some(ing => ing.name.toLowerCase() === ingredient.toLowerCase())
             );
 
         //needed for search bar
         const searchMatch =
             searchQuery === "" ||
             recipe.title.toLowerCase().includes(searchQuery) ||
-            recipe.ingredients.some((ing) => ing.toLowerCase().includes(searchQuery));
+            recipe.ingredients.some(ing => ing.name.toLowerCase().includes(searchQuery));
 
         return ingredientMatch && searchMatch;
     });
@@ -120,11 +108,34 @@ export default function RecipeList() {
         setSelectedRecipe(recipe);
     };
 
-    //exit modal when background is clicked
-    const handleBackdropClick = (e, closeModal) => {
-        if (e.target === e.currentTarget) {
-            setFormData({ title: '', ingredients: '', instructions: '' });
-            closeModal(false);
+    //handle image upload via to cloudinary
+    const handleImageUpload = async (file) => {
+        if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+            alert('Image is too large. Max size is 2MB.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', 'recipewebsite');
+
+        try {
+            const res = await fetch(`https://api.cloudinary.com/v1_1/dxrlfbw2k/image/upload`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await res.json();
+            console.log('Uploaded Image URL:', data.secure_url);
+
+            //
+            setFormData(prev => ({
+                ...prev,
+                image: data.secure_url,
+                imagePublicId: data.public_id
+            }));
+        } catch (err) {
+            console.error('Upload failed:', err);
         }
     };
 
@@ -180,12 +191,11 @@ export default function RecipeList() {
             console.error('Error updating recipe:', err);
         }
     };
-
     //fetch recipe logic
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const parsedIngredients = parseIngredients(formData.ingredients);
+        const parsedIngredients = stringToIngredients(formData.ingredients);
 
         try {
             const res = await fetch('/.netlify/functions/addRecipe', {
@@ -254,131 +264,34 @@ export default function RecipeList() {
                     ))}
                 </div>
                 {showAddRecipeModal && (
-                    <div className="addrecipecontainer" onClick={(e) => handleBackdropClick(e, setShowAddRecipeModal)}>
-                        <form className="addrecipeform" onSubmit={handleSubmit}>
-                            <div class="top-third-row">
-                                <textarea
-                                    id="addrecipetitle"
-                                    name="Recipetitle"
-                                    placeholder="Recipe Name"
-                                    maxLength="20"
-                                    required
-                                    value={formData.title}
-                                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                />
-                                <button
-                                    type="button"
-                                    className={`choicebtn ${formData.type === 'meal' ? 'selected' : ''}`}
-                                    onClick={() => handleTypeSelect('meal')}
-                                >
-                                    Meal
-                                </button>
-                                <button
-                                    type="button"
-                                    className={`choicebtn ${formData.type === 'dessert' ? 'selected' : ''}`}
-                                    onClick={() => handleTypeSelect('dessert')}
-                                >
-                                    Dessert
-                                </button>
-
-                            </div>
-                            <div class="middle-third-row">
-                                <h2 class="formtitle">Ingredients:</h2>
-                                <textarea
-                                    id="addingredients"
-                                    name="ingredients"
-                                    placeholder="Enter ingredients like this: 
-boeuf: 400g
-milk: 40ml
-carrotte: 4"
-                                    required
-                                    value={formData.ingredients}
-                                    onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
-                                />
-                            </div>
-                            <div class="bottom-third-row">
-                                <h2 class="formtitle">Instructions:</h2>
-                                <textarea
-                                    id="addinstructions"
-                                    name="instructions"
-                                    placeholder="Instructions"
-                                    required
-                                    value={formData.instructions}
-                                    onChange={(e) => setFormData({ ...formData, instructions: e.target.value })}
-                                />
-                            </div>
-                            <input id="submit" type="submit" value="Save" />
-                        </form>
-                    </div>
+                    <AddRecipeModal
+                        formData={formData}
+                        setFormData={setFormData}
+                        onClose={() => setShowAddRecipeModal(false)}
+                        handleSubmit={handleSubmit}
+                        handleImageUpload={handleImageUpload}
+                        handleTypeSelect={handleTypeSelect}
+                    />
                 )}
-                {selectedRecipe && (
-                    isEditing ? (
-                        <div className="editrecipecontainer">
-                            <div className="editrecipe">
-                                <form onSubmit={handleEditSubmit} className="editrecipeform">
-                                    <textarea
-                                        id="editrecipetitle"
-                                        name="Recipetitle"
-                                        maxLength="20"
-                                        value={editData.title}
-                                        onChange={(e) => setEditData({ ...editData, title: e.target.value })}
-                                    />
-                                    <textarea
-                                        id="editingredients"
-                                        name="ingredients"
-                                        value={editData.ingredients.join(' ')}
-                                        onChange={(e) =>
-                                            setEditData({ ...editData, ingredients: e.target.value.split(' ') })
-                                        }
-                                    />
-                                    <textarea
-                                        id="editinstructions"
-                                        name="instructions"
-                                        value={editData.instructions}
-                                        onChange={(e) => setEditData({ ...editData, instructions: e.target.value })}
-                                    />
-                                    <button type="submit">Save</button>
-                                    <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
-                                </form>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="currentrecipecontainer" onClick={(e) => handleBackdropClick(e, setSelectedRecipe)}>
-                            <div className="currentrecipe">
-                                <h3>{selectedRecipe.title}</h3>
-                                <div className="tophalf">
-                                    <div className="recipe-ingredients">
-                                        <h4>Ingredients</h4>
-                                        <ul>
-                                            {selectedRecipe.ingredients.map((ingredient, index) => (
-                                                <li key={index}>{ingredient}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div className="recipe-instruction">
-                                        <h4>Instructions</h4>
-                                        <p>{selectedRecipe.instructions}</p>
-                                    </div>
-                                </div>
-                                <div className="bottomhalf">
-                                    <button type="button" className="editbtn" onClick={() => {
-                                        // pre fill form with recipe content
-                                        setEditData(selectedRecipe);
-                                        setIsEditing(true);
-                                    }}>
-                                        Edit
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="dltbtn"
-                                        onClick={() => handleDelete(selectedRecipe._id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )
+                {isEditing && (
+                    <EditRecipeModal
+                        editData={editData}
+                        setEditData={setEditData}
+                        onCancel={() => setIsEditing(false)}
+                        onSave={handleEditSubmit}
+                    />
+                )}
+
+                {selectedRecipe && !isEditing && (
+                    <RecipeDetails
+                        recipe={selectedRecipe}
+                        onEdit={() => {
+                            setEditData(selectedRecipe);
+                            setIsEditing(true);
+                        }}
+                        onDelete={handleDelete}
+                        onClose={() => setSelectedRecipe(null)}
+                    />
                 )}
             </div >
         </div >
