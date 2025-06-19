@@ -24,6 +24,8 @@ const RecipeSchema = new mongoose.Schema({
   ingredients: [IngredientSchema],
   favorite: { type: Boolean, default: false },
   instructions: String,
+  image: String,
+  imagePublicId: String,
 }, { collection: 'recipelist' });
 
 const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema);
@@ -40,7 +42,7 @@ export async function handler(event) {
     await connectDB();
 
     const data = JSON.parse(event.body);
-    const { type, title, ingredients, instructions } = data;
+    const { type, title, ingredients, instructions, image, imagePublicId } = data;
 
     if (!title || !type || !ingredients || !instructions) {
       return {
@@ -49,7 +51,7 @@ export async function handler(event) {
       };
     }
 
-    const newRecipe = await Recipe.create({ type, title, ingredients, instructions });
+    const newRecipe = await Recipe.create({ type, title, ingredients, instructions, image, imagePublicId });
 
     return {
       statusCode: 200,
