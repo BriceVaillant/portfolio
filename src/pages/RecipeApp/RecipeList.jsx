@@ -57,7 +57,7 @@ export default function RecipeList() {
 
     const commonIngredients = Object.entries(ingredientCounts)
         .filter(([_, count]) => count >= 2)
-        .map(([ingredient, count]) => ({ name: ingredient, count }))
+        .map(([ingredient, count]) => ({ name: ingredient || 'unknown', count }))
         .sort((a, b) => a.name.localeCompare(b.name));
 
     //const [showFoodModal, setShowFoodModal] = useState(false);
@@ -257,9 +257,12 @@ export default function RecipeList() {
                     <div className="newrecipecard" onClick={handleCardClick}>
                         <h2>Add a new recipe</h2>
                     </div>
-                    {filteredRecipes.map(recipe => (
+                    {filteredRecipes.map(recipe => ( 
                         <div key={recipe._id} className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
                             <h2>{recipe.title}</h2>
+                            <img
+                    src={recipe.image || (recipe.type === 'meal' ? '/assets/meal.jpg' : '/assets/dessert.jpg')}
+                />
                         </div>
                     ))}
                 </div>
@@ -273,15 +276,6 @@ export default function RecipeList() {
                         handleTypeSelect={handleTypeSelect}
                     />
                 )}
-                {isEditing && (
-                    <EditRecipeModal
-                        editData={editData}
-                        setEditData={setEditData}
-                        onCancel={() => setIsEditing(false)}
-                        onSave={handleEditSubmit}
-                    />
-                )}
-
                 {selectedRecipe && !isEditing && (
                     <RecipeDetails
                         recipe={selectedRecipe}
@@ -291,6 +285,14 @@ export default function RecipeList() {
                         }}
                         onDelete={handleDelete}
                         onClose={() => setSelectedRecipe(null)}
+                    />
+                )}
+                {isEditing && (
+                    <EditRecipeModal
+                        editData={editData}
+                        setEditData={setEditData}
+                        onCancel={() => setIsEditing(false)}
+                        onSave={handleEditSubmit}
                     />
                 )}
             </div >

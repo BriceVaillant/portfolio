@@ -8,13 +8,13 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
                 const [name, rawValue] = line.split(':').map(s => s.trim());
                 if (!name || !rawValue) return null;
 
-                const match = rawValue.match(/^(\d+)([a-zA-Z]*)$/);
+                const match = rawValue.match(/^(\d+(?:\.\d+)?)(?:\s*([a-zA-Z]+))?$/);
                 if (!match) return null;
 
                 return {
                     name,
-                    amount: parseInt(match[1], 10),
-                    unit: match[2] || ''
+                    amount: parseFloat(match[1]),
+                    unit: match[2]?.trim() || ''
                 };
             })
             .filter(Boolean);
