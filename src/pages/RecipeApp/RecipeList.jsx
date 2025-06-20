@@ -139,6 +139,23 @@ export default function RecipeList() {
         }
     };
 
+    const stringToIngredients = (rawText) =>
+        rawText.split('\n')
+            .map(line => {
+                const [name, rawValue] = line.split(':').map(s => s.trim());
+                if (!name || !rawValue) return null;
+
+                const match = rawValue.match(/^(\d+(?:\.\d+)?)(?:\s*([a-zA-Z]+))?$/);
+                if (!match) return null;
+
+                return {
+                    name,
+                    amount: parseFloat(match[1]),
+                    unit: match[2]?.trim() || ''
+                };
+            })
+            .filter(Boolean);
+
     //handle the deleting part of the recipe
     const handleDelete = async (id) => {
         const confirmed = window.confirm("Are you sure you want to delete this recipe?");
@@ -166,7 +183,8 @@ export default function RecipeList() {
 
     //this handle the edit function 
     const handleEditSubmit = async (e) => {
-        e.preventDefault();
+        console.log('handleEditSubmit called with:', editData);
+
         try {
             const res = await fetch('/.netlify/functions/updateRecipe', {
                 method: 'PUT',
@@ -191,6 +209,7 @@ export default function RecipeList() {
             console.error('Error updating recipe:', err);
         }
     };
+
     //fetch recipe logic
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -257,12 +276,12 @@ export default function RecipeList() {
                     <div className="newrecipecard" onClick={handleCardClick}>
                         <h2>Add a new recipe</h2>
                     </div>
-                    {filteredRecipes.map(recipe => ( 
+                    {filteredRecipes.map(recipe => (
                         <div key={recipe._id} className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
                             <h2>{recipe.title}</h2>
                             <img
-                    src={recipe.image || (recipe.type === 'meal' ? '/assets/meal.jpg' : '/assets/dessert.jpg')}
-                />
+                                src={recipe.image || (recipe.type === 'meal' ? '/assets/meal.jpg' : '/assets/dessert.jpg')}
+                            />
                         </div>
                     ))}
                 </div>

@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
+
 export default function EditRecipeModal({ editData, setEditData, onCancel, onSave }) {
-    const ingredientsToString = (ingredients) =>
-        ingredients.map(({ name, amount, unit }) => `${name}: ${amount}${unit}`).join('\n');
+    const [ingredientsText, setIngredientsText] = useState('');
 
     const stringToIngredients = (rawText) =>
         rawText.split('\n')
@@ -17,12 +18,33 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
                     unit: match[2]?.trim() || ''
                 };
             })
-            .filter(Boolean);
+            .filter(Boolean)
+
+    useEffect(() => {
+        setIngredientsText(
+            editData.ingredients
+                .map(({ name, amount, unit }) => `${name}: ${amount}${unit}`)
+                .join('\n')
+        );
+    }, []);
+
+    const handleIngredientsChange = (e) => {
+        const text = e.target.value;
+        setIngredientsText(text);
+
+        const parsedIngredients = stringToIngredients(text);
+        setEditData(prev => ({ ...prev, ingredients: parsedIngredients }));
+    };
+
+    ;
 
     return (
         <div className="editrecipecontainer">
             <div className="editrecipe">
-                <form onSubmit={onSave} className="editrecipeform">
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    onSave(editData);
+                }} className="editrecipeform">
                     <textarea
                         id="editrecipetitle"
                         name="Recipetitle"
@@ -33,13 +55,9 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
                     <textarea
                         id="editingredients"
                         name="ingredients"
-                        value={ingredientsToString(editData.ingredients)}
-                        onChange={(e) =>
-                            setEditData({
-                                ...editData,
-                                ingredients: stringToIngredients(e.target.value)
-                            })
-                        }
+                        value={ingredientsText}
+                        onChange={handleIngredientsChange}
+
                     />
                     <textarea
                         id="editinstructions"

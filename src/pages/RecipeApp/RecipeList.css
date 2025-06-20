@@ -277,7 +277,7 @@
 .currentrecipe {
   width: 60vw;
   min-width: 600px;
-  height: 70vh;
+  height: 60vh;
   min-height: 700px;
   border: 3px solid black;
   background: white;
@@ -288,6 +288,7 @@
   flex-direction: column;
   background-color: var(--darkgrey);
 }
+
 .currentrecipecontainer h3 {
   color: black;
   height: 10%;
@@ -302,33 +303,37 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 90%;
-  
+  height: 92%;
 }
-
 .currentrecipe .bottom {
   width: 100%;
-  height: 10%;
+  height: 8%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
 
 .currentrecipe .leftside {
   display: flex;
-  height:100%;
+  height: 100%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   width: 30%;
   border: 2px solid red;
 }
+
 .currentrecipe .rightside {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   width: 70%;
-  height:100%;
+  height: 100%;
   border: 2px solid green;
 }
+
 .currentrecipe img {
   border: 2px solid black;
   border-radius: 9px;
@@ -337,47 +342,52 @@
 }
 
 .recipe-ingredients {
-  height: 80%;
+  flex-grow: 1;
   width: 90%;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  background-color: lightgrey;
-  overflow: hidden;
+  overflow-y: auto;
   border-radius: 9px;
   border: 2px solid black;
+  background-color: lightgrey;
 }
+
 .recipe-ingredients ul {
-  border-top: 5px solid black;
   width: 100%;
+  padding: 0;
+  margin: 0;
+  border-top: 5px solid black;
 }
+
 .recipe-ingredients li {
   font-size: clamp(1rem, 1.2vw, 1.8rem);
   list-style: none;
   text-align: left;
-  padding-bottom: 3px;
+  word-wrap: break-word;
   width: 100%;
-  padding-left: 5px;
+  padding: 4px 0 4px 5px;
   border-bottom: 2px solid black;
 }
 
 .recipe-instruction {
-  height: 100%;
+  flex-grow: 1;
   margin-top: 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
-  background-color: lightgrey;
-  overflow: hidden;
+  overflow-y: auto;
   border-radius: 9px;
   border: 2px solid black;
+  background-color: lightgrey;
 }
+
 .recipe-instruction p {
   width: 100%;
+  padding: 15px;
   border-top: 5px solid black;
-  padding: 10px;
   font-size: clamp(1rem, 1.5vw, 1.4rem);
 }
+
 .recipe-ingredients h4,
 .recipe-instruction h4 {
   color: black;
@@ -391,7 +401,6 @@
   color: white;
   border: 1px solid #ccc;
   padding: 6px 12px;
-  margin: 20px 0 20px 20px;
   cursor: pointer;
   border-radius: 6px;
   width: 45%;

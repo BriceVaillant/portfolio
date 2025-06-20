@@ -7,10 +7,17 @@ async function connectDB() {
   if (!conn) conn = await mongoose.connect(process.env.MONGO_URI);
 }
 
+const IngredientSchema = new mongoose.Schema({
+  name: String,
+  amount: Number,
+  unit: String,
+  _id: false
+});
+
 const RecipeSchema = new mongoose.Schema({
   title: String,
   type: String,
-  ingredients: [String],
+  ingredients: [IngredientSchema],
   favorite: { type: Boolean, default: false },
   instructions: String,
 }, { collection: 'recipelist' });
@@ -34,14 +41,10 @@ export async function handler(event) {
       };
     }
 
-    const ingredientsArray = Array.isArray(ingredients)
-      ? ingredients
-      : ingredients.trim().split(/\s+/);
-
     const updatedRecipe = await Recipe.findByIdAndUpdate(_id, {
       title,
       instructions,
-      ingredients: ingredientsArray,
+      ingredients: ingredients,
       type,
     }, { new: true });
 
