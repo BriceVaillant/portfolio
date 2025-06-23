@@ -12,7 +12,6 @@ export default function AddRecipeModal({ formData, setFormData, onClose, handleS
             id="addrecipetitle"
             name="Recipetitle"
             placeholder="Recipe Name"
-            maxLength="30"
             required
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}

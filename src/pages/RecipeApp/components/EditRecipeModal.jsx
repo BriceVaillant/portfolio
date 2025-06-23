@@ -6,19 +6,18 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
     const stringToIngredients = (rawText) =>
         rawText.split('\n')
             .map(line => {
-                const [name, rawValue] = line.split(':').map(s => s.trim());
-                if (!name || !rawValue) return null;
+                const [namePart, amountPart] = line.split(':').map(s => s.trim());
+                if (!namePart || !amountPart) return { name: line.trim(), amount: null, unit: '' };
 
-                const match = rawValue.match(/^(\d+(?:\.\d+)?)(?:\s*([a-zA-Z]+))?$/);
-                if (!match) return null;
+                const match = amountPart.match(/^(\d+(?:\.\d+)?)(?:\s*([^\d]+))?$/);
 
                 return {
-                    name,
-                    amount: parseFloat(match[1]),
-                    unit: match[2]?.trim() || ''
+                    name: namePart,
+                    amount: match ? parseFloat(match[1]) : null,
+                    unit: match ? match[2]?.trim() || '' : amountPart
                 };
             })
-            .filter(Boolean)
+            .filter(({ name }) => !!name);
 
     useEffect(() => {
         setIngredientsText(
@@ -48,10 +47,9 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
                     <textarea
                         id="editrecipetitle"
                         name="Recipetitle"
-                        maxLength="20"
                         value={editData.title}
                         onChange={(e) => setEditData({ ...editData, title: e.target.value })}
-                    />
+                    />                   
                     <textarea
                         id="editingredients"
                         name="ingredients"

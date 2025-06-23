@@ -145,19 +145,18 @@ export default function RecipeList() {
     const stringToIngredients = (rawText) =>
         rawText.split('\n')
             .map(line => {
-                const [name, rawValue] = line.split(':').map(s => s.trim());
-                if (!name || !rawValue) return null;
+                const [namePart, amountPart] = line.split(':').map(s => s.trim());
+                if (!namePart || !amountPart) return { name: line.trim(), amount: null, unit: '' };
 
-                const match = rawValue.match(/^(\d+(?:\.\d+)?)(?:\s*([a-zA-Z]+))?$/);
-                if (!match) return null;
+                const match = amountPart.match(/^(\d+(?:\.\d+)?)(?:\s*([^\d]+))?$/);
 
                 return {
-                    name,
-                    amount: parseFloat(match[1]),
-                    unit: match[2]?.trim() || ''
+                    name: namePart,
+                    amount: match ? parseFloat(match[1]) : null,
+                    unit: match ? match[2]?.trim() || '' : amountPart
                 };
             })
-            .filter(Boolean);
+            .filter(({ name }) => !!name);
 
     //handle the deleting part of the recipe
     const handleDelete = async (id) => {
@@ -278,8 +277,8 @@ export default function RecipeList() {
                 <div className="listoffood">
                     <div className="newrecipecard" onClick={handleCardClick}>
                         <img
-                                src={addimg}
-                            />
+                            src={addimg}
+                        />
                     </div>
                     {filteredRecipes.map(recipe => (
                         <div key={recipe._id} className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
