@@ -3,6 +3,9 @@ import { useLocation } from "react-router-dom";
 import AddRecipeModal from './components/AddRecipeModal.jsx';
 import EditRecipeModal from './components/EditRecipeModal';
 import RecipeDetails from './components/RecipeDetails';
+import mealImg from './assets/meal.jpg';
+import dessertImg from './assets/dessert.jpg';
+import addimg from './assets/plusicon.png';
 import './RecipeList.css';
 
 
@@ -274,13 +277,15 @@ export default function RecipeList() {
             <div className="cardcolumn">
                 <div className="listoffood">
                     <div className="newrecipecard" onClick={handleCardClick}>
-                        <h2>Add a new recipe</h2>
+                        <img
+                                src={addimg}
+                            />
                     </div>
                     {filteredRecipes.map(recipe => (
                         <div key={recipe._id} className="foodcard" onClick={() => handleFoodCardClick(recipe)}>
                             <h2>{recipe.title}</h2>
                             <img
-                                src={recipe.image || (recipe.type === 'meal' ? '/assets/meal.jpg' : '/assets/dessert.jpg')}
+                                src={recipe.image || (recipe.type === 'meal' ? mealImg : dessertImg)}
                             />
                         </div>
                     ))}

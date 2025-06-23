@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './RecipeHome.css';
-
+import mealImg from './assets/meal.jpg';
+import dessertImg from './assets/dessert.jpg';
+import backgrdImg from './assets/background.jpg';
 
 
 export default function RecipeHome() {
@@ -105,7 +107,7 @@ export default function RecipeHome() {
     }, []);
     return (
         <div className="homepage">
-            <div className="imgplacement"></div>
+            <img className="imgplacement" src={backgrdImg}/>
             <div className="ideacontainer">
                 <div className="Homepagetitle">
                     <div className="title">DINNER</div>
@@ -115,6 +117,9 @@ export default function RecipeHome() {
                             {meals.map(recipe => (
                                 <div key={recipe._id} className="mealscard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
+                                    <img
+                                        src={recipe.image || mealImg}
+                                    />
                                 </div>
                             ))}
                         </div>
@@ -130,6 +135,9 @@ export default function RecipeHome() {
                             {desserts.map(recipe => (
                                 <div key={recipe._id} className="dessertcard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
+                                    <img
+                                        src={recipe.image || dessertImg}
+                                    />
                                 </div>
                             ))}
                         </div>

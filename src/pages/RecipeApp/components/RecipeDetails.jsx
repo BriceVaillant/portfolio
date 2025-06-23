@@ -1,11 +1,15 @@
+import mealImg from '../assets/meal.jpg';
+import dessertImg from '../assets/dessert.jpg';
+
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
+    
     return (
         <div className="currentrecipecontainer" onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className="currentrecipe">
                 <div className="top">
                     <div className="leftside">
                         <img
-                            src={recipe.image || (recipe.type === 'meal' ? '/assets/meal.jpg' : '/assets/dessert.jpg')}
+                            src={recipe.image || (recipe.type === 'meal' ? mealImg : dessertImg)}
                             alt={recipe.title}
                         />
                         <div className="recipe-ingredients">
