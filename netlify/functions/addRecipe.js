@@ -41,12 +41,17 @@ export async function handler(event) {
   try {
     await connectDB();
 
-    const { type, title, ingredients, instructions, image, imagePublicId } = JSON.parse(event.body);
+    const { type, title, ingredients, instructions, image = '', imagePublicId = '' } = JSON.parse(event.body);
 
     if (!title || !type || !ingredients || !instructions) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' }),
+        body: JSON.stringify({
+  ...formData,
+  ingredients: parsedIngredients,
+  image: formData.image || '',
+  imagePublicId: formData.imagePublicId || '',
+}),
       };
     }
 
