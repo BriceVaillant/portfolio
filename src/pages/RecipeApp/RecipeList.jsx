@@ -112,7 +112,7 @@ export default function RecipeList() {
     };
 
     //handle image upload via to cloudinary
-    const handleImageUpload = async (file) => {
+    const handleImageUpload = async (file, setData) => {
         if (file.size > MAX_SIZE_MB * 1024 * 1024) {
             alert('Image is too large. Max size is 2MB.');
             return;
@@ -131,17 +131,15 @@ export default function RecipeList() {
             const data = await res.json();
             console.log('Uploaded Image URL:', data.secure_url);
 
-            //
-            setFormData(prev => ({
+            setData(prev => ({
                 ...prev,
                 image: data.secure_url,
                 imagePublicId: data.public_id
             }));
         } catch (err) {
             console.error('Upload failed:', err);
-            return null;
         }
-    }
+    };
 
     const stringToIngredients = (rawText) =>
         rawText.split('\n')
@@ -186,7 +184,6 @@ export default function RecipeList() {
 
     //this handle the edit function 
     const handleEditSubmit = async (e) => {
-        console.log('handleEditSubmit called with:', editData);
 
         try {
             const res = await fetch('/.netlify/functions/updateRecipe', {
@@ -323,6 +320,7 @@ export default function RecipeList() {
                         setEditData={setEditData}
                         onCancel={() => setIsEditing(false)}
                         onSave={handleEditSubmit}
+                        handleImageUpload={handleImageUpload}
                     />
                 )}
             </div >

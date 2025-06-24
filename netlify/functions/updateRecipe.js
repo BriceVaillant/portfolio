@@ -43,14 +43,17 @@ export async function handler(event) {
       };
     }
 
-    const updatedRecipe = await Recipe.findByIdAndUpdate(_id, {
+    const updatePayload = {
       title,
       instructions,
-      ingredients: ingredients,
-      type,
-      image,
-      imagePublicId
-    }, { new: true });
+      ingredients,
+      type
+    };
+
+    if (image) updatePayload.image = image;
+    if (imagePublicId) updatePayload.imagePublicId = imagePublicId;
+
+    const updatedRecipe = await Recipe.findByIdAndUpdate(_id, updatePayload, { new: true });
 
     return {
       statusCode: 200,

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function EditRecipeModal({ editData, setEditData, onCancel, onSave }) {
+export default function EditRecipeModal({ editData, setEditData, onCancel, onSave, handleImageUpload }) {
     const [ingredientsText, setIngredientsText] = useState('');
 
     const stringToIngredients = (rawText) =>
@@ -44,12 +44,17 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
                     e.preventDefault();
                     onSave(editData);
                 }} className="editrecipeform">
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageUpload(e.target.files[0], setEditData)}
+                    />
                     <textarea
                         id="editrecipetitle"
                         name="Recipetitle"
                         value={editData.title}
                         onChange={(e) => setEditData({ ...editData, title: e.target.value })}
-                    />                   
+                    />
                     <textarea
                         id="editingredients"
                         name="ingredients"

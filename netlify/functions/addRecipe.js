@@ -47,11 +47,8 @@ export async function handler(event) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-  ...formData,
-  ingredients: parsedIngredients,
-  image: formData.image || '',
-  imagePublicId: formData.imagePublicId || '',
-}),
+          error: 'Missing required fields',
+        }),
       };
     }
 

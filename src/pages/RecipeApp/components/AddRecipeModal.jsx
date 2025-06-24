@@ -6,7 +6,7 @@ export default function AddRecipeModal({ formData, setFormData, onClose, handleS
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => handleImageUpload(e.target.files[0])}
+            onChange={(e) => handleImageUpload(e.target.files[0], setFormData)}
           />
           <textarea
             id="addrecipetitle"
