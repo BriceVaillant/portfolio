@@ -12,7 +12,7 @@ export default function Navbar() {
 
     return (
         <nav className="recipeappnavbar">
-            <div className="name">D.I.Y.Food</div>
+            <div className="name">C.I.Y</div>
             <div className="inputfieldcontainer">
                 <form
                     className="searchformcontainer"

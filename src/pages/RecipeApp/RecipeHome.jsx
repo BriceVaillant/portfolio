@@ -107,7 +107,10 @@ export default function RecipeHome() {
     }, []);
     return (
         <div className="homepage">
-            <img className="imgplacement" src={backgrdImg}/>
+            <div className="imgheader">
+                <h1>Cook It Yourself</h1>
+                <img className="imgplacement" src={backgrdImg} />
+            </div>
             <div className="ideacontainer">
                 <div className="Homepagetitle">
                     <div className="title">DINNER</div>
