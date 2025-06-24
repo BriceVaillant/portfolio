@@ -2,7 +2,7 @@ import mealImg from '../assets/meal.jpg';
 import dessertImg from '../assets/dessert.jpg';
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
-    
+
     return (
         <div className="currentrecipecontainer" onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className="currentrecipe">
@@ -26,7 +26,14 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
                         <h3>{recipe.title}</h3>
                         <div className="recipe-instruction">
                             <h4>Instructions</h4>
-                            <p>{recipe.instructions}</p>
+                            <div className="instructionlist">
+                                {recipe.instructions
+                                    .split('\n')
+                                    .filter(line => line.trim() !== '')
+                                    .map((line, index) => (
+                                        <p key={index}>{line}</p>
+                                    ))}
+                            </div>
                         </div>
                     </div>
                 </div>
