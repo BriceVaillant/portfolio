@@ -139,8 +139,9 @@ export default function RecipeList() {
             }));
         } catch (err) {
             console.error('Upload failed:', err);
+            return null;
         }
-    };
+    }
 
     const stringToIngredients = (rawText) =>
         rawText.split('\n')
@@ -235,7 +236,13 @@ export default function RecipeList() {
             if (res.ok) {
                 console.log('Recipe saved:', data.recipe);
                 setRecipes(prev => [data.recipe, ...prev]);
-                setFormData({ title: '', ingredients: '', instructions: '' });
+                setFormData({
+                    title: '',
+                    ingredients: '',
+                    instructions: '',
+                    image: '',
+                    imagePublicId: ''
+                });
                 setShowAddRecipeModal(false);
             } else {
                 console.error('Failed to save recipe:', data);
