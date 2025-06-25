@@ -26,10 +26,10 @@ const RecipeSchema = new mongoose.Schema({
   instructions: String,
   image: String,
   imagePublicId: String,
-  createdBy: user.sub
+  createdBy: { type: String, required: true }
 }, { collection: 'recipelist' });
 
-const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema, 'recipelist');
+const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema);
 
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
@@ -42,7 +42,7 @@ export async function handler(event) {
   try {
     await connectDB();
 
-    const { type, title, ingredients, instructions, image = '', imagePublicId = '' } = JSON.parse(event.body);
+    const { type, title, ingredients, instructions, image = '', imagePublicId = '', userSub } = JSON.parse(event.body);
 
     if (!title || !type || !ingredients || !instructions) {
       return {
@@ -53,7 +53,7 @@ export async function handler(event) {
       };
     }
 
-    const newRecipe = await Recipe.create({ type, title, ingredients, instructions, image, imagePublicId });
+    const newRecipe = await Recipe.create({ type, title, ingredients, instructions, image, imagePublicId,  createdBy: userSub });
 
     return {
       statusCode: 200,
