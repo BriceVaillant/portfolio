@@ -35,7 +35,7 @@ export default function RecipeHome() {
     };
 
     useEffect(() => {
-        fetch('/.netlify/functions/getRecipes')
+        fetch('/.netlify/functions/getAllRecipes')
             .then(res => res.json())
             .then(data => {
                 const shuffled = shuffleArray(data);
