@@ -26,9 +26,10 @@ const RecipeSchema = new mongoose.Schema({
   instructions: String,
   image: String,
   imagePublicId: String,
+  createdBy: user.sub
 }, { collection: 'recipelist' });
 
-const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema);
+const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema, 'recipelist');
 
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
