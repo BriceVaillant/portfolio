@@ -11,6 +11,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function RecipeList() {
+    //is user connected ? 
+    const { isAuthenticated, user, isLoading, loginWithRedirect } = useAuth0();
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -27,10 +29,7 @@ export default function RecipeList() {
     const searchQuery = query.get("search")?.toLowerCase() || "";
 
     //max size for image upload
-    const MAX_SIZE_MB = 2;
-
-    //is user connected ? 
-    const { isAuthenticated, user, isLoading } = useAuth0();
+    const MAX_SIZE_MB = 2;  
 
     //handle user connection
     useEffect(() => {
@@ -51,10 +50,6 @@ export default function RecipeList() {
                 });
         }
     }, [isAuthenticated, user]);
-
-    if (isLoading) return <div>Loading...</div>;
-
-    if (!isAuthenticated) return <div>Redirecting to login...</div>;
 
     //fetch data from json to generate card
     useEffect(() => {
@@ -108,14 +103,6 @@ export default function RecipeList() {
     const handleTypeSelect = (selectedType) => {
         setFormData({ ...formData, type: selectedType });
     };
-
-    //shuffle card array 
-    function shuffleArray(array) {
-        return array
-            .map(value => ({ value, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .map(({ value }) => value);
-    }
 
     //handle filter with checkmark
     const filteredRecipes = recipes.filter(recipe => {
@@ -257,7 +244,8 @@ export default function RecipeList() {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    ingredients: parsedIngredients
+                    ingredients: parsedIngredients,
+                    userSub: user.sub
                 }),
             });
 
@@ -271,7 +259,8 @@ export default function RecipeList() {
                     ingredients: '',
                     instructions: '',
                     image: '',
-                    imagePublicId: ''
+                    imagePublicId: '',
+                    createdBy: ''
                 });
                 setShowAddRecipeModal(false);
             } else {
@@ -284,7 +273,8 @@ export default function RecipeList() {
         }
     };
 
-
+    if (isLoading) return <div>Loading...</div>;
+    if (!isAuthenticated) return <div>Redirecting to login...</div>;
 
     return (
         <div className="recipelistcontainer">
