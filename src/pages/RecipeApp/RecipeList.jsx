@@ -7,6 +7,7 @@ import mealImg from './assets/meal.jpg';
 import dessertImg from './assets/dessert.jpg';
 import addimg from './assets/plusicon.png';
 import './RecipeList.css';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function RecipeList() {
@@ -28,16 +29,48 @@ export default function RecipeList() {
     //max size for image upload
     const MAX_SIZE_MB = 2;
 
+    //is user connected ? 
+    const { isAuthenticated, user, isLoading } = useAuth0();
+
+    //handle user connection
+    useEffect(() => {
+        if (!isLoading && !isAuthenticated) {
+            loginWithRedirect();
+        }
+    }, [isLoading, isAuthenticated, loginWithRedirect]);
+
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            fetch('/.netlify/functions/createOrGetUser', {
+                method: 'POST',
+                body: JSON.stringify(user)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("User synced to DB:", data.user);
+                });
+        }
+    }, [isAuthenticated, user]);
+
+    if (isLoading) return <div>Loading...</div>;
+
+    if (!isAuthenticated) return <div>Redirecting to login...</div>;
+
     //fetch data from json to generate card
     useEffect(() => {
-        fetch('/.netlify/functions/getRecipes')
+        if (!user || !isAuthenticated) return;
+
+        fetch('/.netlify/functions/getUserRecipes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sub: user.sub })
+        })
             .then(res => res.json())
             .then(data => {
-                const shuffled = shuffleArray(data);
-                setRecipes(shuffled);
+                setRecipes(data);
             })
             .catch(err => console.error('Error loading JSON:', err));
-    }, []);
+    }, [user, isAuthenticated]);
 
     // this clear filter is search bar is used
     useEffect(() => {
@@ -251,6 +284,8 @@ export default function RecipeList() {
         }
     };
 
+
+
     return (
         <div className="recipelistcontainer">
             <div className="sidecolumn">
@@ -326,4 +361,5 @@ export default function RecipeList() {
             </div >
         </div >
     );
+
 }
