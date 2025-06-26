@@ -22,7 +22,6 @@ const RecipeSchema = new mongoose.Schema({
   title: String,
   type: String,
   ingredients: [IngredientSchema],
-  favorite: { type: Boolean, default: false },
   instructions: String,
   image: String,
   imagePublicId: String,
