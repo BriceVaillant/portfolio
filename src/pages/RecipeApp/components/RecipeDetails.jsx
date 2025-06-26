@@ -3,11 +3,11 @@ import dessertImg from '../assets/dessert.jpg';
 import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
+export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
     //is user connected ? 
     const { user, isAuthenticated } = useAuth0();
     const [userFavorites, setUserFavorites] = useState([]);
-    
+
     useEffect(() => {
         const fetchUserData = async () => {
             if (user) {
@@ -44,7 +44,7 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
         console.log(data);
     };
 
-    
+
 
     console.log("userFavorites:", userFavorites);
     console.log("current recipe._id:", recipe._id.toString());
@@ -70,7 +70,7 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
                     </div>
                     <div className="rightside">
                         <h3>{recipe.title}</h3>
-                       {user && (
+                        {user && (
                             <button onClick={() => handleFavorite(recipe._id)}>
                                 {user && userFavorites.includes(recipe._id.toString()) ? '★' : '☆'}
                             </button>
@@ -89,8 +89,12 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
                     </div>
                 </div>
                 <div className="bottom">
-                    <button type="button" className="editbtn" onClick={onEdit}>Edit</button>
-                    <button type="button" className="dltbtn" onClick={() => onDelete(recipe._id)}>Delete</button>
+                    {showControls && (
+                        <>
+                            <button type="button" className="editbtn" onClick={onEdit}>Edit</button>
+                            <button type="button" className="dltbtn" onClick={() => onDelete(recipe._id)}>Delete</button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
