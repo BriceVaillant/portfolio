@@ -18,6 +18,7 @@ export default function RecipeList() {
     //ajoutez favorite logic
     const [favoritedRecipes, setFavoritedRecipes] = useState([]);
     const [createdRecipes, setCreatedRecipes] = useState([]);
+    const [userFavorites, setUserFavorites] = useState([]);
     const allRecipes = [...createdRecipes, ...favoritedRecipes];
 
     const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -25,7 +26,7 @@ export default function RecipeList() {
     const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
     //this below is used to edit recipe
     const [isEditing, setIsEditing] = useState(false);
-    const [editData, setEditData] = useState(selectedRecipe);
+    const [editData, setEditData] = useState(null);
 
     //combine favorite recipe and createad recipe to avoid duplicata
     const recipes = allRecipes.reduce((acc, recipe) => {
@@ -45,47 +46,59 @@ export default function RecipeList() {
     //max size for image upload
     const MAX_SIZE_MB = 2;
 
-    //handle user connection
     useEffect(() => {
-        if (!isLoading && !isAuthenticated) {
-            loginWithRedirect();
-        }
-    }, [isLoading, isAuthenticated, loginWithRedirect]);
+    if (isLoading) return;
 
-    useEffect(() => {
-        if (isAuthenticated && user) {
-            fetch('/.netlify/functions/createOrGetUser', {
+    //Redirect if not authenticated
+    if (!isAuthenticated) {
+        loginWithRedirect();
+        return;
+    }
+
+    //Sync user with DB
+    const syncUser = async () => {
+        try {
+            const res = await fetch('/.netlify/functions/createOrGetUser', {
                 method: 'POST',
                 body: JSON.stringify(user)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("User synced to DB:", data.user);
-                    //setUserFavorites(data.user.favorites || []);
-                    setDbUser(data.user);
-                });
+            });
+            const data = await res.json();
+            console.log("User synced to DB:", data.user);
+            setDbUser(data.user);
+        } catch (err) {
+            console.error("Failed to sync user:", err);
         }
-    }, [isAuthenticated, user]);
+    };
 
-    //fetch data from json to generate card
-    useEffect(() => {
-        if (!user || !isAuthenticated || !dbUser) return;
+    //Fetch recipes if user + dbUser are ready
+    const fetchRecipes = async (favorites) => {
+        try {
+            const res = await fetch('/.netlify/functions/getUserRecipes', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sub: user.sub, favorites })
+            });
+            const data = await res.json();
+            setCreatedRecipes(data.createdRecipes);
+            setFavoritedRecipes(data.favoritedRecipes || []);
+        } catch (err) {
+            console.error('Error loading recipes:', err);
+        }
+    };
 
-        fetch('/.netlify/functions/getUserRecipes', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ sub: user.sub, favorites: dbUser.favorites })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("Created:", data.createdRecipes);
-                console.log("Favorited:", data.favoritedRecipes);
-
-                setCreatedRecipes(data.createdRecipes);
-                setFavoritedRecipes(data.favoritedRecipes || []);
-            })
-            .catch(err => console.error('Error loading JSON:', err));
-    }, [user, isAuthenticated, dbUser]);
+    //Start logic
+    if (isAuthenticated && user) {
+        syncUser().then(() => {
+            // wait for dbUser to be set
+            setTimeout(() => {
+                if (dbUser?.favorites) {
+                    setUserFavorites(dbUser.favorites.map(id => id.toString()));
+                    fetchRecipes(dbUser.favorites);
+                }
+            }, 300); // delay to make sure dbUser is populated
+        });
+    }
+}, [isLoading, isAuthenticated, user, dbUser]);
 
     // this clear filter is search bar is used
     useEffect(() => {
@@ -98,7 +111,7 @@ export default function RecipeList() {
         setEditData(selectedRecipe);
     }, [selectedRecipe]);
 
-    
+
 
     //allow to filter to only display ingredients that are u sed multitple times
     const ingredientCounts = meals
@@ -173,7 +186,6 @@ export default function RecipeList() {
             });
 
             const data = await res.json();
-            console.log('Uploaded Image URL:', data.secure_url);
 
             setData(prev => ({
                 ...prev,
@@ -276,7 +288,6 @@ export default function RecipeList() {
             const data = await res.json();
 
             if (res.ok) {
-                console.log('Recipe saved:', data.recipe);
                 setCreatedRecipes(prev => [data.recipe, ...prev]);
                 setFormData({
                     title: '',
@@ -295,6 +306,29 @@ export default function RecipeList() {
             console.error('Error saving recipe:', err);
             alert('Something went wrong.');
         }
+    };
+
+    const handleFavorite = async (recipeId) => {
+        setUserFavorites(prev =>
+            prev.includes(recipeId)
+                ? prev.filter(id => id !== recipeId)
+                : [...prev, recipeId]
+        );
+        const res = await fetch('/.netlify/functions/makeFavorite', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userSub: user.sub,
+                recipeId
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.user?.favorites) {
+            setUserFavorites(data.user.favorites.map(fav => fav.toString()));
+        }
+
     };
 
     if (isLoading) return <div>Loading...</div>;
@@ -361,6 +395,8 @@ export default function RecipeList() {
                         }}
                         onDelete={handleDelete}
                         onClose={() => setSelectedRecipe(null)}
+                        userFavorites={userFavorites}
+                        handleFavorite={handleFavorite}
                     />
                 )}
                 {isEditing && (
