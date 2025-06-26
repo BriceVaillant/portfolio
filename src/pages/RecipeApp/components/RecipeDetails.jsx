@@ -1,7 +1,53 @@
 import mealImg from '../assets/meal.jpg';
 import dessertImg from '../assets/dessert.jpg';
+import { useState, useEffect } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
+    //is user connected ? 
+    const { user, isAuthenticated } = useAuth0();
+    const [userFavorites, setUserFavorites] = useState([]);
+    
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (user) {
+                const res = await fetch('/.netlify/functions/getUser', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userSub: user.sub })
+                });
+
+                const data = await res.json();
+                setUserFavorites(data.user.favorites.map(fav => fav.toString()));
+            }
+        };
+
+        fetchUserData();
+    }, [user]);
+
+    const handleFavorite = async (recipeId) => {
+        const res = await fetch('/.netlify/functions/makeFavorite', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userSub: user.sub,
+                recipeId
+            })
+        });
+
+        const data = await res.json();
+
+        if (data.user?.favorites) {
+            setUserFavorites(data.user.favorites.map(fav => fav.toString()));
+        }
+
+        console.log(data);
+    };
+
+    
+
+    console.log("userFavorites:", userFavorites);
+    console.log("current recipe._id:", recipe._id.toString());
 
     return (
         <div className="currentrecipecontainer" onClick={(e) => e.target === e.currentTarget && onClose()}>
@@ -24,6 +70,11 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose }) {
                     </div>
                     <div className="rightside">
                         <h3>{recipe.title}</h3>
+                       {user && (
+                            <button onClick={() => handleFavorite(recipe._id)}>
+                                {user && userFavorites.includes(recipe._id.toString()) ? '★' : '☆'}
+                            </button>
+                        )}
                         <div className="recipe-instruction">
                             <h4>Instructions</h4>
                             <div className="instructionlist">
