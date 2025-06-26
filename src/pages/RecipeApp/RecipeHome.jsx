@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './RecipeHome.css';
 import './RecipeList.css';
+import RecipeDetails from './components/RecipeDetails';
 import mealImg from './assets/meal.jpg';
 import dessertImg from './assets/dessert.jpg';
 import backgrdImg from './assets/background.jpg';
@@ -87,41 +88,11 @@ export default function RecipeHome() {
                     </div>
                 </div>
                 {selectedRecipe && (
-                    <div
-                        className="currentrecipecontainer"
-                        onClick={(e) => e.target === e.currentTarget && setSelectedRecipe(null)}
-                    >
-                        <div className="currentrecipe">
-                            <div className="top">
-                                <div className="leftside">
-                                    <img
-                                        src={selectedRecipe.image || (selectedRecipe.type === 'meal' ? mealImg : dessertImg)}
-                                        alt={selectedRecipe.title}
-                                    />
-                                    <div className="recipe-ingredients">
-                                        <h4>Ingredients</h4>
-                                        <ul>
-                                            {selectedRecipe.ingredients.map(({ name, amount, unit }, index) => (
-                                                <li key={index}>{`${name}: ${amount}${unit}`}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="rightside">
-                                    <h3>{selectedRecipe.title}</h3>
-                                    <div className="recipe-instruction">
-                                        <h4>Instructions</h4>
-                                        {selectedRecipe.instructions
-                                            .split('\n')
-                                            .filter(line => line.trim() !== '')
-                                            .map((line, index) => (
-                                                <p key={index}>{line}</p>
-                                            ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <RecipeDetails
+                        recipe={selectedRecipe}
+                        onClose={() => setSelectedRecipe(null)}
+                        showControls={false}
+                    />
                 )}
             </div>
         </div>
