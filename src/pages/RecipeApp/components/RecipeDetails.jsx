@@ -1,50 +1,13 @@
 import mealImg from '../assets/meal.jpg';
 import dessertImg from '../assets/dessert.jpg';
-import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
+import emptyHeart from '../assets/Emptyheart.png';
+import fullHeart from '../assets/Fullheart.png';
 
-export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
+
+export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true, userFavorites = [], handleFavorite }) {
     //is user connected ? 
-    const { user, isAuthenticated } = useAuth0();
-    const [userFavorites, setUserFavorites] = useState([]);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            if (user) {
-                const res = await fetch('/.netlify/functions/getUser', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userSub: user.sub })
-                });
-
-                const data = await res.json();
-                setUserFavorites(data.user.favorites.map(fav => fav.toString()));
-            }
-        };
-
-        fetchUserData();
-    }, [user]);
-
-    const handleFavorite = async (recipeId) => {
-        const res = await fetch('/.netlify/functions/makeFavorite', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                userSub: user.sub,
-                recipeId
-            })
-        });
-
-        const data = await res.json();
-
-        if (data.user?.favorites) {
-            setUserFavorites(data.user.favorites.map(fav => fav.toString()));
-        }
-
-        console.log(data);
-    };
-
-
+    const { user } = useAuth0();
 
     console.log("userFavorites:", userFavorites);
     console.log("current recipe._id:", recipe._id.toString());
@@ -71,8 +34,12 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
                     <div className="rightside">
                         <h3>{recipe.title}</h3>
                         {user && (
-                            <button onClick={() => handleFavorite(recipe._id)}>
-                                {user && userFavorites.includes(recipe._id.toString()) ? '★' : '☆'}
+                            <button className="favoriteButton" onClick={() => handleFavorite(recipe._id)}>
+                                <img
+                                    src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
+                                    alt={userFavorites.includes(recipe._id.toString()) ? 'Unfavorite' : 'Favorite'}
+                                    className="heartIcon"
+                                />
                             </button>
                         )}
                         <div className="recipe-instruction">
