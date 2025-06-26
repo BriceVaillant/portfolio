@@ -13,6 +13,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function RecipeList() {
     //is user connected ? 
     const { isAuthenticated, user, isLoading, loginWithRedirect } = useAuth0();
+    //ajoutez favorite logic
+    //const [userFavorites, setUserFavorites] = useState([]);
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -47,6 +49,7 @@ export default function RecipeList() {
                 .then(res => res.json())
                 .then(data => {
                     console.log("User synced to DB:", data.user);
+                    //setUserFavorites(data.user.favorites || []);
                 });
         }
     }, [isAuthenticated, user]);
