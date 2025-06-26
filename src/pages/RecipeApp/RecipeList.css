@@ -338,6 +338,11 @@
   width: 70%;
   height: 100%;
 }
+.rightside button {
+  color: white;
+  height: 10px;
+  width: 20px;
+}
 
 .currentrecipe img {
   border: 2px solid black;
