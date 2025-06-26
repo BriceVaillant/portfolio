@@ -13,7 +13,7 @@ async function connectDB() {
 // Define schema outside function
 const userSchema = new mongoose.Schema({
   auth0Id: { type: String, required: true, unique: true },
-  favorites: [String],
+  favorites: [mongoose.Schema.Types.ObjectId],
   createdRecipes: { type: [mongoose.Schema.Types.ObjectId], default: [], ref: 'Recipe' },
   createdAt: { type: Date, default: Date.now }
 }, { collection: 'users' });

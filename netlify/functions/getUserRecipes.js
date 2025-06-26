@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,6 +9,7 @@ const RecipeSchema = new mongoose.Schema({}, { collection: 'recipelist' });
 const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema);
 
 export async function handler(event) {
+  
   try {
     if (event.httpMethod !== 'POST') {
       return {
@@ -18,7 +19,7 @@ export async function handler(event) {
     }
 
     const body = JSON.parse(event.body || '{}');
-    const sub = body.sub;
+    const { sub, favorites } = body;
 
     if (!sub) {
       return {
@@ -27,11 +28,20 @@ export async function handler(event) {
       };
     }
 
-    const recipes = await Recipe.find({ createdBy: sub });
+    const createdRecipes = await Recipe.find({ createdBy: sub });
+
+    let favoritedRecipes = [];
+    if (Array.isArray(favorites) && favorites.length > 0) {
+      const favoriteObjectIds = favorites.map(id => new Types.ObjectId(id));
+      favoritedRecipes = await Recipe.find({ _id: { $in: favoriteObjectIds } });
+    }
 
     return {
       statusCode: 200,
-      body: JSON.stringify(recipes),
+      body: JSON.stringify({
+        createdRecipes,
+        favoritedRecipes
+      }),
     };
   } catch (err) {
     console.error('getRecipes error:', err);
