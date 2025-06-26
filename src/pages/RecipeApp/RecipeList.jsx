@@ -13,15 +13,27 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function RecipeList() {
     //is user connected ? 
     const { isAuthenticated, user, isLoading, loginWithRedirect } = useAuth0();
+    const [dbUser, setDbUser] = useState(null);
+
     //ajoutez favorite logic
-    //const [userFavorites, setUserFavorites] = useState([]);
-    const [recipes, setRecipes] = useState([]);
+    const [favoritedRecipes, setFavoritedRecipes] = useState([]);
+    const [createdRecipes, setCreatedRecipes] = useState([]);
+    const allRecipes = [...createdRecipes, ...favoritedRecipes];
+
     const [selectedRecipe, setSelectedRecipe] = useState(null);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
     //this below is used to edit recipe
     const [isEditing, setIsEditing] = useState(false);
     const [editData, setEditData] = useState(selectedRecipe);
+
+    //combine favorite recipe and createad recipe to avoid duplicata
+    const recipes = allRecipes.reduce((acc, recipe) => {
+        if (!acc.find(r => r._id.toString() === recipe._id.toString())) {
+            acc.push(recipe);
+        }
+        return acc;
+    }, []);
 
     const meals = recipes.filter(r => r.type === "meal");
     // const desserts = recipes.filter(r => r.type === "dessert");
@@ -31,7 +43,7 @@ export default function RecipeList() {
     const searchQuery = query.get("search")?.toLowerCase() || "";
 
     //max size for image upload
-    const MAX_SIZE_MB = 2;  
+    const MAX_SIZE_MB = 2;
 
     //handle user connection
     useEffect(() => {
@@ -50,25 +62,30 @@ export default function RecipeList() {
                 .then(data => {
                     console.log("User synced to DB:", data.user);
                     //setUserFavorites(data.user.favorites || []);
+                    setDbUser(data.user);
                 });
         }
     }, [isAuthenticated, user]);
 
     //fetch data from json to generate card
     useEffect(() => {
-        if (!user || !isAuthenticated) return;
+        if (!user || !isAuthenticated || !dbUser) return;
 
         fetch('/.netlify/functions/getUserRecipes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ sub: user.sub })
+            body: JSON.stringify({ sub: user.sub, favorites: dbUser.favorites })
         })
             .then(res => res.json())
             .then(data => {
-                setRecipes(data);
+                console.log("Created:", data.createdRecipes);
+                console.log("Favorited:", data.favoritedRecipes);
+
+                setCreatedRecipes(data.createdRecipes);
+                setFavoritedRecipes(data.favoritedRecipes || []);
             })
             .catch(err => console.error('Error loading JSON:', err));
-    }, [user, isAuthenticated]);
+    }, [user, isAuthenticated, dbUser]);
 
     // this clear filter is search bar is used
     useEffect(() => {
@@ -80,6 +97,8 @@ export default function RecipeList() {
     useEffect(() => {
         setEditData(selectedRecipe);
     }, [selectedRecipe]);
+
+    
 
     //allow to filter to only display ingredients that are u sed multitple times
     const ingredientCounts = meals
@@ -106,6 +125,8 @@ export default function RecipeList() {
     const handleTypeSelect = (selectedType) => {
         setFormData({ ...formData, type: selectedType });
     };
+
+
 
     //handle filter with checkmark
     const filteredRecipes = recipes.filter(recipe => {
@@ -194,7 +215,7 @@ export default function RecipeList() {
             const result = await res.json();
             if (res.ok) {
                 //this Remove deleted recipe
-                setRecipes(prevRecipes => prevRecipes.filter(recipe => recipe._id !== id));
+                setCreatedRecipes(prevRecipes => prevRecipes.filter(recipe => recipe._id !== id));
                 //and this closes the modal
                 setSelectedRecipe(null);
             } else {
@@ -220,7 +241,7 @@ export default function RecipeList() {
             const updated = await res.json();
 
             if (res.ok) {
-                setRecipes(prev =>
+                setCreatedRecipes(prev =>
                     prev.map(r => r._id === updated.recipe._id ? updated.recipe : r)
                 );
                 setSelectedRecipe(updated.recipe);
@@ -256,7 +277,7 @@ export default function RecipeList() {
 
             if (res.ok) {
                 console.log('Recipe saved:', data.recipe);
-                setRecipes(prev => [data.recipe, ...prev]);
+                setCreatedRecipes(prev => [data.recipe, ...prev]);
                 setFormData({
                     title: '',
                     ingredients: '',
