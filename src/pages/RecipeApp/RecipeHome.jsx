@@ -110,7 +110,7 @@ export default function RecipeHome() {
                                 <div key={`meal-${recipe._id}`} className="mealscard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
                                     <div className="imgcardcontainer">
-                                        <img src={recipe.image || mealImg} />
+                                        <img className="bgdimg" src={recipe.image || mealImg} />
                                         <button
                                             className="homefavbtn"
                                             onClick={(e) => {

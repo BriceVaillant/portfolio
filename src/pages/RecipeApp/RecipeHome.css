@@ -117,12 +117,30 @@
   overflow: hidden;
   position: relative;
 }
-.homepage .mealscard .img,
-.homepage .dessertcard .img {
+.homepage .mealscard .bgdimg,
+.homepage .dessertcard .bgdimg {
   object-fit: cover;
   width: 100%;
   height: 100%;
   display: block;
+}
+.imgcardcontainer .heartIcon {
+  width: 24px;
+  height: 24px;
+}
+.imgcardcontainer {
+  position: relative;
+  width: 100%;
+}
+
+.imgcardcontainer .homefavbtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 .homepage .mealscard h2,
 .homepage .dessertcard h2 {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './RecipeAppNavbar.css';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useUserContext } from './contexts/UserContext.jsx';
 
 export default function Navbar() {
     //this store what the user type
@@ -11,7 +12,7 @@ export default function Navbar() {
     //let you go to a new url
     const navigate = useNavigate();
 
-    const { loginWithRedirect, logout } = useAuth0();
+    const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
     return (
         <nav className="recipeappnavbar">
@@ -45,12 +46,20 @@ export default function Navbar() {
                 <div className="listcontainer">
                     <ul>
                         <li><Link to="/projects/recipe/home" className="navbarlink" >Discover</Link></li>
-                        <li><Link to="/projects/recipe/recipelist" className="navbarlink" >Recipes</Link></li>
+                        <li><Link to="/projects/recipe/recipelist" className="navbarlink" >YourRecipes</Link></li>
+                        <li>
+                            {!isAuthenticated && (
+                                <button className="navbarlink" onClick={() => loginWithRedirect()}>Log In</button>
+                            )}
+                            {isAuthenticated && (
+                                <button className="navbarlink" onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+                            )}</li>
                     </ul>
-                    <button onClick={() => loginWithRedirect()}>Log In</button>
-                    <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>
+
                 </div>
             </div>
+
+
         </nav>
     );
 }
