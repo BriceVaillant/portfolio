@@ -3,15 +3,13 @@ import dessertImg from '../assets/dessert.jpg';
 import { useAuth0 } from "@auth0/auth0-react";
 import emptyHeart from '../assets/Emptyheart.png';
 import fullHeart from '../assets/Fullheart.png';
+import { useUserContext } from '../contexts/UserContext.jsx';
 
 
-export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true, userFavorites = [], handleFavorite }) {
+export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true, handleFavorite }) {
     //is user connected ? 
     const { user } = useAuth0();
-
-    console.log("userFavorites:", userFavorites);
-    console.log("current recipe._id:", recipe._id.toString());
-
+    const { userFavorites } = useUserContext();
     return (
         <div className="currentrecipecontainer" onClick={(e) => e.target === e.currentTarget && onClose()}>
             <div className="currentrecipe">

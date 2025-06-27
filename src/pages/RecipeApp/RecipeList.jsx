@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
+import { useUserContext } from './contexts/UserContext.jsx';
 import AddRecipeModal from './components/AddRecipeModal.jsx';
 import EditRecipeModal from './components/EditRecipeModal';
 import RecipeDetails from './components/RecipeDetails';
@@ -7,18 +8,23 @@ import mealImg from './assets/meal.jpg';
 import dessertImg from './assets/dessert.jpg';
 import addimg from './assets/plusicon.png';
 import './RecipeList.css';
-import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function RecipeList() {
-    //is user connected ? 
-    const { isAuthenticated, user, isLoading, loginWithRedirect } = useAuth0();
+    const {
+        isLoading,
+        isAuthenticated,
+        user,
+        createdRecipes,
+        favoritedRecipes,
+        userFavorites,
+        setUserFavorites,
+        setCreatedRecipes
+    } = useUserContext();
+
     const [dbUser, setDbUser] = useState(null);
 
     //ajoutez favorite logic
-    const [favoritedRecipes, setFavoritedRecipes] = useState([]);
-    const [createdRecipes, setCreatedRecipes] = useState([]);
-    const [userFavorites, setUserFavorites] = useState([]);
     const allRecipes = [...createdRecipes, ...favoritedRecipes];
 
     const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -46,60 +52,6 @@ export default function RecipeList() {
     //max size for image upload
     const MAX_SIZE_MB = 2;
 
-    useEffect(() => {
-    if (isLoading) return;
-
-    //Redirect if not authenticated
-    if (!isAuthenticated) {
-        loginWithRedirect();
-        return;
-    }
-
-    //Sync user with DB
-    const syncUser = async () => {
-        try {
-            const res = await fetch('/.netlify/functions/createOrGetUser', {
-                method: 'POST',
-                body: JSON.stringify(user)
-            });
-            const data = await res.json();
-            console.log("User synced to DB:", data.user);
-            setDbUser(data.user);
-        } catch (err) {
-            console.error("Failed to sync user:", err);
-        }
-    };
-
-    //Fetch recipes if user + dbUser are ready
-    const fetchRecipes = async (favorites) => {
-        try {
-            const res = await fetch('/.netlify/functions/getUserRecipes', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ sub: user.sub, favorites })
-            });
-            const data = await res.json();
-            setCreatedRecipes(data.createdRecipes);
-            setFavoritedRecipes(data.favoritedRecipes || []);
-        } catch (err) {
-            console.error('Error loading recipes:', err);
-        }
-    };
-
-    //Start logic
-    if (isAuthenticated && user) {
-        syncUser().then(() => {
-            // wait for dbUser to be set
-            setTimeout(() => {
-                if (dbUser?.favorites) {
-                    setUserFavorites(dbUser.favorites.map(id => id.toString()));
-                    fetchRecipes(dbUser.favorites);
-                }
-            }, 300); // delay to make sure dbUser is populated
-        });
-    }
-}, [isLoading, isAuthenticated, user, dbUser]);
-
     // this clear filter is search bar is used
     useEffect(() => {
         if (searchQuery) {
@@ -110,7 +62,6 @@ export default function RecipeList() {
     useEffect(() => {
         setEditData(selectedRecipe);
     }, [selectedRecipe]);
-
 
 
     //allow to filter to only display ingredients that are u sed multitple times
