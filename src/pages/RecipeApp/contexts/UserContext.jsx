@@ -12,9 +12,9 @@ export const UserProvider = ({ children }) => {
   const [userFavorites, setUserFavorites] = useState([]);
 
   // Auth redirect
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) loginWithRedirect();
-  }, [isLoading, isAuthenticated, loginWithRedirect]);
+  //useEffect(() => {
+  //  if (!isLoading && !isAuthenticated) loginWithRedirect();
+  //}, [isLoading, isAuthenticated, loginWithRedirect]);
 
   // Sync user + fetch recipes
   useEffect(() => {
