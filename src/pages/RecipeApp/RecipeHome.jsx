@@ -41,30 +41,43 @@ export default function RecipeHome() {
     };
 
     const toggleFavorite = async (recipeId) => {
-        if (!isAuthenticated) {
-            loginWithRedirect(); // force login
-            return;
-        }
-
         try {
-            const isAlreadyFavorite = userFavorites.includes(recipeId);
-            const endpoint = isAlreadyFavorite ? 'removeFavorite' : 'addFavorite';
+            // Optimistic update
+            setUserFavorites(prev =>
+                prev.includes(recipeId)
+                    ? prev.filter(id => id !== recipeId)
+                    : [...prev, recipeId]
+            );
 
-            const res = await fetch(`/.netlify/functions/${endpoint}`, {
+            // thjis update the database
+            const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: dbUser._id, recipeId }),
+                body: JSON.stringify({
+                    userSub: user.sub,
+                    recipeId
+                })
             });
 
-            if (!res.ok) throw new Error('Failed to update favorite');
+            const favoriteData = await favoriteRes.json();
 
-            // Update local state
-            setUserFavorites(prev => {
-                return isAlreadyFavorite
-                    ? prev.filter(id => id !== recipeId)
-                    : [...prev, recipeId];
-            });
+            if (favoriteData.user?.favorites) {
+                const updatedFavorites = favoriteData.user.favorites.map(fav => fav.toString());
+                setUserFavorites(updatedFavorites);
 
+                //this refresh the favorite
+                const recipeRes = await fetch('/.netlify/functions/getUserRecipes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sub: user.sub,
+                        favorites: updatedFavorites
+                    })
+                });
+
+                const recipeData = await recipeRes.json();
+                setFavoritedRecipes(recipeData.favoritedRecipes || []);
+            }
         } catch (err) {
             console.error('Error toggling favorite:', err);
         }

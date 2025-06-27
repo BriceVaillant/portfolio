@@ -8,14 +8,16 @@ import { UserProvider } from './contexts/UserContext';
 
 function RecipeApp() {
   return (
-      <Auth0Provider
-        domain={import.meta.env.VITE_AUTH0_DOMAIN}
-        clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
-        authorizationParams={{
-          redirect_uri: `${window.location.origin}/projects/recipe/recipelist`
-        }}
-      >
-        <UserProvider>
+    <Auth0Provider
+      domain={import.meta.env.VITE_AUTH0_DOMAIN}
+      clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
+      authorizationParams={{
+        redirect_uri: `${window.location.origin}/projects/recipe/recipelist`
+      }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true}
+    >
+      <UserProvider>
         <div id="RecipeApp">
           <>
             <Navbar />
@@ -26,9 +28,9 @@ function RecipeApp() {
             </Routes>
           </>
         </div>
-        </UserProvider>
-      </Auth0Provider>
-    
+      </UserProvider>
+    </Auth0Provider>
+
   );
 }
 

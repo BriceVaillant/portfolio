@@ -7,7 +7,7 @@ import { useUserContext } from '../contexts/UserContext.jsx';
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
     //is user connected ? 
-    const { userFavorites,user,setUserFavorites } = useUserContext();
+    const { userFavorites = [],user,setUserFavorites } = useUserContext();
 
     const toggleFavorite = async (recipeId) => {
         try {
