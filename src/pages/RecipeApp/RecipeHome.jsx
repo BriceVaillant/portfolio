@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useUserContext } from './contexts/UserContext.jsx';
+import { useAuth0 } from '@auth0/auth0-react';
 import './RecipeHome.css';
 import './RecipeList.css';
 import RecipeDetails from './components/RecipeDetails';
@@ -13,6 +14,7 @@ import fullHeart from './assets/Fullheart.png';
 export default function RecipeHome() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     const { userFavorites = [], setUserFavorites, user  } = useUserContext();
 
@@ -41,6 +43,10 @@ export default function RecipeHome() {
     };
 
     const toggleFavorite = async (recipeId) => {
+        if (!isAuthenticated) {
+    loginWithRedirect();
+    return;
+  }
         try {
             // Optimistic update
             setUserFavorites(prev =>
