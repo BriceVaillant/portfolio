@@ -22,8 +22,6 @@ export default function RecipeList() {
         setCreatedRecipes
     } = useUserContext();
 
-    const [dbUser, setDbUser] = useState(null);
-
     //ajoutez favorite logic
     const allRecipes = [...createdRecipes, ...favoritedRecipes];
 
@@ -260,27 +258,26 @@ export default function RecipeList() {
     };
 
     const handleFavorite = async (recipeId) => {
-        setUserFavorites(prev =>
-            prev.includes(recipeId)
-                ? prev.filter(id => id !== recipeId)
-                : [...prev, recipeId]
-        );
+    setUserFavorites(prev =>
+      prev.includes(recipeId)
+        ? prev.filter(id => id !== recipeId)
+        : [...prev, recipeId]
+    );
         const res = await fetch('/.netlify/functions/makeFavorite', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 userSub: user.sub,
                 recipeId
             })
-        });
+    });
 
         const data = await res.json();
 
         if (data.user?.favorites) {
             setUserFavorites(data.user.favorites.map(fav => fav.toString()));
-        }
-
-    };
+  }
+};
 
     if (isLoading) return <div>Loading...</div>;
     if (!isAuthenticated) return <div>Redirecting to login...</div>;

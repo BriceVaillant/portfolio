@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useUserContext } from './contexts/UserContext.jsx';
-import { useAuth0 } from '@auth0/auth0-react';
 import './RecipeHome.css';
 import './RecipeList.css';
 import RecipeDetails from './components/RecipeDetails';
@@ -16,9 +14,7 @@ export default function RecipeHome() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-    const navigate = useNavigate();
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
-    const { userFavorites, setUserFavorites, dbUser } = useUserContext();
+    const { userFavorites = [], setUserFavorites, user  } = useUserContext();
 
     const meals = recipes.filter(r => r.type === "meal");
     const desserts = recipes.filter(r => r.type === "dessert");
@@ -98,7 +94,7 @@ export default function RecipeHome() {
                         <button className="scroll-btn left" onClick={() => handleScroll('mealcardscontainer', -1)}>←</button>
                         <div className="mealcardscontainer">
                             {meals.map(recipe => (
-                                <div key={recipe._id} className="mealscard" onClick={() => handleFoodCardClick(recipe)}>
+                                <div key={`meal-${recipe._id}`} className="mealscard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
                                     <div className="imgcardcontainer">
                                         <img src={recipe.image || mealImg} />
@@ -129,7 +125,7 @@ export default function RecipeHome() {
                         <button className="scroll-btn left" onClick={() => handleScroll('dessertcardscontainer', -1)}>←</button>
                         <div className="dessertcardscontainer">
                             {desserts.map(recipe => (
-                                <div className="dessertcard" onClick={() => handleFoodCardClick(recipe)}>
+                                <div key={`dessert-${recipe._id}`} className="dessertcard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
                                     <div className="imgcardcontainer">
                                         <img src={recipe.image || dessertImg} />

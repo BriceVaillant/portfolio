@@ -22,7 +22,7 @@ function RecipeApp() {
             <Routes>
               <Route index element={<RecipeHome />} />
               <Route path="home" element={<RecipeHome />} />
-              <Route path="recipelist" element={<RecipeList />} />
+              <Route path="recipelist" element={<RecipeList key={Date.now()} />} />
             </Routes>
           </>
         </div>
