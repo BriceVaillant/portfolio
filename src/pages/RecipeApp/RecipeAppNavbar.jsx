@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './RecipeAppNavbar.css';
 import { useAuth0 } from "@auth0/auth0-react";
-import { useUserContext } from './contexts/UserContext.jsx';
 
 export default function Navbar() {
     //this store what the user type
@@ -46,7 +45,18 @@ export default function Navbar() {
                 <div className="listcontainer">
                     <ul>
                         <li><Link to="/projects/recipe/home" className="navbarlink" >Discover</Link></li>
-                        <li><Link to="/projects/recipe/recipelist" className="navbarlink" >YourRecipes</Link></li>
+                        <li><button
+                            className="navbarlink"
+                            onClick={() => {
+                                if (!isAuthenticated) {
+                                    loginWithRedirect();
+                                } else {
+                                    navigate("/projects/recipe/recipelist");
+                                }
+                            }}
+                        >
+                            YourRecipes
+                        </button></li>
                         <li>
                             {!isAuthenticated && (
                                 <button className="navbarlink" onClick={() => loginWithRedirect()}>Log In</button>
