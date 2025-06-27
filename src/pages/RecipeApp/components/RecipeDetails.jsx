@@ -3,13 +3,19 @@ import dessertImg from '../assets/dessert.jpg';
 import emptyHeart from '../assets/Emptyheart.png';
 import fullHeart from '../assets/Fullheart.png';
 import { useUserContext } from '../contexts/UserContext.jsx';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
     //is user connected ? 
     const { userFavorites = [],user,setUserFavorites } = useUserContext();
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     const toggleFavorite = async (recipeId) => {
+        if (!isAuthenticated) {
+    loginWithRedirect();
+    return;
+  }
         try {
             // Optimistic update
             setUserFavorites(prev =>
