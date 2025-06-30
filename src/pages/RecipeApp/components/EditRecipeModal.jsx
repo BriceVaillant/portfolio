@@ -35,8 +35,6 @@ export default function EditRecipeModal({ editData, setEditData, onCancel, onSav
         setEditData(prev => ({ ...prev, ingredients: parsedIngredients }));
     };
 
-    ;
-
     return (
         <div className="editrecipecontainer">
             <div className="editrecipe">

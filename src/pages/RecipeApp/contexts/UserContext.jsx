@@ -57,47 +57,46 @@ export const UserProvider = ({ children }) => {
   }, [dbUser, user]);
 
   const toggleFavorite = async (recipeId) => {
-  if (!user || !dbUser) return;
+    if (!user || !dbUser) return;
 
-  // refresh immmediatly
-  setUserFavorites(prev => 
-    prev.includes(recipeId) 
-      ? prev.filter(id => id !== recipeId)
-      : [...prev, recipeId]
-  );
-
-  try {
-    const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userSub: user.sub, recipeId })
-    });
-
-    const favoriteData = await favoriteRes.json();
-
-    if (!favoriteRes.ok) {
-      console.error('Failed to update favorite:', favoriteData.error);
-      setUserFavorites(prev => 
-        prev.includes(recipeId)
-          ? prev.filter(id => id !== recipeId)
-          : [...prev, recipeId]
-      );
-      return;
-    }
-
-      if (favoriteData.user?.favorites) {
-        setUserFavorites(favoriteData.user.favorites.map(fav => fav.toString()));
-    await reloadUserRecipes();
-      }
-  } catch (err) {
-    console.error('Error toggling favorite:', err);
-    setUserFavorites(prev => 
+    // refresh immmediatly
+    setUserFavorites(prev =>
       prev.includes(recipeId)
         ? prev.filter(id => id !== recipeId)
         : [...prev, recipeId]
     );
-  }
-};
+
+    try {
+      const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userSub: user.sub, recipeId })
+      });
+
+      const favoriteData = await favoriteRes.json();
+
+      if (!favoriteRes.ok) {
+        console.error('Failed to update favorite:', favoriteData.error);
+        setUserFavorites(prev =>
+          prev.includes(recipeId)
+            ? prev.filter(id => id !== recipeId)
+            : [...prev, recipeId]
+        );
+        return;
+      }
+
+       if (favoriteData.user?.favorites) {
+      setUserFavorites(favoriteData.user.favorites.map(fav => fav.toString()));
+    }
+    } catch (err) {
+      console.error('Error toggling favorite:', err);
+      setUserFavorites(prev =>
+        prev.includes(recipeId)
+          ? prev.filter(id => id !== recipeId)
+          : [...prev, recipeId]
+      );
+    }
+  };
 
   return (
     <UserContext.Provider value={{

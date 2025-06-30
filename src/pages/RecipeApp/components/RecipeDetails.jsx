@@ -13,9 +13,9 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
 
     const toggleFavorite = async (recipeId) => {
         if (!isAuthenticated) {
-    loginWithRedirect();
-    return;
-  }
+            loginWithRedirect();
+            return;
+        }
         try {
             // Optimistic update
             setUserFavorites(prev =>
@@ -79,13 +79,13 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
                     </div>
                     <div className="rightside">
                         <h3>{recipe.title}</h3>
-                            <button className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
-                                <img
-                                    src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
-                                    alt={userFavorites.includes(recipe._id.toString()) ? 'Unfavorite' : 'Favorite'}
-                                    className="heartIcon"
-                                />
-                            </button>
+                        <button className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
+                            <img
+                                src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
+                                alt={userFavorites.includes(recipe._id.toString()) ? 'Unfavorite' : 'Favorite'}
+                                className="heartIcon"
+                            />
+                        </button>
                         <div className="recipe-instruction">
                             <h4>Instructions</h4>
                             <div className="instructionlist">
