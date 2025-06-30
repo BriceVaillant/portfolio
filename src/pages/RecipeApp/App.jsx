@@ -5,8 +5,12 @@ import RecipeList from './RecipeList';
 import './recipeapp.css';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserProvider } from './contexts/UserContext';
+import { useLocation } from 'react-router-dom';
 
 function RecipeApp() {
+
+  const location = useLocation();
+
   return (
     <Auth0Provider
       domain={import.meta.env.VITE_AUTH0_DOMAIN}
@@ -21,10 +25,10 @@ function RecipeApp() {
         <div id="RecipeApp">
           <>
             <Navbar />
-            <Routes>
+            <Routes location={location} key={location.pathname}>
               <Route index element={<RecipeHome />} />
               <Route path="home" element={<RecipeHome />} />
-              <Route path="recipelist" element={<RecipeList key={Date.now()} />} />
+              <Route path="recipelist" element={<RecipeList />} />
             </Routes>
           </>
         </div>

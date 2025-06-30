@@ -11,16 +11,26 @@ import './RecipeList.css';
 
 
 export default function RecipeList() {
+
+    const location = useLocation();
+
     const {
         isLoading,
         isAuthenticated,
         user,
+        reloadUserRecipes,
         createdRecipes,
         favoritedRecipes,
         userFavorites,
         setUserFavorites,
-        setCreatedRecipes
+        setCreatedRecipes,
+        toggleFavorite
     } = useUserContext();
+
+    //this refresh the userrecipe when the route change
+    useEffect(() => {
+        reloadUserRecipes();
+    }, [location.pathname]);
 
     //ajoutez favorite logic
     const allRecipes = [...createdRecipes, ...favoritedRecipes];
@@ -257,28 +267,6 @@ export default function RecipeList() {
         }
     };
 
-    const handleFavorite = async (recipeId) => {
-    setUserFavorites(prev =>
-      prev.includes(recipeId)
-        ? prev.filter(id => id !== recipeId)
-        : [...prev, recipeId]
-    );
-        const res = await fetch('/.netlify/functions/makeFavorite', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                userSub: user.sub,
-                recipeId
-            })
-    });
-
-        const data = await res.json();
-
-        if (data.user?.favorites) {
-            setUserFavorites(data.user.favorites.map(fav => fav.toString()));
-  }
-};
-
     if (isLoading) return <div>Loading...</div>;
     if (!isAuthenticated) return <div>Redirecting to login...</div>;
 
@@ -342,9 +330,12 @@ export default function RecipeList() {
                             setIsEditing(true);
                         }}
                         onDelete={handleDelete}
-                        onClose={() => setSelectedRecipe(null)}
+                        onClose={() => {
+                            setSelectedRecipe(null);
+                            reloadUserRecipes();
+                        }}
                         userFavorites={userFavorites}
-                        handleFavorite={handleFavorite}
+                        handleFavorite={toggleFavorite}
                     />
                 )}
                 {isEditing && (

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useUserContext } from './contexts/UserContext.jsx';
-import { useAuth0 } from '@auth0/auth0-react';
 import './RecipeHome.css';
 import './RecipeList.css';
 import RecipeDetails from './components/RecipeDetails';
@@ -14,9 +13,8 @@ import fullHeart from './assets/Fullheart.png';
 export default function RecipeHome() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
 
-    const { userFavorites = [], setUserFavorites, user  } = useUserContext();
+    const { userFavorites = [], toggleFavorite } = useUserContext();
 
     const meals = recipes.filter(r => r.type === "meal");
     const desserts = recipes.filter(r => r.type === "dessert");
@@ -40,53 +38,6 @@ export default function RecipeHome() {
     //show recipe modal when card is clicked
     const handleFoodCardClick = (recipe) => {
         setSelectedRecipe(recipe);
-    };
-
-    const toggleFavorite = async (recipeId) => {
-        if (!isAuthenticated) {
-    loginWithRedirect();
-    return;
-  }
-        try {
-            // Optimistic update
-            setUserFavorites(prev =>
-                prev.includes(recipeId)
-                    ? prev.filter(id => id !== recipeId)
-                    : [...prev, recipeId]
-            );
-
-            // thjis update the database
-            const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    userSub: user.sub,
-                    recipeId
-                })
-            });
-
-            const favoriteData = await favoriteRes.json();
-
-            if (favoriteData.user?.favorites) {
-                const updatedFavorites = favoriteData.user.favorites.map(fav => fav.toString());
-                setUserFavorites(updatedFavorites);
-
-                //this refresh the favorite
-                const recipeRes = await fetch('/.netlify/functions/getUserRecipes', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        sub: user.sub,
-                        favorites: updatedFavorites
-                    })
-                });
-
-                const recipeData = await recipeRes.json();
-                setFavoritedRecipes(recipeData.favoritedRecipes || []);
-            }
-        } catch (err) {
-            console.error('Error toggling favorite:', err);
-        }
     };
 
     useEffect(() => {

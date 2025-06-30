@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { isAuthenticated, user, isLoading, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
   const [dbUser, setDbUser] = useState(null);
   const [createdRecipes, setCreatedRecipes] = useState([]);
   const [favoritedRecipes, setFavoritedRecipes] = useState([]);
@@ -32,23 +32,64 @@ export const UserProvider = ({ children }) => {
     syncUser();
   }, [isAuthenticated, user]);
 
+  const reloadUserRecipes = async () => {
+    if (!user || !dbUser) return;
+    const res = await fetch('/.netlify/functions/getUserRecipes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sub: user.sub, favorites: dbUser.favorites })
+    });
+    const data = await res.json();
+
+    console.log('Created Recipes:', data.createdRecipes);
+    console.log('Favorited Recipes:', data.favoritedRecipes);
+    console.log('User Favorites:', dbUser.favorites.map(id => id.toString()));
+    console.log('dbUser:', dbUser);
+
+    setCreatedRecipes(data.createdRecipes);
+    setFavoritedRecipes(data.favoritedRecipes || []);
+    setUserFavorites(dbUser.favorites.map(id => id.toString()));
+  };
+
   useEffect(() => {
     if (!user || !dbUser) return;
+    reloadUserRecipes();
+  }, [dbUser, user]);
 
-    const fetchRecipes = async () => {
-      const res = await fetch('/.netlify/functions/getUserRecipes', {
+  const toggleFavorite = async (recipeId) => {
+    if (!user || !dbUser) return;
+
+    try {
+      setUserFavorites(prev =>
+        prev.includes(recipeId)
+          ? prev.filter(id => id !== recipeId)
+          : [...prev, recipeId]
+      );
+
+      const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sub: user.sub, favorites: dbUser.favorites })
+        body: JSON.stringify({
+          userSub: user.sub,
+          recipeId
+        })
       });
-      const data = await res.json();
-      setCreatedRecipes(data.createdRecipes);
-      setFavoritedRecipes(data.favoritedRecipes || []);
-    };
 
-    setUserFavorites(dbUser.favorites.map(id => id.toString()));
-    fetchRecipes();
-  }, [dbUser, user]);
+      const favoriteData = await favoriteRes.json();
+
+      if (!favoriteRes.ok) {
+        console.error('Failed to update favorite:', data.error);
+        return;
+      }
+
+      if (favoriteData.user?.favorites) {
+        setUserFavorites(favoriteData.user.favorites.map(fav => fav.toString()));
+        await reloadUserRecipes();
+      }
+    } catch (err) {
+      console.error('Error toggling favorite:', err);
+    }
+  };
 
   return (
     <UserContext.Provider value={{
@@ -60,7 +101,9 @@ export const UserProvider = ({ children }) => {
       favoritedRecipes,
       userFavorites,
       setUserFavorites,
-      setCreatedRecipes
+      setCreatedRecipes,
+      reloadUserRecipes,
+      toggleFavorite
     }}>
       {children}
     </UserContext.Provider>
