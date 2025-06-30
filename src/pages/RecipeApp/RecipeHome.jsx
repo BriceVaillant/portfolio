@@ -14,7 +14,7 @@ export default function RecipeHome() {
     const [recipes, setRecipes] = useState([]);
     const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-    const { userFavorites = [], toggleFavorite } = useUserContext();
+    const { userFavorites, toggleFavorite} = useUserContext();
 
     const meals = recipes.filter(r => r.type === "meal");
     const desserts = recipes.filter(r => r.type === "dessert");

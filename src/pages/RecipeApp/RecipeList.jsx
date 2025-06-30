@@ -22,7 +22,6 @@ export default function RecipeList() {
         createdRecipes,
         favoritedRecipes,
         userFavorites,
-        setUserFavorites,
         setCreatedRecipes,
         toggleFavorite
     } = useUserContext();
@@ -97,25 +96,6 @@ export default function RecipeList() {
     const handleTypeSelect = (selectedType) => {
         setFormData({ ...formData, type: selectedType });
     };
-
-
-
-    //handle filter with checkmark
-    const filteredRecipes = recipes.filter(recipe => {
-        const ingredientMatch =
-            selectedIngredients.length === 0 ||
-            selectedIngredients.some(ingredient =>
-                recipe.ingredients.some(ing => ing.name.toLowerCase() === ingredient.toLowerCase())
-            );
-
-        //needed for search bar
-        const searchMatch =
-            searchQuery === "" ||
-            recipe.title.toLowerCase().includes(searchQuery) ||
-            recipe.ingredients.some(ing => ing.name.toLowerCase().includes(searchQuery));
-
-        return ingredientMatch && searchMatch;
-    });
 
     //show add recipe modal when card is clicked
     const handleCardClick = () => {
@@ -266,6 +246,23 @@ export default function RecipeList() {
             alert('Something went wrong.');
         }
     };
+
+    //handle filter with checkmark
+    const filteredRecipes = recipes.filter(recipe => {
+        const ingredientMatch =
+            selectedIngredients.length === 0 ||
+            selectedIngredients.some(ingredient =>
+                recipe.ingredients.some(ing => ing.name.toLowerCase() === ingredient.toLowerCase())
+            );
+
+        //needed for search bar
+        const searchMatch =
+            searchQuery === "" ||
+            recipe.title.toLowerCase().includes(searchQuery) ||
+            recipe.ingredients.some(ing => ing.name.toLowerCase().includes(searchQuery));
+
+        return ingredientMatch && searchMatch;
+    });
 
     if (isLoading) return <div>Loading...</div>;
     if (!isAuthenticated) return <div>Redirecting to login...</div>;

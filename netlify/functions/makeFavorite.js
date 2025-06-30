@@ -28,7 +28,9 @@ export async function handler(event) {
   }
 
   try {
+
     await connectDB();
+    
     const { userSub, recipeId } = JSON.parse(event.body);
 
     if (!userSub || !recipeId) {

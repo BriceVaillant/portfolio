@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
     //is user connected ? 
-    const { userFavorites = [],user,setUserFavorites } = useUserContext();
+    const { userFavorites = [], user, setUserFavorites } = useUserContext();
     const { isAuthenticated, loginWithRedirect } = useAuth0();
 
     const toggleFavorite = async (recipeId) => {

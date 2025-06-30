@@ -31,6 +31,7 @@ export async function handler(event) {
   }
 
   try {
+    
     await connectDB();
 
     const { _id, title, instructions, ingredients, type, image, imagePublicId } = JSON.parse(event.body);
