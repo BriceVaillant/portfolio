@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .homepage h1 {
   position: relative;
   z-index: 1;
@@ -22,6 +23,7 @@
   text-align: center;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
 }
+
 .homepage .imgplacement {
   height: 100%;
   width: 100%;
@@ -117,6 +119,7 @@
   overflow: hidden;
   position: relative;
 }
+
 .homepage .mealscard .bgdimg,
 .homepage .dessertcard .bgdimg {
   object-fit: cover;
@@ -124,10 +127,12 @@
   height: 100%;
   display: block;
 }
+
 .imgcardcontainer .heartIcon {
   width: 24px;
   height: 24px;
 }
+
 .imgcardcontainer {
   position: relative;
   width: 100%;
@@ -142,6 +147,7 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 .homepage .mealscard h2,
 .homepage .dessertcard h2 {
   position: absolute;
@@ -154,4 +160,79 @@
   font-size: clamp(15px, 1.6svh, 24px);
   text-align: center;
   z-index: 2;
+}
+
+@media (max-width: 782px) {
+  .homepage .imgheader {
+    height: 15svh;
+  }
+
+  .homepage h1 {
+    font-size: 5.5rem;
+  }
+
+  .homepage .ideacontainer {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+  }
+
+  .homepage .Homepagetitle {
+    height: 100%;
+    font-size: 0.5rem;
+    
+  }
+
+  .homepage .Homepagetitle .title {
+    font-size: clamp(0.5rem, 3rem, 3.5rem);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .homepage .scrollcontainer {
+    width: 100%;   
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .homepage .scroll-btn {
+    display: none;
+  }
+
+  .homepage .mealcardscontainer,
+  .homepage .dessertcardscontainer {
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .homepage .mealcardscontainer .mealscard,
+  .homepage .dessertcardscontainer .dessertcard {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    width: 35svw;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .homepage .dessertcardscontainer h2,
+  .homepage .mealcardscontainer h2 {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .homepage .Homepagetitle .title {
+    font-size: clamp(0.5rem, 1.6rem, 3.5rem);
+  }
 }

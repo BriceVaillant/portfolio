@@ -98,7 +98,7 @@ export default function RecipeHome() {
                                 <div key={`dessert-${recipe._id}`} className="dessertcard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
                                     <div className="imgcardcontainer">
-                                        <img src={recipe.image || dessertImg} />
+                                        <img className="bgdimg" src={recipe.image || dessertImg} />
                                         <button
                                             className="homefavbtn"
                                             onClick={(e) => {
