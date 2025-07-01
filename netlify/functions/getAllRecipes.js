@@ -8,13 +8,16 @@ mongoose.connect(process.env.MONGO_URI);
 const RecipeSchema = new mongoose.Schema({}, { collection: 'recipelist' });
 const Recipe = mongoose.model('Recipe', RecipeSchema);
 
-export async function handler(request, context) {
+export async function handler() {
   try {
+
     const recipes = await Recipe.find({});
+
     return {
       statusCode: 200,
       body: JSON.stringify(recipes),
     };
+    
   } catch (err) {
     return {
       statusCode: 500,

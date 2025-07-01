@@ -33,12 +33,15 @@ export const UserProvider = ({ children }) => {
   }, [isAuthenticated, user]);
 
   const reloadUserRecipes = async () => {
+
     if (!user || !dbUser) return;
+
     const res = await fetch('/.netlify/functions/getUserRecipes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sub: user.sub, favorites: dbUser.favorites })
     });
+
     const data = await res.json();
 
     console.log('Created Recipes:', data.createdRecipes);
@@ -49,6 +52,7 @@ export const UserProvider = ({ children }) => {
     setCreatedRecipes(data.createdRecipes);
     setFavoritedRecipes(data.favoritedRecipes || []);
     setUserFavorites(dbUser.favorites.map(id => id.toString()));
+    
   };
 
   useEffect(() => {
@@ -108,6 +112,7 @@ export const UserProvider = ({ children }) => {
       favoritedRecipes,
       userFavorites,
       setUserFavorites,
+      setFavoritedRecipes,
       setCreatedRecipes,
       reloadUserRecipes,
       toggleFavorite

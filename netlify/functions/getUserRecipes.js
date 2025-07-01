@@ -3,12 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-let conn = null;
-async function connectDB() {
-  if (!conn) {
-    conn = await mongoose.connect(process.env.MONGO_URI);
-  }
-}
+mongoose.connect(process.env.MONGO_URI);
 
 const IngredientSchema = new mongoose.Schema({
   name: String,
@@ -37,8 +32,6 @@ export async function handler(event) {
         body: JSON.stringify({ error: 'Method not allowed' }),
       };
     }
-
-    await connectDB();
 
     const { sub, favorites } = JSON.parse(event.body || '{}');
 
