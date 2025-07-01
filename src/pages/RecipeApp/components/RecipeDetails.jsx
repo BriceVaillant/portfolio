@@ -3,60 +3,11 @@ import dessertImg from '../assets/dessert.jpg';
 import emptyHeart from '../assets/Emptyheart.png';
 import fullHeart from '../assets/Fullheart.png';
 import { useUserContext } from '../contexts/UserContext.jsx';
-import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
     //is user connected ? 
-    const { userFavorites = [], user, setUserFavorites, setFavoritedRecipes } = useUserContext();
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
-
-    const toggleFavorite = async (recipeId) => {
-        if (!isAuthenticated) {
-            loginWithRedirect();
-            return;
-        }
-        try {
-            // Optimistic update
-            setUserFavorites(prev =>
-                prev.includes(recipeId)
-                    ? prev.filter(id => id !== recipeId)
-                    : [...prev, recipeId]
-            );
-
-            // thjis update the database
-            const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    userSub: user.sub,
-                    recipeId
-                })
-            });
-
-            const favoriteData = await favoriteRes.json();
-
-            if (favoriteData.user?.favorites) {
-                const updatedFavorites = favoriteData.user.favorites.map(fav => fav.toString());
-                setUserFavorites(updatedFavorites);
-
-                //this refresh the favorite
-                const recipeRes = await fetch('/.netlify/functions/getUserRecipes', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        sub: user.sub,
-                        favorites: updatedFavorites
-                    })
-                });
-
-                const recipeData = await recipeRes.json();
-                setFavoritedRecipes(recipeData.favoritedRecipes || []);
-            }
-        } catch (err) {
-            console.error('Error toggling favorite:', err);
-        }
-    };
+    const { userFavorites = [], toggleFavorite } = useUserContext();
 
     return (
         <div className="currentrecipecontainer" onClick={(e) => e.target === e.currentTarget && onClose()}>
@@ -82,7 +33,7 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
                         <button className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
                             <img
                                 src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
-                                alt={userFavorites.includes(recipe._id.toString()) ? 'Unfavorite' : 'Favorite'}
+                                alt="favorite"
                                 className="heartIcon"
                             />
                         </button>
