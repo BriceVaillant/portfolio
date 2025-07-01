@@ -18,6 +18,7 @@ export const UserProvider = ({ children }) => {
 
   // Sync user + fetch recipes
   useEffect(() => {
+
     if (!isAuthenticated || !user) return;
 
     const syncUser = async () => {
@@ -52,7 +53,7 @@ export const UserProvider = ({ children }) => {
     setCreatedRecipes(data.createdRecipes);
     setFavoritedRecipes(data.favoritedRecipes || []);
     setUserFavorites(dbUser.favorites.map(id => id.toString()));
-    
+
   };
 
   useEffect(() => {
@@ -63,12 +64,7 @@ export const UserProvider = ({ children }) => {
   const toggleFavorite = async (recipeId) => {
     if (!user || !dbUser) return;
 
-    // refresh immmediatly
-    setUserFavorites(prev =>
-      prev.includes(recipeId)
-        ? prev.filter(id => id !== recipeId)
-        : [...prev, recipeId]
-    );
+    const isCurrentlyFavorite = userFavorites.includes(recipeId);
 
     try {
       const favoriteRes = await fetch('/.netlify/functions/makeFavorite', {
@@ -82,16 +78,19 @@ export const UserProvider = ({ children }) => {
       if (!favoriteRes.ok) {
         console.error('Failed to update favorite:', favoriteData.error);
         setUserFavorites(prev =>
-          prev.includes(recipeId)
-            ? prev.filter(id => id !== recipeId)
-            : [...prev, recipeId]
+          isCurrentlyFavorite
+            ? [...prev, recipeId]
+            : prev.filter(id => id !== recipeId)
         );
         return;
       }
 
-       if (favoriteData.user?.favorites) {
-      setUserFavorites(favoriteData.user.favorites.map(fav => fav.toString()));
-    }
+      setDbUser(prev => ({
+        ...prev,
+        favorites: isCurrentlyFavorite
+          ? prev.favorites.filter(id => id.toString() !== recipeId.toString())
+          : [...prev.favorites, recipeId]
+      }));
     } catch (err) {
       console.error('Error toggling favorite:', err);
       setUserFavorites(prev =>
@@ -112,8 +111,8 @@ export const UserProvider = ({ children }) => {
       favoritedRecipes,
       userFavorites,
       setUserFavorites,
-      setFavoritedRecipes,
       setCreatedRecipes,
+      setFavoritedRecipes,
       reloadUserRecipes,
       toggleFavorite
     }}>
