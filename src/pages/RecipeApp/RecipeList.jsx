@@ -175,6 +175,7 @@ export default function RecipeList() {
         } catch (err) {
             console.error('Error deleting recipe:', err);
         }
+        
     };
 
     //this handle the edit function 
