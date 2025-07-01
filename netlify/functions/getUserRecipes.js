@@ -3,7 +3,12 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI);
+let conn = null;
+async function connectDB() {
+  if (conn == null) {
+    conn = await mongoose.connect(process.env.MONGO_URI);
+  }
+}
 
 const IngredientSchema = new mongoose.Schema({
   name: String,
@@ -26,6 +31,9 @@ const Recipe = mongoose.models.Recipe || mongoose.model('Recipe', RecipeSchema);
 export async function handler(event) {
 
   try {
+
+    await connectDB();
+
     if (event.httpMethod !== 'POST') {
       return {
         statusCode: 405,
@@ -52,7 +60,10 @@ export async function handler(event) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ createdRecipes, favoritedRecipes }),
+      body: JSON.stringify({
+        createdRecipes: createdRecipes || [],
+        favoritedRecipes: favoritedRecipes || [],
+      }),
     };
   } catch (err) {
     console.error('getRecipes error:', err);
