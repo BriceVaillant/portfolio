@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useUserContext } from './contexts/UserContext.jsx';
-import './RecipeHome.css';
-import './RecipeList.css';
+
 import RecipeDetails from './components/RecipeDetails';
+
 import mealImg from './assets/meal.jpg';
 import dessertImg from './assets/dessert.jpg';
 import backgrdImg from './assets/background.jpg';
@@ -59,7 +59,7 @@ export default function RecipeHome() {
 
             <div className="ideacontainer">
                 <div className="Homepagetitle">
-                    <div className="title">DINNER</div>
+                    <div className="title">REPAS:</div>
                     <div className="scrollcontainer">
                         <button className="scroll-btn left" onClick={() => handleScroll('mealcardscontainer', -1)}>←</button>
                         <div className="mealcardscontainer">
@@ -90,7 +90,7 @@ export default function RecipeHome() {
                 </div>
 
                 <div className="Homepagetitle">
-                    <div className="title">DESSERT</div>
+                    <div className="title">DESSERT:</div>
                     <div className="scrollcontainer">
                         <button className="scroll-btn left" onClick={() => handleScroll('dessertcardscontainer', -1)}>←</button>
                         <div className="dessertcardscontainer">

@@ -1,9 +1,9 @@
+import { useUserContext } from '../contexts/UserContext.jsx';
+
 import mealImg from '../assets/meal.jpg';
 import dessertImg from '../assets/dessert.jpg';
 import emptyHeart from '../assets/Emptyheart.png';
 import fullHeart from '../assets/Fullheart.png';
-import { useUserContext } from '../contexts/UserContext.jsx';
-
 
 export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showControls = true }) {
     //is user connected ? 
@@ -14,10 +14,19 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
             <div className="currentrecipe">
                 <div className="top">
                     <div className="leftside">
-                        <img
-                            src={recipe.image || (recipe.type === 'meal' ? mealImg : dessertImg)}
-                            alt={recipe.title}
-                        />
+                        <div className="img-wrapper">
+                            <button className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
+                                <img
+                                    src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
+                                    alt="favorite"
+                                    className="heartIcon"
+                                />
+                            </button>
+                            <img
+                                src={recipe.image || (recipe.type === 'meal' ? mealImg : dessertImg)}
+                                alt={recipe.title}
+                            />
+                        </div>
                         <div className="recipe-ingredients">
                             <h4>Ingredients</h4>
                             <ul>
@@ -30,13 +39,6 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
                     </div>
                     <div className="rightside">
                         <h3>{recipe.title}</h3>
-                        <button className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
-                            <img
-                                src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
-                                alt="favorite"
-                                className="heartIcon"
-                            />
-                        </button>
                         <div className="recipe-instruction">
                             <h4>Instructions</h4>
                             <div className="instructionlist">
