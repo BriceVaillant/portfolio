@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
 import { useUserContext } from './contexts/UserContext.jsx';
+
 import AddRecipeModal from './components/AddRecipeModal.jsx';
 import EditRecipeModal from './components/EditRecipeModal';
 import RecipeDetails from './components/RecipeDetails';
+
 import mealImg from './assets/meal.jpg';
 import dessertImg from './assets/dessert.jpg';
 import addimg from './assets/plusicon.png';
-import './RecipeList.css';
+
+
 
 
 export default function RecipeList() {
@@ -265,14 +268,14 @@ export default function RecipeList() {
         return ingredientMatch && searchMatch;
     });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div>Chargement..</div>;
     if (!isAuthenticated) return <div>Redirecting to login...</div>;
 
     return (
         <div className="recipelistcontainer">
             <div className="sidecolumn">
                 <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
-                    Clear Selection
+                    Réinitialiser la sélection
                 </button>
                 {commonIngredients.map(({ name }) => (
                     <label className="custom-checkbox" key={name}>

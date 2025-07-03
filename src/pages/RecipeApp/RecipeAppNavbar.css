@@ -9,7 +9,7 @@
 }
 
 .recipeappnavbar .name {
-  color: var(--darkgrey);
+  color: orange;
   font-size: clamp(1rem, 3rem, 4rem);
   text-align: start;
   height: 100%;
@@ -58,36 +58,28 @@
 }
 
 .recipeappnavbar ul {
-  gap: clamp(1rem, 2rem, 3rem);
   display: flex;
   align-items: center;
   justify-content: space-around;
   list-style: none;
   height: 100%;
   width: 1000%;
-  color: var(--darkgrey);
-}
-
-.recipeappnavbar ul li {
-  width: 30%;
-  text-align: center;
 }
 
 .recipeappnavbar .navbarlink {
+  all: unset;
   text-decoration: none;
   width: 100%;
   font-size: 24px;
-  font-weight: 400;
-  color: var(--darkgrey);
-
-}
-
-.listcontainer button {
+  padding: 5px;
+  color: black;
   border: none;
   cursor: pointer;
   background: none;
-  color: var(--darkgrey);
+  display: flex;
+  justify-content: center;
 }
+
 
 @media (max-width: 1250px) {
   .recipeappnavbar .searchformcontainer {
@@ -104,7 +96,7 @@
   }
 }
 
-@media (max-width: 782px) {
+@media (max-width: 780px) {
   .recipeappnavbar .searchformcontainer {
     width: 40%;
   }
@@ -126,14 +118,16 @@
 
 @media (max-width: 500px) {
   .recipeappnavbar .inputbutton {
-  display:none;
-}
+    display: none;
+  }
+
   .recipeappnavbar .name {
     display: none;
   }
+
   .recipeappnavbar .inputfieldcontainer {
-  width: 1000%;
-}
+    width: 1000%;
+  }
 
   .recipeappnavbar .searchformcontainer {
     width: 40%;
