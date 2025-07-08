@@ -7,5 +7,5 @@ The first one being my recipe webbapp:
 - Cook It Yourself (recipe webapp) is a full-stack recipe management app that lets users create, edit, delete, and favorite recipes. Built with React, 
 the app uses serverless functions (Netlify Functions) as its backend API. Authentication is handled via Auth0, enabling personalized user experiences.
 
-Tech stack: React (Vite), Auth0, Netlify Functions (serverless), React Router, Context API, custom CSS, REST API, MongoDB.
+- Tech stack: React (Vite), Auth0, Netlify Functions (serverless), React Router, Context API, custom CSS, REST API, MongoDB.
 
