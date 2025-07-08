@@ -253,7 +253,6 @@
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
-    border: 2px solid red;
   }
 
   .homepage .mealcardscontainer .mealscard,
@@ -261,7 +260,6 @@
     flex: 1;
     min-height: 100px;
     aspect-ratio: 1 / 1;
-    width: 45svw;
     border-radius: 8px;
     display: flex;
     justify-content: center;
