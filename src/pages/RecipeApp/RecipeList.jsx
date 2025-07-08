@@ -302,6 +302,7 @@ export default function RecipeList() {
                     <div className="newrecipecard" onClick={handleCardClick}>
                         <img
                             src={addimg}
+                            alt="addrecipeimg"
                         />
                     </div>
                     {filteredRecipes.map(recipe => (
