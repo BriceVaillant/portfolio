@@ -274,7 +274,7 @@ export default function RecipeList() {
     return (
         <div className="recipelistcontainer">
             <div className="sidecolumn">
-                <button className="filterlgd" onClick={() => setSelectedIngredients([])}>
+                <button type="button" className="filterlgd" onClick={() => setSelectedIngredients([])}>
                     Réinitialiser la sélection
                 </button>
                 {commonIngredients.map(({ name }) => (

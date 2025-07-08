@@ -40,7 +40,7 @@
   flex-direction: column;
 }
 
-.homepage .Homepagetitle {
+.homepage .listofrecipe {
   height: 50%;
   min-height: 250px;
 }
@@ -109,12 +109,14 @@
   flex: 0 0 auto;
   aspect-ratio: 1 / 1;
   height: 100%;
-  min-height: 200px;
+  min-height: 100px;
   border-radius: 14px;
   display: flex;
   justify-content: center;
   overflow: hidden;
   position: relative;
+  box-sizing: border-box;
+
 }
 
 .homepage .mealscard .bgdimg,
@@ -158,11 +160,13 @@
   text-align: center;
   z-index: 2;
 }
+
 @media (max-width: 1200px) {
   .homepage h1 {
     font-size: 8.5rem;
   }
 }
+
 @media (max-width: 1000px) {
   .homepage h1 {
     font-size: 7.5rem;
@@ -209,12 +213,18 @@
     height: 100%;
   }
 
-  .homepage .Homepagetitle {
+  .homepage .scrollcontainer {
+    min-width: 100px;
+  }
+
+  .homepage .listofrecipe {
     height: 100%;
+    width:50%;
+    min-width: 100px;
     font-size: 0.5rem;
   }
 
-  .homepage .Homepagetitle .title {
+  .homepage .listofrecipe .title {
     font-size: clamp(0.5rem, 3rem, 3.5rem);
     display: flex;
     justify-content: center;
@@ -244,16 +254,19 @@
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
+    border: 2px solid red;
   }
 
   .homepage .mealcardscontainer .mealscard,
   .homepage .dessertcardscontainer .dessertcard {
     flex: 1;
+    min-height: 100px;
     aspect-ratio: 1 / 1;
     width: 45svw;
     border-radius: 8px;
     display: flex;
     justify-content: center;
+    padding: 0 10px;
   }
 
   .homepage .dessertcardscontainer h2,
@@ -261,20 +274,10 @@
     font-size: 1rem;
   }
 }
-@media (max-width: 500px) {
-  .homepage .mealcardscontainer,
-  .homepage .dessertcardscontainer {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    overflow-x: hidden;
-    padding: 0 10px;
-  }
 
-  .homepage .mealcardscontainer .mealscard,
-  .homepage .dessertcardscontainer .dessertcard {
-    flex: none ;
-    width: 100% ;
-    margin-bottom: 10px;
-    aspect-ratio: 1 / 1;
+@media (max-width: 500px) {
+
+  .homepage .listofrecipe .title {
+    font-size: clamp(0.5rem, 1.5rem, 3.5rem);
   }
 }

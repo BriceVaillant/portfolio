@@ -54,21 +54,22 @@ export default function RecipeHome() {
         <div className="homepage">
             <div className="imgheader">
                 <h1>Cook It Yourself</h1>
-                <img className="imgplacement" src={backgrdImg} />
+                <img alt="imagewithtitle" className="imgplacement" src={backgrdImg} />
             </div>
 
             <div className="ideacontainer">
-                <div className="Homepagetitle">
+                <div className="listofrecipe">
                     <div className="title">REPAS:</div>
                     <div className="scrollcontainer">
-                        <button className="scroll-btn left" onClick={() => handleScroll('mealcardscontainer', -1)}>←</button>
+                        <button type="button" className="scroll-btn left" onClick={() => handleScroll('mealcardscontainer', -1)}>←</button>
                         <div className="mealcardscontainer">
                             {meals.map(recipe => (
                                 <div key={`meal-${recipe._id}`} className="mealscard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
                                     <div className="imgcardcontainer">
-                                        <img className="bgdimg" src={recipe.image || mealImg} />
+                                        <img className="bgdimg" src={recipe.image || mealImg} alt={recipe.title}/>
                                         <button
+                                            type="button"
                                             className="homefavbtn"
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -85,21 +86,22 @@ export default function RecipeHome() {
                                 </div>
                             ))}
                         </div>
-                        <button className="scroll-btn right" onClick={() => handleScroll('mealcardscontainer', 1)}>→</button>
+                        <button type="button" className="scroll-btn right" onClick={() => handleScroll('mealcardscontainer', 1)}>→</button>
                     </div>
                 </div>
 
-                <div className="Homepagetitle">
+                <div className="listofrecipe">
                     <div className="title">DESSERT:</div>
                     <div className="scrollcontainer">
-                        <button className="scroll-btn left" onClick={() => handleScroll('dessertcardscontainer', -1)}>←</button>
+                        <button type="button" className="scroll-btn left" onClick={() => handleScroll('dessertcardscontainer', -1)}>←</button>
                         <div className="dessertcardscontainer">
                             {desserts.map(recipe => (
                                 <div key={`dessert-${recipe._id}`} className="dessertcard" onClick={() => handleFoodCardClick(recipe)}>
                                     <h2>{recipe.title}</h2>
                                     <div className="imgcardcontainer">
-                                        <img className="bgdimg" src={recipe.image || dessertImg} />
+                                        <img className="bgdimg" src={recipe.image || dessertImg} alt={recipe.title}/>
                                         <button
+                                            type="button"
                                             className="homefavbtn"
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -116,7 +118,7 @@ export default function RecipeHome() {
                                 </div>
                             ))}
                         </div>
-                        <button className="scroll-btn right" onClick={() => handleScroll('dessertcardscontainer', 1)}>→</button>
+                        <button type="button" className="scroll-btn right" onClick={() => handleScroll('dessertcardscontainer', 1)}>→</button>
                     </div>
                 </div>
 

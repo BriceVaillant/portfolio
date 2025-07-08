@@ -15,7 +15,7 @@ export default function RecipeDetails({ recipe, onEdit, onDelete, onClose, showC
                 <div className="top">
                     <div className="leftside">
                         <div className="img-wrapper">
-                            <button className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
+                            <button type="button" className="favoriteButton" onClick={() => toggleFavorite(recipe._id)}>
                                 <img
                                     src={userFavorites.includes(recipe._id.toString()) ? fullHeart : emptyHeart}
                                     alt="favorite"
