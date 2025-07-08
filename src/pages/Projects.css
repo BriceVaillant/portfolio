@@ -8,12 +8,20 @@
   padding-top: 100px;
   margin: 0 auto;
 }
+
 .project-cardcontainer .cardlink {
   text-decoration: none;
   color: inherit;
   font-size: 55px;
   font-weight: bold;
 }
+.project-cardcontainer .cardlink a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 55px;
+  font-weight: bold;
+}
+
 .project-cardcontainer .card {
   width: 650px;
   height: 350px;
@@ -27,6 +35,7 @@
   flex-direction: column;
   text-align: center;
 }
+
 .project-cardcontainer .cardcontent {
   position: relative;
   transition: transform 0.1s ease;
@@ -34,14 +43,17 @@
   pointer-events: none;
   z-index: 1;
 }
-.project-cardcontainer h1 {
+
+.cardcontent h1 {
   font-size: 90%;
   color: var(--light);
 }
-.project-cardcontainer p {
+
+.cardcontent p {
   font-size: 60%;
   color: var(--light);
 }
+
 .project-cardcontainer .cardbg {
   position: absolute;
   z-index: 0;
@@ -52,42 +64,50 @@
   border-radius: 14px;
   filter: blur(9px);
 }
+
 @media (max-width: 1800px) {
-  .project-cardcontainer{
+  .project-cardcontainer {
     margin-top: 100px;
     align-content: flex-start;
     flex-wrap: wrap;
   }
-    .project-cardcontainer .card {
-      width: 650px;
-      height: 350px;
+
+  .project-cardcontainer .card {
+    width: 650px;
+    height: 350px;
   }
 }
+
 @media (max-width: 1350px) {
-  .project-cardcontainer{
-      min-width: 620px;
-      align-content: flex-start;
-      margin-top: 100px;   
+  .project-cardcontainer {
+    min-width: 620px;
+    align-content: flex-start;
+    margin-top: 100px;
   }
-    .project-cardcontainer .card {
-      width: 650px;
-      height: 350px;
+
+  .project-cardcontainer .card {
+    width: 650px;
+    height: 350px;
   }
 }
+
 @media (max-width: 650px) {
-  .project-cardcontainer{
+  .project-cardcontainer {
     min-width: 300px;
     margin: 0 auto;
     padding-top: 40px;
   }
+
   .project-cardcontainer .card {
     width: 80vw;
     height: 15vh;
   }
+
   .project-cardcontainer h1 {
-  font-size: 80%;
-}
-.project-cardcontainer p {
-  font-size: 50%;
-}
+    font-size: 80%;
+  }
+
+  .project-cardcontainer p {
+    font-size: 50%;
+  }
 }
