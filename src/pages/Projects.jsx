@@ -51,6 +51,17 @@ export default function Projects() {
   return (
     <div className="project-cardcontainer">
       <div className="cardlink">
+        <Link to="/projects/VinylMarket/home">
+          <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+            <div className="cardcontent">
+              <h1>Vinyl Market</h1>
+              <p>Interactive website to showcase my awesome web building talent</p>
+            </div>
+          </div>
+          
+        </Link>
+        </div>
+        <div className="cardlink">
         <Link to="/projects/recipe/home">
           <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
             <div className="cardcontent">
@@ -85,12 +96,6 @@ export default function Projects() {
           <img className="cardbg" src={clock} alt="PomodoroClockProject"></img>
         </div>
       </a>
-      <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <div className="cardcontent">
-          <h1>Project Title</h1>
-          <p>Description goes here.</p>
-        </div>
-      </div>
       <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         <div className="cardcontent">
           <h1>Project Title</h1>

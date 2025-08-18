@@ -17,6 +17,7 @@
 }
 html, body {
   height: 100vh;
+  scroll-behavior: smooth;
 }
 body { 
   font-family: "Arsenal", sans-serif;
