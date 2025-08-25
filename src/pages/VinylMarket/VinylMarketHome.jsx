@@ -15,19 +15,7 @@ export default function VinylMarketHome() {
 
     useGSAP(() => {
         //rotate vinyl
-        /* 
-         gsap.to(".Vinyl-img", {
-             rotation: 360,
-             ease: "none",
-             scrollTrigger: {
-                 trigger: ".Vinyl-img",
-                 start: "top bottom",
-                 end: "bottom top",
-                 scrub: true,
-                 markers: true,
-                 id: "rotate"
-             }
-         });
+        /*
      
          //pin vinyl only when it reaches top of .middle
          gsap.to(".Vinyl-img", {
@@ -59,6 +47,28 @@ export default function VinylMarketHome() {
              y: -100
          });
          */
+        gsap.from(".middle-top", {
+            scrollTrigger: {
+                trigger: ".middle-top",
+                scrub: true,
+                pin: true,
+                start: "top top",
+                end: "+=150%",
+                markers: true,
+                id: "pin"
+            }
+        });
+        gsap.from(".middle-top", {
+            scrollTrigger: {
+                trigger: ".middle-top",
+                scrub: true,
+                pin: true,
+                start: "top top",
+                end: "+=150%",
+                markers: true,
+                id: "pin"
+            }
+        });
     }, { scope: container });
 
 
@@ -66,14 +76,16 @@ export default function VinylMarketHome() {
         <div className="vm-homepage" ref={container}>
             <div className="vinyl-buffer" >
                 <section className="intro">
-                    <h1 className="title">VINYL MARKET</h1>
-                    <p>Come See us this summer</p>
+                    <div className="title"><h1 >VINYL MARKET</h1></div>
+                    <div className="intro-img"></div>
                 </section>
 
                 <section className="middle-top">
                     <div className="text-expo">
                         <div className="top-half">
-                            <div className="img"></div>
+                            <div className="img1"></div>
+                            <div className="img2"></div>
+                            <div className="img3"></div>
                         </div>
                         <div className="bottom-half">
 
@@ -113,8 +125,16 @@ export default function VinylMarketHome() {
                     <div className="bottom-half">
                         <div className="logo left-half">VM</div>
                         <div className="right-half">
-                            <div className="adress"></div>
-                            <div className="socials"></div>
+                            <div className="adress">
+                                <h3>Contact</h3>
+                                <p>Vaillant.brice@free.fr</p>
+                            </div>
+                            <div className="socials">
+                                <h3>Social</h3>
+                                <p>Twitter</p>
+                                <p>Instagram</p>
+                                <p>Facebook</p>
+                            </div>
                         </div>
                     </div>
 
