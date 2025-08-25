@@ -14,80 +14,110 @@ export default function VinylMarketHome() {
     const container = useRef();
 
     useGSAP(() => {
-    //rotate vinyl
-    
-    gsap.to(".Vinyl-img", {
-        rotation: 360,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".Vinyl-img",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            markers: true
-        }
-    });
-
-    //pin vinyl only when it reaches top of .middle
-    gsap.to(".Vinyl-img", {
-        scrollTrigger: {
-            trigger: ".middle",
-            start: "top top",
-            end: "bottom-=200px top",
-            pin: true,
-            pinSpacing: true,
-            scrub: true,
-            markers: true
-        }
-    });
-
-    //ove vinyl up end of .middle
-    gsap.to(".Vinyl-img", {
-        y: -200,
-        ease: "power1.inOut",
-        scrollTrigger: {
-            trigger: ".middle",
-            start: "bottom-=300px top",
-            end: "bottom-=200px top",
-            scrub: true,
-            markers: true
-        }
-    });
-}, { scope: container });
+        //rotate vinyl
+        /* 
+         gsap.to(".Vinyl-img", {
+             rotation: 360,
+             ease: "none",
+             scrollTrigger: {
+                 trigger: ".Vinyl-img",
+                 start: "top bottom",
+                 end: "bottom top",
+                 scrub: true,
+                 markers: true,
+                 id: "rotate"
+             }
+         });
+     
+         //pin vinyl only when it reaches top of .middle
+         gsap.to(".Vinyl-img", {
+             scrollTrigger: {
+                 trigger: ".middle",
+                 start: "top top",
+                 end: "bottom-=100px top",
+                 pin: true,
+                 pinSpacing: true,
+                 scrub: true,
+                 markers: true,
+                 id: "pin"
+             }
+         });
+     
+         //makes text appear
+         
+         gsap.to(".h2text", {
+             scrollTrigger: {
+                 trigger: ".Vinyl-img",
+                 start: "middle top",
+                 end: "bottom bottom",
+                 scrub: true,
+                 markers: true,
+                 id: "textappear",
+                 toggleActions: "restart pause resume none"
+             },
+             opacity: 1,
+             y: -100
+         });
+         */
+    }, { scope: container });
 
 
     return (
         <div className="vm-homepage" ref={container}>
-            <div className="backgroundimg" >
-                <div className="bg-break">
-                    <img
-                        src={Vinyl}
-                        alt="Vinyl"
-
-                        className="Vinyl-img"
-                    />
-                </div>
+            <div className="vinyl-buffer" >
                 <section className="intro">
-                    <h1>Vinyl Market</h1>
+                    <h1 className="title">VINYL MARKET</h1>
                     <p>Come See us this summer</p>
                 </section>
 
-                <section className="middle">
-                    <h2 className="trigger">More than 35 exposants</h2>
-                    <p>And more than 9999+ vinyl</p>
+                <section className="middle-top">
+                    <div className="text-expo">
+                        <div className="top-half">
+                            <div className="img"></div>
+                        </div>
+                        <div className="bottom-half">
+
+                            <h2 className="first circular-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h2>
+                            <h2 className="second circular-text"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
+                            <h2 className="third circular-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h2>
+                        </div>
+
+                    </div>
+
                 </section>
-                <section className="outro">
-                    <div>
-                        <h3>Need more information</h3>
+                <section className="middle-bottom">
+                    <div className="vinyl-expo">
+                        <div className="top-half">
+                            <div className="vinyl-square"></div>
+                            <div className="vinyl-square"></div>
+                            <div className="vinyl-square"></div>
+                        </div>
+                        <div className="bottom-half">
+                            <div className="vinyl-square"></div>
+                            <div className="vinyl-square"></div>
+                            <div className="vinyl-square"></div>
+                        </div>
                     </div>
-                    <div>
-                        <h3>Here is our Socail</h3>
+                </section>
+                <section className="image-expo">
+                    <div className="placeholder-img"></div>
+                    <div className="placeholder-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div className="placeholder-img-second"></div>
+                    <div className="placeholder-text-second">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div className="placeholder-img-third"></div>
+                </section>
+                <section className="footer">
+                    <div className="top-half">
+                        <div className="infiniteloop">  FRANCE LONDON ICELAND PARIS LOS ANGELES SAN FRANSISCO</div>
                     </div>
-                    <div >
-                        <h3>Contact us:</h3>
-                        <p>Your email:</p>
-                        <p>what do you want us to know or ask us ?</p>
+                    <div className="bottom-half">
+                        <div className="logo left-half">VM</div>
+                        <div className="right-half">
+                            <div className="adress"></div>
+                            <div className="socials"></div>
+                        </div>
                     </div>
+
                 </section>
 
             </div>
