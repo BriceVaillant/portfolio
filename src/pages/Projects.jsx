@@ -27,12 +27,12 @@ export default function Projects() {
 
     //(y - centerY) / centerY) give a value between -1 and 1 depending on pointer position from the center
     //the 10 is how much it will tilt 
-    const rotateX = ((y - centerY) / centerY) * 10;
-    const rotateY = ((x - centerX) / centerX) * 10;
+    const rotateX = ((y - centerY) / centerY) * 5;
+    const rotateY = ((x - centerX) / centerX) * 5;
 
     //this is the calcul for the inner content
-    const moveX = ((x - centerX) / centerX) * -10;
-    const moveY = ((y - centerY) / centerY) * -10;
+    const moveX = ((x - centerX) / centerX) * -5;
+    const moveY = ((y - centerY) / centerY) * -5;
 
     //card.style.transform influence the css of the card
     //perspective(1000px) give the 3D effect

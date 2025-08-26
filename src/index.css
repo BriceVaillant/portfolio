@@ -16,7 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 html, body {
-  height: 100vh;
+  height: 95vh;
   scroll-behavior: smooth;
 }
 body { 

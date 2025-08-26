@@ -1,11 +1,12 @@
 .project-cardcontainer {
-  width: 80vw;
+  width: 85vw;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px 40px;
-  padding-top: 100px;
+  gap: 100px 200px;
+  padding-top: 10vh;
   margin: 0 auto;
 }
 
@@ -23,8 +24,8 @@
 }
 
 .project-cardcontainer .card {
-  width: 650px;
-  height: 350px;
+  width: 30vw;
+  height: 25vh;
   border-radius: 14px;
   box-shadow: black 0px 5px 10px, black 0px 15px 14px;
   transition: transform 0.1s ease;

@@ -2,13 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 5vh;
   color: var(--light);
+  margin: 25px;
 }
 .mainnavbar-name {
   margin-left: 25px;
   color: var(--darkgrey);
-  font-size: 44px;
+  font-size: 10em;
 }
 .mainnavbar-lead {
   gap: 45px;
@@ -24,7 +25,7 @@
   display: inline-block;
   transition: transform 0.2s ease, border-bottom 0.1s ease;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 8em;
   color: var(--light);
 }
 .mainnavbar-lead .navbarlink:hover {
