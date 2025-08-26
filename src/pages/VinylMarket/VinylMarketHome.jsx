@@ -1,74 +1,118 @@
 
-import Vinyl from './assets/Vinyl.png';
 
 import { useRef } from 'react';
 import gsap from 'gsap';
 
 import { useGSAP } from '@gsap/react';
-import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
+import { ScrollTrigger, ScrollToPlugin, SplitText } from "gsap/all";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin, SplitText);
 
 export default function VinylMarketHome() {
 
     const container = useRef();
 
     useGSAP(() => {
-        //rotate vinyl
-        /*
-     
-         //pin vinyl only when it reaches top of .middle
-         gsap.to(".Vinyl-img", {
-             scrollTrigger: {
-                 trigger: ".middle",
-                 start: "top top",
-                 end: "bottom-=100px top",
-                 pin: true,
-                 pinSpacing: true,
-                 scrub: true,
-                 markers: true,
-                 id: "pin"
-             }
-         });
-     
-         //makes text appear
-         
-         gsap.to(".h2text", {
-             scrollTrigger: {
-                 trigger: ".Vinyl-img",
-                 start: "middle top",
-                 end: "bottom bottom",
-                 scrub: true,
-                 markers: true,
-                 id: "textappear",
-                 toggleActions: "restart pause resume none"
-             },
-             opacity: 1,
-             y: -100
-         });
-         */
-        gsap.from(".middle-top", {
+
+        ScrollTrigger.defaults({
+            markers: true,
+        });
+
+        new SplitText(".first", { type: "lines", linesClass: "lineChildfirst" });
+        new SplitText(".second", { type: "lines", linesClass: "lineChildsecond" });
+        new SplitText(".third", { type: "lines", linesClass: "lineChildthird" });
+
+
+        //Make the first div rotate up
+
+        gsap.to(".title", {
+            scrollTrigger: {
+                trigger: ".intro",
+                scrub: 0.5,
+                start: "top top",
+                end: "+=100%",
+                id: "rotate"
+            },
+            rotation: -20,
+            yPercent: -50,
+            transformOrigin: "left bottom",
+            scale: 1.1
+        });
+
+        //Timeline for the img appearance
+
+        let tl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".middle-top",
                 scrub: true,
                 pin: true,
                 start: "top top",
-                end: "+=150%",
-                markers: true,
+                end: "+=170%",
                 id: "pin"
             }
         });
-        gsap.from(".middle-top", {
+
+        tl.to(".img1", { yPercent: -200, rotation: -5, transformOrigin: "left bottom" }, 0.1);
+
+        tl.to(".img2", { yPercent: -200 }, 0.4);
+
+
+        //Timeline for the text appearance under the img 1 2 3 
+
+        let textTl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".middle-top",
                 scrub: true,
-                pin: true,
-                start: "top top",
+                start: "-20% top",
                 end: "+=150%",
-                markers: true,
-                id: "pin"
+                id: "text-sequence"
             }
         });
+
+        textTl.from(".lineChildfirst", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 0.5 });
+
+        textTl.to(".lineChildfirst", { yPercent: -600, stagger: 0.2, duration: 0.5 }, "+=0.3");
+
+        textTl.from(".lineChildsecond", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 1 }, "-=0.25");
+
+        textTl.to(".lineChildsecond", { yPercent: -600, duration: 0.5 }, "+=0.6");
+
+        textTl.from(".lineChildthird", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 1 }, "-=0.55");
+
+
+        //Make the square appear from the left 
+
+        gsap.from(".top-half .vinyl-square", {
+            scrollTrigger: {
+                trigger: ".middle-bottom",
+                start: "-40% top",
+                end: "+=100%",
+                id: "top-half"
+            },
+            xPercent: -150,
+            autoAlpha: 0,
+            duration: 1,
+            stagger: {
+                each: 0.2,
+                from: "end"
+            },
+            ease: "elastic.out(0.05,0)"
+        });
+
+        // and from the right
+        gsap.from(".bottom-half .vinyl-square", {
+            scrollTrigger: {
+                trigger: ".middle-bottom",
+                start: "-20% top",
+                id: "bottom-half"
+            },
+            xPercent: 150,
+            autoAlpha: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "elastic.out(0.05,0)"
+        });
+
     }, { scope: container });
 
 

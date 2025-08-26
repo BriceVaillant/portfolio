@@ -24,6 +24,7 @@
     align-items: center;
     flex-direction: column;
     opacity: 0.5;
+    transform: 9s;
 }
 
 .vinyl-buffer .intro h1 {
@@ -85,21 +86,21 @@
     width: 100%;
     background-color: white;
     position: absolute;
-    opacity: 1;
+    z-index: 4;
 }
 .middle-top .text-expo .top-half .img2 {
     height: 70%;
     width: 100%;
     background-color: blue;
     position: absolute;
-    opacity: 0;
+    z-index: 3;
 }
 .middle-top .text-expo .top-half .img3 {
     height: 70%;
     width: 100%;
     background-color: red;
     position: absolute;
-    opacity: 0;
+    z-index: 2;
 }
 
 .middle-top h2,
@@ -111,26 +112,29 @@
 
 .circular-text {
     transition: 0.1s ease-in-out;
+    
 }
 
 .first,
 .second,
 .third {
     border: 2px solid red;
+    
 }
 
 .first {
-    opacity: 1;
     position: absolute;
+    opacity: 1;
+}
+#lineChildfirst {
+    transition: 0.6s ease-in-out;
 }
 
 .second {
-    opacity: 1;
     position: absolute;
 }
 
 .third {
-    opacity: 1;
     position: absolute;
 }
 
