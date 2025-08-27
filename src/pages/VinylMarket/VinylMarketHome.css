@@ -1,17 +1,24 @@
-.vm-homepage {
-    background: #3c6f96;
-    background: linear-gradient(15deg, rgba(60, 111, 150, 1) 0%, rgba(120, 195, 251, 1) 51%, rgba(255, 247, 184, 1) 100%);
-    height: 620vh;
-    width: 100vw;
+*,
+::before,
+::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+.vm-homepage {
+    background: #3c6f96;
+    background: linear-gradient(15deg, rgba(60, 111, 150, 1) 0%, rgba(120, 195, 251, 1) 51%, rgba(255, 247, 184, 1) 100%);
+    height: 840vh;
+    width: 100%;
+    overflow: hidden;
+}
+
 .vm-homepage .intro {
     height: 100vh;
+    width: 100%;
     position: relative;
-    overflow-x: hidden;
+
 }
 
 .intro .title {
@@ -20,7 +27,6 @@
     background-color: blue;
     position: absolute;
     z-index: 1;
-    border: 5px solid green;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,10 +35,9 @@
     transform: 9s;
 }
 
-.vinyl-buffer .intro h1 {
-    font-size: 25vw;
+.vm-homepage .intro h1 {
+    font-size: 21rem;
     color: white;
-    border: 2px solid red;
     text-align: center;
 }
 
@@ -47,12 +52,12 @@
     z-index: 1;
     background-color: red;
     height: 100vh;
+    width: 100%;
     display: flex;
     position: relative;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    overflow-x: hidden;
 }
 
 .middle-top .text-expo {
@@ -69,16 +74,6 @@
     flex-direction: column;
     background-color: violet;
     overflow: hidden;
-}
-
-.middle-top .text-expo .bottom-half {
-    height: 30%;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    background-color: orange;
-    overflow-x: hidden;
 }
 
 .middle-top .text-expo .top-half .img1 {
@@ -105,100 +100,96 @@
     z-index: 2;
 }
 
-.description-text {
-    transition: 0.1s ease-in-out;
-    font-size: 4em;
+.middle-top .text-expo .bottom-half {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    overflow-x: hidden;
+    border: 2px solid green;
+}
+
+.middle-top .bottom-half .description-text {
+    font-size: 3.5em;
     color: yellow;
+    padding: 1vw;
+    max-width: 80%;
     text-align: center;
-
+    line-height: 1.3;
 }
 
-.first,
-.second,
-.third {
-    border: 2px solid red;
-
-}
-
-.first {
+.middle-top .bottom-half .first {
     position: absolute;
     opacity: 1;
+}
+
+.lineChildfirst {
+    border: 2px solid
 }
 
 #lineChildfirst {
     transition: 0.6s ease-in-out;
 }
 
-.second {
+.middle-top .bottom-half .second {
     position: absolute;
 }
 
-.third {
+.middle-top .bottom-half .third {
     position: absolute;
 }
 
 
 .vm-homepage .middle-bottom {
-    position: relative;
     z-index: 1;
     background-color: blue;
     height: 100vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
 }
 
-.vinyl-expo {
+.middle-bottom .vinyl-expo {
     height: 100%;
     width: 100%;
     background-color: red;
-    border: 2px solid black;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+    padding: 5rem;
 }
-
-.vinyl-expo .bottom-half {
-    height: 50%;
-    background-color: violet;
+.middle-bottom .vinyl-expo .top-row {
+    grid-row: 2;
 }
-
-.vinyl-expo .top-half {
-    height: 50%;
-    background-color: orange;
+.middle-bottom .vinyl-expo .bottom-row {
+    grid-row: 3;
 }
-
-.vinyl-expo .bottom-half,
-.vinyl-expo .top-half {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-}
-
-.vinyl-card {
-    height: 60%;
-    width: 29%;
+.middle-bottom .vinyl-card {
+    height: 350px;
+    width: 100%;
     background-color: white;
+    overflow: hidden
 }
 
-.full-vinyl {
+.middle-bottom .full-vinyl {
     height: 100%;
     width: 100%;
     transform: scale(1.1);
 }
 
-.vinyl-cover,
-.vinyl-disc {
+.middle-bottom .vinyl-cover,
+.middle-bottom .vinyl-disc {
     aspect-ratio: 1 / 1;
     position: absolute;
     box-shadow: -5px 10px 15px gray;
 }
 
-.full-vinyl:hover {
+.middle-bottom .full-vinyl:hover {
     transform: scale(1.2);
     transition: 0.5s;
 }
 
-.vinyl-cover {
+.middle-bottom .vinyl-cover {
     height: 60%;
     background-color: black;
     z-index: 3;
@@ -206,7 +197,7 @@
     left: 15%;
 }
 
-.vinyl-disc {
+.middle-bottom .vinyl-disc {
     height: 58%;
     background-color: purple;
     border-radius: 100%;
@@ -215,7 +206,7 @@
     left: 40%;
 }
 
-.vinyl-center {
+.middle-bottom .vinyl-center {
     transform: scale(0.3);
     top: 24%;
     background-color: black;
@@ -226,6 +217,7 @@
     background: linear-gradient(15deg, rgba(60, 111, 150, 1) 0%, rgba(120, 195, 251, 1) 51%, rgba(255, 247, 184, 1) 100%);
     height: 300vh;
     position: relative;
+
 }
 
 .placeholder-img {
@@ -249,7 +241,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 4em;
+    font-size: 4rem;
 }
 
 .placeholder-img-second {
@@ -268,22 +260,22 @@
     height: 10%;
     width: 40%;
     left: 5%;
-    top: 69%;
+    top: 72%;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 4em;
+    font-size: 4rem;
 }
 
 .placeholder-img-third {
     background-color: orange;
     color: black;
     height: 25%;
-    width: 45%;
+    width: 550px;
     left: 50%;
-    top: 95%;
+    top: 92%;
     position: absolute;
 }
 
@@ -293,18 +285,18 @@
     width: 100%;
 }
 
-.vm-homepage .footer .top-half {
+.footer .top-half {
     background-color: orange;
-    height: 20%;
+    height: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
 }
 
-.infinite-loop {
+.footer .infinite-loop {
     height: 100%;
-    font-size: 6vh;
+    font-size: 3.8rem;
     position: relative;
     display: flex;
     overflow: hidden;
@@ -312,7 +304,7 @@
     gap: 4rem;
 }
 
-.infinite-loop-content {
+.footer .infinite-loop-content {
     flex-shrink: 0;
     display: flex;
     justify-content: space-around;
@@ -332,14 +324,14 @@
     }
 }
 
-.vm-homepage .footer .bottom-half {
+.footer .bottom-half {
     background-color: violet;
-    height: 80%;
+    height: 85%;
     display: flex;
     align-items: center;
 }
 
-.vm-homepage .footer .bottom-half .left-half {
+.footer .bottom-half .left-half {
     width: 60%;
     height: 100%;
     background-color: blue;
@@ -348,11 +340,11 @@
     align-items: center;
 }
 
-.vm-homepage .footer .bottom-half .logo {
+.footer .bottom-half .logo {
     font-size: 23vh;
 }
 
-.vm-homepage .footer .bottom-half .right-half {
+.footer .bottom-half .right-half {
     width: 40%;
     height: 100%;
     display: flex;
@@ -360,14 +352,99 @@
     align-items: center;
 }
 
-.vm-homepage .footer .bottom-half .right-half .adress {
-    width: 70%;
+.footer .bottom-half .right-half .adress {
+    width: 60%;
     height: 100%;
     background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.vm-homepage .footer .bottom-half .right-half .socials {
-    width: 50%;
+.footer .bottom-half .right-half .adress h3 {
+    width: 150px;
+    height: 30px;
+    background-color: black;
+    color: white;
+}
+
+.footer .bottom-half .right-half .socials {
+    width: 40%;
     height: 100%;
     background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+@media (min-width: 2300px) {
+    .middle-top .bottom-half .description-text {
+        font-size: 5.5em;
+    }
+
+    .middle-bottom .vinyl-card {
+        height: 550px;
+        width: 650px;
+    }
+
+    .image-expo .placeholder-text,
+    .image-expo .placeholder-text-second {
+        font-size: 5.5em;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .vm-homepage {
+        height: 860vh;
+    }
+
+    .vm-homepage .intro h1 {
+        font-size: 10rem;
+        color: white;
+        text-align: center;
+    }
+
+    .middle-top .bottom-half .description-text {
+        font-size: 2.5em;
+        transition: 0.4s ease-in-out;
+    }
+
+    .vm-homepage .middle-bottom {
+    z-index: 1;
+    background-color: blue;
+    height: 120vh;
+}
+
+
+    .middle-bottom .vinyl-expo {
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap : wrap;
+    gap: 3rem;
+    padding: 3rem;
+}
+.middle-bottom .vinyl-card {
+    width: 100%;
+    max-width: 250px;
+    background-color: white;
+    overflow: hidden
+}
+
+
+    .image-expo .placeholder-text,
+    .image-expo .placeholder-text-second {
+        font-size: 5.5em;
+    }
 }
