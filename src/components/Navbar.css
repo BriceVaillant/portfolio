@@ -9,28 +9,28 @@
 .mainnavbar-name {
   margin-left: 25px;
   color: var(--darkgrey);
-  font-size: 10em;
+  font-size: 4.5em;
 }
 .mainnavbar-lead {
-  gap: 45px;
+  gap: 20px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   list-style: none;
   height: 100%;
   padding: 9px;
-  margin-right: 55px;
+  margin-right: 35px;
 }
 .mainnavbar-lead .navbarlink {
   display: inline-block;
   transition: transform 0.2s ease, border-bottom 0.1s ease;
   text-decoration: none;
-  font-size: 8em;
+  font-size: 1.5em;
   color: var(--light);
 }
 .mainnavbar-lead .navbarlink:hover {
   border-bottom: 2px solid var(--light);
-  transform: translateY(4px) scale(1.02);
+  transform:  scale(1.04);
 }
 @media (max-width: 500px) {
   .mainnavbar-lead {
