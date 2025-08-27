@@ -2,14 +2,16 @@
     background: #3c6f96;
     background: linear-gradient(15deg, rgba(60, 111, 150, 1) 0%, rgba(120, 195, 251, 1) 51%, rgba(255, 247, 184, 1) 100%);
     height: 620vh;
-    width: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .vm-homepage .intro {
     height: 100vh;
-    
     position: relative;
-
+    overflow-x: hidden;
 }
 
 .intro .title {
@@ -34,25 +36,23 @@
     text-align: center;
 }
 
-
-
 .vm-homepage .intro-img {
     height: 100%;
     width: 100%;
     background-color: red;
     z-index: 0;
-
 }
 
 .vm-homepage .middle-top {
-    position: relative;
     z-index: 1;
     background-color: red;
     height: 100vh;
     display: flex;
+    position: relative;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .middle-top .text-expo {
@@ -62,23 +62,23 @@
 }
 
 .middle-top .text-expo .top-half {
-    width: 100%;
     height: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: violet;
+    overflow: hidden;
 }
 
 .middle-top .text-expo .bottom-half {
-    width: 100%;
     height: 30%;
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
     background-color: orange;
+    overflow-x: hidden;
 }
 
 .middle-top .text-expo .top-half .img1 {
@@ -88,6 +88,7 @@
     position: absolute;
     z-index: 4;
 }
+
 .middle-top .text-expo .top-half .img2 {
     height: 70%;
     width: 100%;
@@ -95,6 +96,7 @@
     position: absolute;
     z-index: 3;
 }
+
 .middle-top .text-expo .top-half .img3 {
     height: 70%;
     width: 100%;
@@ -103,29 +105,26 @@
     z-index: 2;
 }
 
-.middle-top h2,
-.middle-top p {
-    font-size: 4vw;
+.description-text {
+    transition: 0.1s ease-in-out;
+    font-size: 4em;
     color: yellow;
     text-align: center;
-}
 
-.circular-text {
-    transition: 0.1s ease-in-out;
-    
 }
 
 .first,
 .second,
 .third {
     border: 2px solid red;
-    
+
 }
 
 .first {
     position: absolute;
     opacity: 1;
 }
+
 #lineChildfirst {
     transition: 0.6s ease-in-out;
 }
@@ -175,14 +174,56 @@
     flex-direction: row;
 }
 
-.vinyl-square {
-    height: 70%;
-    aspect-ratio: 1 / 1;
+.vinyl-card {
+    height: 60%;
+    width: 29%;
     background-color: white;
 }
 
+.full-vinyl {
+    height: 100%;
+    width: 100%;
+    transform: scale(1.1);
+}
+
+.vinyl-cover,
+.vinyl-disc {
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    box-shadow: -5px 10px 15px gray;
+}
+
+.full-vinyl:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+.vinyl-cover {
+    height: 60%;
+    background-color: black;
+    z-index: 3;
+    top: 22%;
+    left: 15%;
+}
+
+.vinyl-disc {
+    height: 58%;
+    background-color: purple;
+    border-radius: 100%;
+    z-index: 2;
+    top: 23%;
+    left: 40%;
+}
+
+.vinyl-center {
+    transform: scale(0.3);
+    top: 24%;
+    background-color: black;
+    box-shadow: 0px 0px 0px;
+}
+
 .vm-homepage .image-expo {
-    background-color: blue;
+    background: linear-gradient(15deg, rgba(60, 111, 150, 1) 0%, rgba(120, 195, 251, 1) 51%, rgba(255, 247, 184, 1) 100%);
     height: 300vh;
     position: relative;
 }
@@ -192,7 +233,7 @@
     height: 20%;
     width: 30%;
     left: 10%;
-    top: 5%;
+    top: 15%;
     position: absolute;
 }
 
@@ -202,8 +243,13 @@
     height: 10%;
     width: 40%;
     left: 55%;
-    top: 25%;
+    top: 30%;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 4em;
 }
 
 .placeholder-img-second {
@@ -212,7 +258,7 @@
     height: 20%;
     width: 80%;
     left: 10%;
-    top: 40%;
+    top: 55%;
     position: absolute;
 }
 
@@ -222,8 +268,13 @@
     height: 10%;
     width: 40%;
     left: 5%;
-    top: 65%;
+    top: 69%;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 4em;
 }
 
 .placeholder-img-third {
@@ -232,16 +283,14 @@
     height: 25%;
     width: 45%;
     left: 50%;
-    top: 72%;
+    top: 95%;
     position: absolute;
 }
 
 .vm-homepage .footer {
     background-color: red;
     height: 40vh;
-    padding: 5px;
-    border-radius: 15px;
-    border-top: 2px solid black;
+    width: 100%;
 }
 
 .vm-homepage .footer .top-half {
@@ -250,16 +299,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
-.infiniteloop {
-    font-size: 6vh;
-    overflow: hidden;
-    width: 99%;
+.infinite-loop {
     height: 100%;
+    font-size: 6vh;
+    position: relative;
+    display: flex;
+    overflow: hidden;
     font-weight: 800;
+    gap: 4rem;
 }
 
+.infinite-loop-content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: 4rem;
+    min-width: 100%;
+    list-style: none;
+    animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-100% - 4rem));
+    }
+}
 
 .vm-homepage .footer .bottom-half {
     background-color: violet;

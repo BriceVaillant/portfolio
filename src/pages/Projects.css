@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 100px 200px;
+  gap: 50px 100px;
   padding-top: 10vh;
   margin: 0 auto;
 }
@@ -24,7 +24,7 @@
 }
 
 .project-cardcontainer .card {
-  width: 30vw;
+  width: 25vw;
   height: 25vh;
   border-radius: 14px;
   box-shadow: black 0px 5px 10px, black 0px 15px 14px;
@@ -63,7 +63,7 @@
   height: 100%;
   transition: transform 0.2s ease;
   border-radius: 14px;
-  filter: blur(9px);
+  filter: blur(4px);
 }
 
 @media (max-width: 1800px) {

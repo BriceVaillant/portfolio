@@ -39,7 +39,7 @@ export default function VinylMarketHome() {
             scale: 1.1
         });
 
-        //Timeline for the img appearance
+        //Timeline for the multiple img 1 2 3 appearance
 
         let tl = gsap.timeline({
             scrollTrigger: {
@@ -47,14 +47,17 @@ export default function VinylMarketHome() {
                 scrub: true,
                 pin: true,
                 start: "top top",
-                end: "+=170%",
+                end: "+=200%",
                 id: "pin"
             }
         });
 
-        tl.to(".img1", { yPercent: -200, rotation: -5, transformOrigin: "left bottom" }, 0.1);
 
-        tl.to(".img2", { yPercent: -200 }, 0.4);
+        //make first img disapear
+        tl.to(".img1", { yPercent: -200, transformOrigin: "left bottom" }, 0.2);
+
+        //make second img disapear
+        tl.to(".img2", { yPercent: -200 }, 0.8);
 
 
         //Timeline for the text appearance under the img 1 2 3 
@@ -64,25 +67,30 @@ export default function VinylMarketHome() {
                 trigger: ".middle-top",
                 scrub: true,
                 start: "-20% top",
-                end: "+=150%",
+                end: "+=200%",
                 id: "text-sequence"
             }
         });
 
-        textTl.from(".lineChildfirst", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 0.5 });
+        //text appears
+        textTl.from(".lineChildfirst", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 0.2 });
 
-        textTl.to(".lineChildfirst", { yPercent: -600, stagger: 0.2, duration: 0.5 }, "+=0.3");
+        //text disappears
+        textTl.to(".lineChildfirst", { yPercent: -600, stagger: 0.1, duration: 0.4 }, "+=0.25");
 
-        textTl.from(".lineChildsecond", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 1 }, "-=0.25");
+        //text appears
+        textTl.from(".lineChildsecond", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 0.4 }, "-=0.30");
 
-        textTl.to(".lineChildsecond", { yPercent: -600, duration: 0.5 }, "+=0.6");
+        //text disappears
+        textTl.to(".lineChildsecond", { yPercent: -600, stagger: 0.1, duration: 0.2 }, "+=0.25");
 
-        textTl.from(".lineChildthird", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 1 }, "-=0.55");
+        //text appears
+        textTl.from(".lineChildthird", { yPercent: 200, autoAlpha: 0, stagger: 0.2, duration: 0.4 }, "-=0.25");
 
 
-        //Make the square appear from the left 
+        //Make the card appear from the left 
 
-        gsap.from(".top-half .vinyl-square", {
+        gsap.from(".top-half .vinyl-card", {
             scrollTrigger: {
                 trigger: ".middle-bottom",
                 start: "-40% top",
@@ -100,7 +108,7 @@ export default function VinylMarketHome() {
         });
 
         // and from the right
-        gsap.from(".bottom-half .vinyl-square", {
+        gsap.from(".bottom-half .vinyl-card", {
             scrollTrigger: {
                 trigger: ".middle-bottom",
                 start: "-20% top",
@@ -111,6 +119,64 @@ export default function VinylMarketHome() {
             duration: 1,
             stagger: 0.2,
             ease: "elastic.out(0.05,0)"
+        });
+
+
+        //ùake the last section img dinamyc 
+
+        // Image 1
+        gsap.to(".placeholder-img", {
+            yPercent: -100,
+            scrollTrigger: {
+                trigger: ".image-expo",
+                scrub: true,
+                start: "top bottom",
+                end: "bottom top"
+            }
+        });
+
+        // Text 1
+        gsap.to(".placeholder-text", {
+            yPercent: -80,
+            scrollTrigger: {
+                trigger: ".image-expo",
+                scrub: true,
+                start: "top bottom",
+                end: "bottom top"
+            }
+        });
+
+        // Image 2
+        gsap.to(".placeholder-img-second", {
+            yPercent: -120,
+            scrollTrigger: {
+                trigger: ".image-expo",
+                scrub: true,
+                start: "top bottom",
+                end: "bottom top"
+            }
+        });
+
+        // Text 2
+        gsap.to(".placeholder-text-second", {
+            yPercent: -110,
+            scrollTrigger: {
+                trigger: ".image-expo",
+                scrub: true,
+                start: "top bottom",
+                end: "bottom top"
+            }
+        });
+
+        // Image 3
+        gsap.to(".placeholder-img-third", {
+            yPercent: -100,
+            scrollTrigger: {
+                trigger: ".image-expo",
+                scrub: true,
+                start: "top bottom",
+                end: "bottom top"
+            }
         });
 
     }, { scope: container });
@@ -133,9 +199,9 @@ export default function VinylMarketHome() {
                         </div>
                         <div className="bottom-half">
 
-                            <h2 className="first circular-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h2>
-                            <h2 className="second circular-text"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
-                            <h2 className="third circular-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h2>
+                            <h2 className="first description-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h2>
+                            <h2 className="second description-text"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
+                            <h2 className="third description-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h2>
                         </div>
 
                     </div>
@@ -144,27 +210,80 @@ export default function VinylMarketHome() {
                 <section className="middle-bottom">
                     <div className="vinyl-expo">
                         <div className="top-half">
-                            <div className="vinyl-square"></div>
-                            <div className="vinyl-square"></div>
-                            <div className="vinyl-square"></div>
+                            <div className="vinyl-card">
+                                <div className="full-vinyl">
+                                    <div className="vinyl-cover"></div>
+                                    <div className="vinyl-disc"></div>
+                                    <div className="vinyl-disc vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div className="vinyl-card">
+                                <div className="full-vinyl">
+                                    <div className="vinyl-cover"></div>
+                                    <div className="vinyl-disc"></div>
+                                    <div className="vinyl-disc vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div className="vinyl-card">
+                                <div className="full-vinyl">
+                                    <div className="vinyl-cover"></div>
+                                    <div className="vinyl-disc"></div>
+                                    <div className="vinyl-disc vinyl-center"></div>
+                                </div>
+                            </div>
                         </div>
                         <div className="bottom-half">
-                            <div className="vinyl-square"></div>
-                            <div className="vinyl-square"></div>
-                            <div className="vinyl-square"></div>
+                            <div className="vinyl-card">
+                                <div className="full-vinyl">
+                                    <div className="vinyl-cover"></div>
+                                    <div className="vinyl-disc"></div>
+                                    <div className="vinyl-disc vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div className="vinyl-card">
+                                <div className="full-vinyl">
+                                    <div className="vinyl-cover"></div>
+                                    <div className="vinyl-disc"></div>
+                                    <div className="vinyl-disc vinyl-center"></div>
+                                </div>
+                            </div>
+                            <div className="vinyl-card">
+                                <div className="full-vinyl">
+                                    <div className="vinyl-cover"></div>
+                                    <div className="vinyl-disc"></div>
+                                    <div className="vinyl-disc vinyl-center"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
                 <section className="image-expo">
                     <div className="placeholder-img"></div>
-                    <div className="placeholder-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div className="placeholder-text">-Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                     <div className="placeholder-img-second"></div>
-                    <div className="placeholder-text-second">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                    <div className="placeholder-text-second">-Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
                     <div className="placeholder-img-third"></div>
                 </section>
                 <section className="footer">
                     <div className="top-half">
-                        <div className="infiniteloop">  FRANCE LONDON ICELAND PARIS LOS ANGELES SAN FRANSISCO</div>
+                        <div className="infinite-loop">
+                            <ul class="infinite-loop-content">
+                                <li>London</li>
+                                <li>Paris</li>
+                                <li>Lyon</li>
+                                <li>Nantes</li>
+                                <li>Amsterdam</li>
+                                <li>Brussels</li>
+                            </ul>
+                            <ul class="infinite-loop-content">
+                                <li>London</li>
+                                <li>Paris</li>
+                                <li>Lyon</li>
+                                <li>Nantes</li>
+                                <li>Amsterdam</li>
+                                <li>Brussels</li>
+                            </ul>
+                        </div>
                     </div>
                     <div className="bottom-half">
                         <div className="logo left-half">VM</div>
