@@ -7,6 +7,8 @@ import { useGSAP } from '@gsap/react';
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/all";
+import vinylstack from './assets/vinyl-record-stack.webp';
+import vinylshop from './assets/vinyl-shop.webp';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin, SplitText);
 
@@ -33,7 +35,8 @@ export default function VinylMarketHome() {
             rotation: -20,
             yPercent: -50,
             transformOrigin: "left bottom",
-            scale: 1.1
+            scale: 1.1,
+            autoAlpha: 0.8
         });
 
         //Timeline for the multiple img 1 2 3 appearance
@@ -51,7 +54,7 @@ export default function VinylMarketHome() {
 
 
         //make first img disapear
-        tl.to(".img1", { yPercent: -200, rotation: -15, transformOrigin: "left bottom", scale: 1.2 }, 0.2);
+        tl.to(".img1", { yPercent: -200, rotation: -15, transformOrigin: "left bottom", scale: 1.1 }, 0.2);
 
         //make second img disapear
         tl.to(".img2", { yPercent: -200, rotation: -15, transformOrigin: "left bottom", scale: 1.2 }, 0.8);
@@ -96,7 +99,7 @@ export default function VinylMarketHome() {
         gsap.from(".top-row", {
             scrollTrigger: {
                 trigger: ".middle-bottom",
-                start: "-40% top",
+                start: "-50% top",
                 end: "+=100%",
                 id: "top-half"
             },
@@ -182,14 +185,14 @@ export default function VinylMarketHome() {
     return (
         <div className="vm-homepage"  ref={container} >
             <section className="intro">
-                    <div className="title"><h1 >VINYL MARKET</h1></div>
-                <div className="intro-img"></div>
+                    <div className="title"><h1>VINYL MARKET</h1></div>
+                <div className="intro-img" /*src={vinylstack} alt="Vinyl-stack" */><h5>Join us for the opening!</h5></div>
             </section>
 
             <section className="middle-top">
                 <div className="text-expo">
                     <div className="top-half">
-                        <div className="img1"></div>
+                        <img className="img1" src={vinylshop}></img>
                         <div className="img2"></div>
                         <div className="img3"></div>
                     </div>
@@ -280,11 +283,11 @@ export default function VinylMarketHome() {
                     <div className="logo left-half">VM</div>
                     <div className="right-half">
                         <div className="adress">
-                            <h3>Contact</h3>
+                            <h3>CONTACT</h3>
                             <p>Vaillant.brice@free.fr</p>
                         </div>
                         <div className="socials">
-                            <h3>Social</h3>
+                            <h3>SOCIAL</h3>
                             <p>Twitter</p>
                             <p>Instagram</p>
                             <p>Facebook</p>
