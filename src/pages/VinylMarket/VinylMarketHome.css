@@ -4,12 +4,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+   
 }
 
 .vm-homepage {
+    --marron: #312F2F;
+    --green: #84DCCF;
+    --blue: #A6D9F7;
+
     background: linear-gradient(15deg, rgba(60, 111, 150, 1) 0%, rgba(120, 195, 251, 1) 51%, rgba(255, 247, 184, 1) 100%);
-    background: white;
-    height: 880vh;
+    background: var(--marron);
+    height: 910vh;
     width: 100%;
     overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,7 +31,7 @@
 .intro .title {
     height: 100%;
     width: 100%;
-    background-color: orange;
+    background-color: var(--green);
     position: absolute;
     z-index: 1;
     display: flex;
@@ -38,7 +43,7 @@
 
 .vm-homepage .intro h1 {
     font-size: 21rem;
-    color: white;
+    color: var(--marron);
     text-align: center;
     opacity: 1;
 }
@@ -57,9 +62,10 @@
 
 .vm-homepage .intro h2 {
     font-size: 5rem;
-    color: orange;
+    color: var(--green);
     opacity: 1;
     padding-bottom: 5%;
+    text-align: center;
 }
 
 .vm-homepage .middle-top {
@@ -119,25 +125,22 @@
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
+    
 }
 
 .middle-top .bottom-half .description-text {
-    font-size: 3.5em;
-    color: orange;
-    padding: 1vw;
-    max-width: 80%;
+    font-size: 2.5em;
+    color: var(--green);
+    width: 80%;
     text-align: center;
     line-height: 1.3;
+    margin: 20px;
 }
 
 .middle-top .bottom-half .first {
     position: absolute;
     opacity: 1;
 
-}
-
-#lineChildfirst {
-    transition: 0.6s ease-in-out;
 }
 
 .middle-top .bottom-half .second {
@@ -156,63 +159,66 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background-color: orange;
+    background-color: var(--green);
     padding: 1rem;
 }
 
 .middle-bottom h3 {
     height: 10%;
     text-align: center;
-    font-size: 3.5em;
-    color: white;
-    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.5em;
+    color: var(--marron);
 }
 
 .middle-bottom .vinyl-expo {
     height: 90%;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
     align-content: center;
-    gap: 4rem;
+    gap: 3rem;
     box-sizing: border-box;
-    padding: 0 2rem 2rem 2rem;
+    padding: 3rem 2rem 3rem 2rem;
 }
 
 .middle-bottom .vinyl-card {
     position: relative;
-    aspect-ratio: 1 / 1;
+    height: 100%;
+    aspect-ratio: 1 / 0.8;
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
 }
 
 .vinyl-background {
-  position: absolute;
-  width: 100%; 
-  height: 100%;
-  background-color: white;
-  opacity: 0.8;
-  z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--marron);
+    opacity: 0.9;
+    z-index: 1;
 }
 
 
 
 .middle-bottom .full-vinyl {
-    width: 100;
+    width: 100%;
     height: 100%;
     position: relative;
-  z-index: 2; 
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     transform-origin: center;
     margin-right: 15px;
     transition: 0.5s;
+
 }
 
-.middle-bottom .vinyl-card:hover .full-vinyl{
+.middle-bottom .vinyl-card:hover .full-vinyl {
     transform: scale(1.1);
 }
 
@@ -226,14 +232,14 @@
 
 
 .middle-bottom .vinyl-cover {
-    height: 70%;
+    height: 80%;
     z-index: 3;
     margin-left: -5%;
     box-shadow: -5px 10px 15px black;
 }
 
 .middle-bottom .vinyl-disc {
-    height: 81%;
+    height: 91%;
     z-index: 2;
     margin-left: 20%;
 }
@@ -246,7 +252,6 @@
 }
 
 .placeholder-img {
-    background-color: orange;
     height: 20%;
     width: 30%;
     left: 10%;
@@ -255,8 +260,7 @@
 }
 
 .placeholder-text {
-    background-color: white;
-    color: black;
+    color: var(--green);
     height: 10%;
     width: 40%;
     left: 55%;
@@ -270,18 +274,16 @@
 }
 
 .placeholder-img-second {
-    background-color: orange;
-    color: black;
     height: 20%;
     width: 80%;
     left: 10%;
     top: 40%;
     position: absolute;
+    object-fit: cover;
 }
 
 .placeholder-text-second {
-    background-color: white;
-    color: black;
+    color: var(--green);
     height: 10%;
     width: 40%;
     left: 7%;
@@ -295,23 +297,24 @@
 }
 
 .placeholder-img-third {
-    background-color: orange;
-    color: black;
     height: 25%;
-    width: 550px;
+    width: 40%;
     left: 50%;
     top: 70%;
     position: absolute;
+    object-fit: cover;
 }
 
 .vm-homepage .footer {
     height: 30vh;
     width: 100%;
+    border: 2px solid red;
 }
 
 .footer .top-half {
-    background-color: darkgrey;
-    height: 19%;
+    background-color: var(--green);
+    color: var(--marron);
+    height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -349,8 +352,8 @@
 }
 
 .footer .bottom-half {
-    background-color: gray;
-    height: 85%;
+    background-color: var(--marron);
+    height: 25vh;
     display: flex;
     align-items: center;
 }
@@ -386,7 +389,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 50px;
     padding: 0.5rem;
 }
 
@@ -397,15 +400,15 @@
 
 .footer .bottom-half .right-half .adress h4,
 .footer .bottom-half .right-half .socials h4 {
-    color: black;
-    font-size: 3rem;
+    color: var(--green);
+    font-size: 5rem;
     font-weight: bolder;
 }
 
 .footer .bottom-half .right-half .adress p,
 .footer .bottom-half .right-half .socials p {
-    color: darkgray;
-    font-size: 1.5rem;
+    color: var(--blue);
+    font-size: 2.5rem;
     margin-top: -15px
 }
 
@@ -418,51 +421,155 @@
     cursor: pointer;
     transform: scale(1.1);
     transition: transform 0.2s ease;
-    color: orange;
-    font-size: 1.5rem;
+    color: var(--green);
 }
 
 .footer .bottom-half .right-half .socials p:active {
-    font-size: 1.5rem;
     transform: scale(0.9);
     transition: transform 0.2s ease;
 }
 
 
 
-@media (min-width: 2300px) {
+@media (min-width: 2560px) {
     .middle-top .bottom-half .description-text {
         font-size: 5.5em;
     }
-
 
     .image-expo .placeholder-text,
     .image-expo .placeholder-text-second {
         font-size: 5.5em;
     }
+
+    .middle-bottom h3 {
+        font-size: 5.5em;
+    }
+
+    .middle-bottom .vinyl-card {
+        height: 550px;
+        width: 700px;
+    }
+
 }
 
+@media (max-width: 850px) {
+    .middle-bottom h3 {
+        font-size: 3.5em;
+        height: 10%;
+    }
 
+    .middle-bottom .vinyl-expo {
+        height: 90%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0.5rem;
+    }
+
+    .vm-homepage .middle-bottom {
+        z-index: 1;
+        height: 200vh;
+    }
+}
 @media (max-width: 650px) {
 
-    .vm-homepage {
-        height: 900vh;
+    .vm-homepage .intro h1 {
+    font-size: 4rem;
+}
+.vm-homepage .intro h2 {
+    font-size: 1.5rem;
+    padding-bottom: 5%;
+    text-align: center;
+}
+
+    .vm-homepage .middle-bottom {
+        height: 200vh;
     }
 
-    .vm-homepage .intro h1 {
-        font-size: 10rem;
-        color: white;
-        text-align: center;
+    
+
+    .middle-bottom h3 {
+        font-size: 1.5em;
+        height: 10%;
     }
+    .middle-bottom .vinyl-expo {
+        height: 90%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding: 0.5rem;
+    }
+
 
     .middle-top .bottom-half .description-text {
-        font-size: 2.5em;
-        transition: 0.4s ease-in-out;
-    }
-
+        font-size: 1.2rem;
+        padding: 0.2rem;
+        line-height: 1.1;
+        }
 
     .image-expo .placeholder-text,
     .image-expo .placeholder-text-second {
-        font-size: 5.5em;
+        font-size: 1.5em;
     }
+    .footer .bottom-half .logo {
+    font-size: 3rem;
+    top: -5%;
+
+}
+.footer .bottom-half .left-half {
+    width: 40%;
+}
+.footer .bottom-half .right-half {
+    width: 60%;
+}
+.footer .infinite-loop {
+    font-size: 2.5rem;
+    font-weight: 800;
+    gap: 2rem;
+}
+.footer .bottom-half .right-half .adress h4,
+.footer .bottom-half .right-half .socials h4 {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.footer .bottom-half .right-half .adress p,
+.footer .bottom-half .right-half .socials p {
+    font-size: 0.5rem;
+    margin-top: -15px
+}
+}
+
+@media (max-width: 350px) {
+
+    .vm-homepage .middle-bottom {
+        z-index: 1;
+        height: 100vh;
+    }
+
+    .middle-bottom h3 {
+        font-size: 2.5em;
+        height: 20%;
+    }
+
+    .middle-bottom .vinyl-expo {
+        height: 80%;
+        width: 100%;
+        gap: 0.5rem;
+        padding: 0px;
+    }
+
+    .middle-bottom .vinyl-card {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        width: 90%;
+        height: 90%;
+    }
+
+    .middle-bottom .vinyl-card:hover .full-vinyl {
+        transform: scale(1.1);
+    }
+
 }

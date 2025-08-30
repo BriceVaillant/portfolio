@@ -268,7 +268,7 @@ export default function VinylMarketHome() {
 
                     </section>
                     <section className="middle-bottom">
-                        <h3>Here is a sneak peak at our future collection:</h3>
+                        <h3>HERE IS A SMALL SELECTION OF OUR NEW COLLECTION:</h3>
                         <div className="vinyl-expo">
 
                             <div className="vinyl-card first-row">
