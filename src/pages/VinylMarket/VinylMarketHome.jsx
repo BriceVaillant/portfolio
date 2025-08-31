@@ -50,7 +50,7 @@ export default function VinylMarketHome() {
         })
 
         ScrollTrigger.defaults({
-            markers: true,
+            markers: false,
         });
 
         //Make the first div rotate up
@@ -185,60 +185,6 @@ export default function VinylMarketHome() {
         });
 
 
-        //make the last section img dinamyc 
-        // Image 1
-        /*
-        gsap.to(".placeholder-img", {
-            yPercent: -100,
-            scrollTrigger: {
-                trigger: ".image-expo",
-                scrub: true,
-                start: "top bottom",
-                end: "bottom top"
-            }
-        });
-        // Text 1
-        gsap.to(".placeholder-text", {
-            yPercent: -80,
-            scrollTrigger: {
-                trigger: ".image-expo",
-                scrub: true,
-                start: "top bottom",
-                end: "bottom top"
-            }
-        });
-        // Image 2
-        gsap.to(".placeholder-img-second", {
-            yPercent: -120,
-            scrollTrigger: {
-                trigger: ".image-expo",
-                scrub: true,
-                start: "top bottom",
-                end: "bottom top"
-            }
-        });
-        // Text 2
-        gsap.to(".placeholder-text-second", {
-            yPercent: -130,
-            scrollTrigger: {
-                trigger: ".image-expo",
-                scrub: true,
-                start: "top bottom",
-                end: "bottom top"
-            }
-        });
-        // Image 3
-        gsap.to(".placeholder-img-third", {
-            yPercent: -80,
-            scrollTrigger: {
-                trigger: ".image-expo",
-                scrub: true,
-                start: "top bottom",
-                end: "bottom top"
-            }
-        });
-        */
-
     }, { scope: container });
 
 
@@ -248,7 +194,7 @@ export default function VinylMarketHome() {
                 <div id="smooth-content">
                     <section className="intro">
                         <div className="title"><h1>VINYL MARKET</h1></div>
-                        <div className="intro-img" /*src={vinylstack} alt="Vinyl-stack" */><h2>Join us for the opening in Los Angeles!</h2></div>
+                        <div className="intro-img" /*src={vinylstack} alt="Vinyl-stack" */><h2>We’ve just opened our doors in Los Angeles!</h2></div>
                     </section>
 
                     <section className="middle-top">
@@ -259,9 +205,9 @@ export default function VinylMarketHome() {
                                 <img className="img3" src={vinylshop3}></img>
                             </div>
                             <div className="bottom-half">
-                                <h2 className="first description-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </h2>
-                                <h2 className="second description-text"> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
-                                <h2 className="third description-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h2>
+                                <h2 className="first description-text">Our vinyl shop just opened its doors to collectors and newcomers alike, offering a space built around the love of sound and timeless records.</h2>
+                                <h2 className="second description-text"> Inside, you’ll find curated crates packed with classics, hidden gems, and fresh pressings, plus turntables, gear, and merch to keep your collection alive.</h2>
+                                <h2 className="third description-text">We’re easy to find, with weekly events like DJ sets and listening parties that make the shop more than a store, it will be a huge opportunity for the local music community.</h2>
                             </div>
 
                         </div>
@@ -389,9 +335,9 @@ export default function VinylMarketHome() {
                     </section>
                     <section className="image-expo">
                         <img className="placeholder-img" src={vinylmarket01} data-speed="1.5"></img>
-                        <div className="placeholder-text" data-speed="0.9">-Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        <div className="placeholder-text" data-speed="0.9">-"Finally, a spot in LA that feels like home for vinyl lovers. The selection is unreal, and the vibe makes you want to hang out all day."</div>
                         <img className="placeholder-img-second" src={vinylmarket03}data-speed="1.4"></img>
-                        <div className="placeholder-text-second" data-speed="0.8">-Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div className="placeholder-text-second" data-speed="0.8">-"Stopped by on opening week and left with three records I didn’t even know I needed. This place is dangerous—in the best way."</div>
                         <img className="placeholder-img-third" src={vinylmarket02} data-speed="1.2"></img>
                     </section>
                     <section className="footer">

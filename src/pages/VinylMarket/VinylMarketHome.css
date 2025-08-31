@@ -94,28 +94,26 @@
 }
 
 .middle-top .text-expo .top-half .img1 {
-    height: 60%;
-    width: 80%;
+    height: 70%;
+    width: 100%;
     object-fit: cover;
     position: absolute;
     z-index: 4;
-    border-radius: 14px;
+    
 }
 
 .middle-top .text-expo .top-half .img2 {
-    height: 60%;
-    width: 80%;
+    height: 70%;
+    width: 100%;
     position: absolute;
     z-index: 3;
-    border-radius: 14px;
 }
 
 .middle-top .text-expo .top-half .img3 {
-    height: 60%;
-    width: 80%;
+    height: 70%;
+    width: 100%;
     position: absolute;
     z-index: 2;
-    border-radius: 14px;
 }
 
 .middle-top .text-expo .bottom-half {
@@ -125,11 +123,12 @@
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
+    border-top: 15px solid var(--green);
     
 }
 
 .middle-top .bottom-half .description-text {
-    font-size: 2.5em;
+    font-size: 3.5em;
     color: var(--green);
     width: 80%;
     text-align: center;
@@ -308,7 +307,6 @@
 .vm-homepage .footer {
     height: 30vh;
     width: 100%;
-    border: 2px solid red;
 }
 
 .footer .top-half {
