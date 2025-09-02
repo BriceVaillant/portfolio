@@ -1,12 +1,16 @@
 .home {
-  position: absolute;
-  width: 80vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-transform: uppercase;
-  text-align: center;
+  position: relative;
+  height: 95vh;
+  width: 100%;
   color: var(--light);
+}
+.content {
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .home h1 {
@@ -18,6 +22,38 @@
   font-size: 7vw;
   font-weight: 200;
 }
+
+.overwrap {
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.overwrap.active {
+  --x: 50%;
+  --y: 50%;
+  --radius: 150px;
+
+background-size: 200px 200px;
+  background-image:
+    linear-gradient(to right, var(--light) 2px, transparent 1px),
+    linear-gradient(to bottom, var(--light) 2px, transparent 1px);
+
+  -webkit-mask-image: radial-gradient(circle var(--radius, 450px) at var(--x, 50%) var(--y, 50%),
+      rgba(0, 0, 0, 1) 30%,
+      rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+
+  mask-image: radial-gradient(circle var(--radius, 450px) at var(--x, 50%) var(--y, 50%),
+      rgba(0, 0, 0, 1) 30%,
+      rgba(0, 0, 0, 0) 100%);
+  mask-repeat: no-repeat;
+  mask-size: cover;
+
+}
+
+
 
 @media (max-width: 400px) {
   .home h1 {
