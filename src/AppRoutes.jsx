@@ -25,7 +25,6 @@ export default function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/projects/recipe/*" element={<RecipeApp />} />
         <Route path="/projects/VinylMarket/*" element={<VinylMarketApp />} />
       </Routes>
     </>

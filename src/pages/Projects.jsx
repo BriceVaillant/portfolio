@@ -62,7 +62,7 @@ export default function Projects() {
         </Link>
         </div>
         <div className="cardlink">
-        <Link to="/projects/recipe/home">
+        <a href="https://cookbook.bricevaillant.dev/" target="_blank" rel="noopener noreferrer">
           <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
             <div className="cardcontent">
               <h1>Recette WebApp</h1>
@@ -70,7 +70,7 @@ export default function Projects() {
             </div>
             <img className="cardbg" src={recipewebbapp} alt="RecipeWebApp"></img>
           </div>
-        </Link>
+        </a>
       </div>
       <a className="cardlink" href="https://codepen.io/nawers/pen/PwwWXJK" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
