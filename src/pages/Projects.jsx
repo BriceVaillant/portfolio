@@ -43,7 +43,7 @@ export default function Projects() {
 
   const handleMouseLeave = (e) => {
     const card = e.currentTarget;
-    const content = card.querySelector('.card-content');
+    const content = card.querySelector('.cardcontent');
 
     card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
     content.style.transform = 'translateX(0) translateY(0)';

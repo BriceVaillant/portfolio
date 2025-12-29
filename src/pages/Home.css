@@ -34,7 +34,7 @@
   --y: 50%;
   --radius: 150px;
 
-background-size: 200px 200px;
+background-size: 180px 180px;
   background-image:
     linear-gradient(to right, var(--primary) 2px, transparent 1px),
     linear-gradient(to bottom, var(--primary) 2px, transparent 1px);

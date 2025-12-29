@@ -7,8 +7,8 @@
 }
 :root {
   --dark: #0B0C08;
-  --primary: #EDFD5D;
-  --darkgrey: darkgrey;
+  --primary: #ca942f;
+  --darkgrey: rgb(254, 246, 224);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,7 +20,6 @@ html, body {
   scroll-behavior: smooth;
 }
 body { 
-  font-family: "Arsenal", sans-serif;
-  background-color: rgb(250, 250, 214);
-  
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--darkgrey);
 }
