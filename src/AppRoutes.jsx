@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
-import RecipeApp from './pages/RecipeApp/App';
 import VinylMarketApp from './pages/VinylMarket/app';
 import Navbar from './components/Navbar';
 
