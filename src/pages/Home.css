@@ -2,7 +2,7 @@
   position: relative;
   height: 95vh;
   width: 100%;
-  color: var(--light);
+  color: var(--primary);
 }
 .content {
   text-transform: uppercase;
@@ -36,17 +36,17 @@
 
 background-size: 200px 200px;
   background-image:
-    linear-gradient(to right, var(--light) 2px, transparent 1px),
-    linear-gradient(to bottom, var(--light) 2px, transparent 1px);
+    linear-gradient(to right, var(--primary) 2px, transparent 1px),
+    linear-gradient(to bottom, var(--primary) 2px, transparent 1px);
 
   -webkit-mask-image: radial-gradient(circle var(--radius, 450px) at var(--x, 50%) var(--y, 50%),
-      rgba(0, 0, 0, 1) 30%,
+      rgba(0, 0, 0, 1) 0%,
       rgba(0, 0, 0, 0) 100%);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: cover;
 
   mask-image: radial-gradient(circle var(--radius, 450px) at var(--x, 50%) var(--y, 50%),
-      rgba(0, 0, 0, 1) 30%,
+      rgba(0, 0, 0, 1) 0%,
       rgba(0, 0, 0, 0) 100%);
   mask-repeat: no-repeat;
   mask-size: cover;

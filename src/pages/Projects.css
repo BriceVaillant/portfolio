@@ -47,12 +47,12 @@
 
 .cardcontent h1 {
   font-size: 90%;
-  color: var(--light);
+  color: var(--primary);
 }
 
 .cardcontent p {
   font-size: 60%;
-  color: var(--light);
+  color: var(--primary);
 }
 
 .project-cardcontainer .cardbg {

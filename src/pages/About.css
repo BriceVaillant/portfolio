@@ -6,7 +6,7 @@
   transform: translate(-50%, -50%);
   text-transform: uppercase;
   text-align: center;
-  color: var(--light);
+  color: var(--primary);
 }
 
 .about h1 {

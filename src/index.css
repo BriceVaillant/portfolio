@@ -7,7 +7,7 @@
 }
 :root {
   --dark: #0B0C08;
-  --light: #EDFD5D;
+  --primary: #EDFD5D;
   --darkgrey: darkgrey;
 
   font-synthesis: none;
@@ -21,6 +21,6 @@ html, body {
 }
 body { 
   font-family: "Arsenal", sans-serif;
-  background-color: var(--dark);
+  background-color: rgb(250, 250, 214);
   
 }
