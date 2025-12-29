@@ -31,8 +31,8 @@ export default function Home() {
     });
   }
 
-  container.addEventListener("mousemove", handleMouseMove);
-  return () => container.removeEventListener("mousemove", handleMouseMove);
+  window.addEventListener("mousemove", handleMouseMove);
+  return () => window.removeEventListener("mousemove", handleMouseMove);
 }, []);
   
   return (

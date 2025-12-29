@@ -4,6 +4,11 @@ import recipewebbapp from '/src/assets/RecipeWebApp.PNG';
 import calculator from '/src/assets/calculator.PNG';
 import drummachine from '/src/assets/DrumMachine.PNG';
 import clock from '/src/assets/PomodoroClock.PNG';
+import quote from '/src/assets/randomquotegenerator.jpeg';
+import palindrome from '/src/assets/palindrome.PNG';
+import roman from '/src/assets/romannumberconverter.PNG';
+import treemap from '/src/assets/d3treemap.PNG';
+
 import { Link } from 'react-router-dom';
 
 export default function Projects() {
@@ -93,15 +98,42 @@ export default function Projects() {
           <div className="cardcontent">
             <h1>Pomodoro Clock</h1>
           </div>
-          <img className="cardbg" src={clock} alt="PomodoroClockProject"></img>
+          <img className="cardbg" src={clock} alt="Pomodoro Clock"></img>
         </div>
       </a>
-      <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <div className="cardcontent">
-          <h1>Project Title</h1>
-          <p>Description goes here.</p>
+      <a className="cardlink" href="https://codepen.io/nawers/pen/emmmVxz" target="_blank" rel="noopener noreferrer">
+        <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <div className="cardcontent">
+            <h1>Random Quote Generator</h1>
+          </div>
+          <img className="cardbg" src={quote} alt="Random Quote Generator"></img>
         </div>
-      </div>
+      </a>
+      <a className="cardlink" href="https://codepen.io/nawers/pen/pvJdome" target="_blank" rel="noopener noreferrer">
+        <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <div className="cardcontent">
+            <h1>Palindrome Checker</h1>
+          </div>
+          <img className="cardbg" src={palindrome} alt="Palindrome Checker"></img>
+        </div>
+      </a>
+      <a className="cardlink" href="https://codepen.io/nawers/pen/XJbzWLV" target="_blank" rel="noopener noreferrer">
+        <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <div className="cardcontent">
+            <h1>Roman Number Converter</h1>
+          </div>
+          <img className="cardbg" src={roman} alt="Roman Number Converter"></img>
+        </div>
+      </a>
+      <a className="cardlink" href="https://codepen.io/nawers/pen/QwwzPqo" target="_blank" rel="noopener noreferrer">
+        <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <div className="cardcontent">
+            <h1>D3 - Tree Map</h1>
+          </div>
+          <img className="cardbg" src={treemap} alt="D3 - Tree Map"></img>
+        </div>
+      </a>
     </div>
   );
 }
+
