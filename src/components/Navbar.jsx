@@ -7,8 +7,8 @@ export default function Navbar() {
     <nav className="navbar">
       <Link to="/" className="navbar-name">BV.</Link>
       <ul className="navbar-lead">
-        <li><Link to="/about" className="navbarlink">About</Link></li>
-        <li><Link to="/projects" className="navbarlink">Projects</Link></li>
+        <li><Link to="/projects" className="navbarlink">Portfolio</Link></li>
+        <li><Link to="/about" className="navbarlink">BriceVaillant</Link></li>
       </ul>
     </nav>
   );

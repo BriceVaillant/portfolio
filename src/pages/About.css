@@ -1,22 +1,53 @@
 .about {
   position: absolute;
-  width: 80vw;
+  width: 100%;
+  height: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-transform: uppercase;
+  display: flex;
   text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8vw;
   color: var(--primary);
+  padding: 5vw;
 }
-
+.about .picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about .description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3vw;
+}
+.about .profile {
+  width: 22vw;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 5vw;
+}
 .about h1 {
   font-size: 4vw;
   font-weight: 800;
+  text-transform: uppercase;
 }
 
 .about p {
   font-size: 2vw;
   font-weight: 200;
+  text-transform: uppercase;
+}
+
+
+.about .insta {
+  font-size: 1.2vw;
+  font-weight: 200;
+  text-transform: uppercase;
 }
 
 @media (max-width: 600px) {

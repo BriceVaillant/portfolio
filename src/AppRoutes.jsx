@@ -6,6 +6,7 @@ import About from './pages/About';
 import Projects from './pages/Projects';
 import VinylMarketApp from './pages/VinylMarket/app';
 import Navbar from './components/Navbar';
+import Socials from './components/Socials';
 
 export default function AppRoutes() {
   const location = useLocation();
@@ -22,6 +23,7 @@ export default function AppRoutes() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/VinylMarket/*" element={<VinylMarketApp />} />
       </Routes>
+      <Socials />
     </>
   );
 }
