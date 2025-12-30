@@ -1,12 +1,12 @@
 // src/pages/Projects.jsx
 import './Projects.css';
-import recipewebbapp from '../assets/RecipeWebApp.png';
-import calculator from '../assets/calculator.PNG';
-import drummachine from '../assets/DrumMachine.PNG';
-import clock from '../assets/PomodoroClock.PNG';
+import recipewebbapp from '../assets/cookbook.png';
+import calculator from '../assets/calculator.png';
+import drummachine from '../assets/drummachine.png';
+import clock from '../assets/pomodoroclock.png';
 import quote from '../assets/randomquotegenerator.jpeg';
 import palindrome from '../assets/palindrome.png';
-import roman from '../assets/romannumberconverter.PNG';
+import roman from '../assets/romannumberconverter.png';
 import treemap from '../assets/d3treemap.PNG';
 
 import { Link } from 'react-router-dom';
