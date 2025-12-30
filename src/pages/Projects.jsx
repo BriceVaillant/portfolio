@@ -7,7 +7,7 @@ import clock from '../assets/pomodoroclock.png';
 import quote from '../assets/randomquotegenerator.jpeg';
 import palindrome from '../assets/palindrome.png';
 import roman from '../assets/romannumberconverter.png';
-import treemap from '../assets/d3treemap.PNG';
+import treemap from '../assets/d3treemap.png';
 
 import { Link } from 'react-router-dom';
 
