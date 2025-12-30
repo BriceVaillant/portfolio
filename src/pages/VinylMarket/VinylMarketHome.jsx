@@ -31,7 +31,7 @@ import vinylmarket01 from './assets/vinylmarket01.jpg';
 import vinylmarket02 from './assets/vinylmarket02.jpg';
 import vinylmarket03 from './assets/vinylmarket03.jpg';
 
-import vinyldisc from './assets/vinyl.png';
+import vinyldisc from './assets/Vinyl.png';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin, SplitText, ScrollSmoother);
 
@@ -41,7 +41,7 @@ export default function VinylMarketHome() {
 
     useGSAP(() => {
 
-        let smoother = ScrollSmoother.create({
+        ScrollSmoother.create({
             wrapper: "#smooth-wrapper",
             content: "#smooth-content",
             smooth: 1.5,
