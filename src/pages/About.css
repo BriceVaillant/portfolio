@@ -11,8 +11,10 @@
   flex-direction: column;
   gap: 8vw;
   color: var(--primary);
-  padding: 5vw;
+  padding: 2vw;
+  margin-top: 2vw;
 }
+
 .about .picture {
   display: flex;
   align-items: center;
@@ -23,27 +25,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3vw;
+  gap: 2vw;
 }
 .about .profile {
-  width: 22vw;
+  width: clamp(12rem, 26vw, 24rem);
   height: auto;
   border-radius: 50%;
-  margin-right: 5vw;
+  margin-right: 2rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 .about h1 {
-  font-size: 4vw;
+  font-size: 3rem;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 .about p {
-  font-size: 2vw;
-  font-weight: 200;
+  font-size: 1.4rem;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
 .about .social-link {
+  font-size: 1.45rem;
   color: var(--primary);
   text-decoration: none;
   font-weight: 600;
@@ -51,19 +55,35 @@
 
 
 .about .insta {
-  font-size: 1.2vw;
-  font-weight: 200;
+  font-size: 1.3rem;
+  font-weight: 400;
   text-transform: uppercase;
 }
 
 @media (max-width: 600px) {
+
+  .about .description {
+    gap: 1.5rem;
+  }
+  .about .profile {
+    width: 12rem;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
   .about h1 {
-    font-size: 7vw;
-    font-weight: 800;
+    font-size: 2rem;
   }
 
   .about p {
-    font-size: 4vw;
-    font-weight: 200;
+    font-size: 1rem;
+  }
+  .about .insta {
+    font-size: 0.8rem;
+  }
+
+  .about .social-link {
+    font-size: 0.9rem;
+    font-weight: 600;
   }
 }
