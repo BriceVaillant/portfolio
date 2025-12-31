@@ -43,6 +43,12 @@
   text-transform: uppercase;
 }
 
+.about .social-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
 
 .about .insta {
   font-size: 1.2vw;

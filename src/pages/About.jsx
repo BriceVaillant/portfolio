@@ -9,10 +9,10 @@ export default function About() {
         <img className="profile" src={profilpic} alt="Profile" />
       </div>
       <div className="description">
-      <h1>Développeur Junior</h1>
-      <p>Je sui sun pros du  le web design et le développement, c'est un domaine infini et vraiment passionnant.</p>
-      <p className="insta"> Et quand je ne suis pas en train de coder, je suis en train de peindre, retrouvez mes creations sur mon instagram </p>
-    </div>
+        <h1>Développeur Junior</h1>
+        <p>Pour une personne en constante quête de connaissances, le développement constitue un domaine infini et véritablement passionnant.</p>
+        <p className="insta"> En dehors du code, je me consacre à la peinture. Retrouvez mes créations sur mon <a href="https://www.instagram.com/briceminis/" className="social-link" target="_blank" rel="noopener noreferrer">Instagram.</a></p>
+      </div>
     </div>
   );
 }
