@@ -43,17 +43,6 @@ export default function Projects() {
   };
   return (
     <div className="project-cardcontainer">
-      <div className="cardlink">
-        <Link to="/projects/VinylMarket/home">
-          <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-            <div className="cardcontent">
-              <h1>Vinyl Market</h1>
-              <p>Interactive website to showcase my awesome web building talent</p>
-            </div>
-          </div>
-          
-        </Link>
-        </div>
         <div className="cardlink">
         <a href="https://cookbook.bricevaillant.dev/" target="_blank" rel="noopener noreferrer">
           <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
@@ -89,6 +78,17 @@ export default function Projects() {
           <img className="cardbg" src={clock} alt="Pomodoro Clock"></img>
         </div>
       </a>
+      <div className="cardlink">
+        <Link to="/projects/VinylMarket/home">
+          <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+            <div className="cardcontent">
+              <h1>Vinyl Market</h1>
+              <p>Interactive website to showcase my awesome web building talent</p>
+            </div>
+          </div>
+          
+        </Link>
+        </div>
       <a className="cardlink" href="https://codepen.io/nawers/pen/emmmVxz" target="_blank" rel="noopener noreferrer">
         <div className="card" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
           <div className="cardcontent">

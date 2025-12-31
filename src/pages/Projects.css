@@ -1,32 +1,35 @@
 .project-cardcontainer {
-  width: 85vw;
-  height: 80dvh;
+  width: 100%;
+  min-height: 95dvh;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px 100px;
   padding-top: 10dvh;
+  padding-bottom: 5dvh;
   margin: 0 auto;
 }
 
 .project-cardcontainer .cardlink {
+  width: 25vw;
+  height: 25dvh;
+  border-radius: 16px;
   text-decoration: none;
   color: inherit;
-  font-size: 55px;
-  font-weight: bold;
+  display: block;
 }
 .project-cardcontainer .cardlink a {
   text-decoration: none;
   color: inherit;
-  font-size: 55px;
-  font-weight: bold;
 }
 
 .project-cardcontainer .card {
+  padding: 0.5rem;
   width: 25vw;
   height: 25dvh;
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 10px, rgba(0, 0, 0, 0.25) 0px 15px 14px;
   transition: transform 0.1s ease;
   /* preserve 3D is usefull if you have something inside the card   */
@@ -49,12 +52,14 @@
 }
 
 .cardcontent h1 {
-  font-size: 90%;
+  font-size: 3rem;
+  font-weight: 800;
   color: var(--primary);
 }
 
 .cardcontent p {
-  font-size: 60%;
+  font-size: 2rem;
+  font-weight: 600;
   color: var(--primary);
 }
 
@@ -77,12 +82,13 @@
 
 @media (max-width: 1800px) {
   .project-cardcontainer {
-    margin-top: 100px;
     align-content: flex-start;
     flex-wrap: wrap;
+    padding-top: 10dvh;
   }
 
-  .project-cardcontainer .card {
+  .project-cardcontainer .card,
+  .project-cardcontainer .cardlink {
     width: 650px;
     height: 350px;
   }
@@ -90,34 +96,35 @@
 
 @media (max-width: 1350px) {
   .project-cardcontainer {
-    min-width: 620px;
+    min-width: 300px;
     align-content: flex-start;
-    margin-top: 100px;
+    padding-top: 10dvh;
+    gap: 2rem;
   }
 
-  .project-cardcontainer .card {
-    width: 650px;
-    height: 350px;
+  .project-cardcontainer .card,
+  .project-cardcontainer .cardlink {
+    width: 45vw;
+    height: 30dvh;
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 850px) {
   .project-cardcontainer {
-    min-width: 300px;
-    margin: 0 auto;
-    padding-top: 40px;
+    gap: 2rem;
   }
 
-  .project-cardcontainer .card {
+  .project-cardcontainer .card,
+  .project-cardcontainer .cardlink {
     width: 80vw;
-    height: 15dvh;
+    height: 20dvh;
   }
 
-  .project-cardcontainer h1 {
-    font-size: 80%;
+  .cardcontent h1 {
+    font-size: 1.5rem;
   }
 
-  .project-cardcontainer p {
-    font-size: 50%;
+  .cardcontent p {
+    font-size: 1rem;
   }
 }
