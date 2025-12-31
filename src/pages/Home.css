@@ -1,8 +1,9 @@
 .home {
   position: relative;
-  height: 100dvh;
+  height: 95dvh;
   width: 100%;
   color: var(--primary);
+  margin-top: 5dvh;
 }
 .content {
   text-transform: uppercase;
@@ -13,13 +14,13 @@
   height: 100%;
 }
 
-.home h1 {
-  font-size: 9vw;
+.home .content h1 {
+  font-size: 6rem;
   font-weight: 800;
 }
 
 .home h2 {
-  font-size: 7vw;
+  font-size: 4rem;
   font-weight: 200;
 }
 
@@ -55,15 +56,18 @@ background-size: 180px 180px;
 
 
 
-@media (max-width: 400px) {
-  .home h1 {
-    font-size: 16vw;
+@media (max-width: 600px) {
+  .home .content h1 {
+    font-size: 3.5rem;
     font-weight: 800;
   }
 
   .home h2 {
-    font-size: 9vw;
+    font-size: 2rem;
     font-weight: 200;
+  }
+  .overwrap {
+    display: none;
   }
 }
 

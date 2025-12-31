@@ -11,7 +11,7 @@ export default function About() {
       <div className="description">
         <h1>Développeur Junior</h1>
         <p>Pour une personne en constante quête de connaissances, le développement constitue un domaine infini et véritablement passionnant.</p>
-        <p className="insta"> En dehors du code, je me consacre à la peinture. Retrouvez toutes mes créations sur mon <a href="https://www.instagram.com/briceminis/" className="social-link" target="_blank" rel="noopener noreferrer">Instagram.</a></p>
+        <p className="insta"> En dehors du code, je me consacre à la peinture. Retrouvez mes plus belles miniatures sur mon <a href="https://www.instagram.com/briceminis/" className="social-link" target="_blank" rel="noopener noreferrer">Instagram.</a></p>
       </div>
     </div>
   );
