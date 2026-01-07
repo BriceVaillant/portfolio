@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import VinylMarketApp from './pages/VinylMarket/app';
+import Miniatures from './pages/Miniatures';
 import Navbar from './components/Navbar';
 import Socials from './components/Socials';
 
@@ -24,6 +25,7 @@ export default function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/VinylMarket/*" element={<VinylMarketApp />} />
+        <Route path="/briceminis" element={<Miniatures />} />
       </Routes>
       {!hideSocial && <Socials />}
     </>
