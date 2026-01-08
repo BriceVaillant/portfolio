@@ -16,6 +16,7 @@ export default function Miniatures() {
   const cloudinary_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const tag = "display";
 
+
   useEffect(() => {
     fetch(
       `https://res.cloudinary.com/${cloudinary_name}/image/list/${tag}.json`
@@ -31,9 +32,13 @@ export default function Miniatures() {
   }, [cloudinary_name]);
 
   const handleImgClick = (clickedImage) => {
-    console.log("Image clicked:", clickedImage.public_id);
-    setSelectedImage(clickedImage);
-    setShowPictureDetails(true);
+    let result = /IMG_([A-Za-z0-9]+)_00/i.exec(clickedImage.public_id);
+
+    if (result && result[1]) {
+        console.log("Image clicked:", result[1]);
+        setSelectedImage(result[1]);
+        setShowPictureDetails(true);
+    }
   };
 
   useGSAP(
