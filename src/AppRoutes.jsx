@@ -16,7 +16,7 @@ export default function AppRoutes() {
     location.pathname.startsWith("/projects/VinylMarket");
 
   const hideSocial =
-    location.pathname.startsWith("/projects");  
+    location.pathname.startsWith("/projects") || location.pathname.startsWith("/briceminis"); 
   return (
     <>
       {!hideNavbar && <Navbar />}

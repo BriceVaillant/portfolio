@@ -1,0 +1,81 @@
+#minis-container {
+  min-height: 100vh;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.minis-pictures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
+  gap: 1rem;
+  width: 100%;
+}
+
+.miniature-card {
+  width: 100%;
+  background-color: #222;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+  position: relative;
+  grid-column: span 1;
+  grid-row: span 1;
+  aspect-ratio: 1/1;
+}
+
+
+.miniature-card:nth-child(5n + 1) {
+  grid-column: span 2;
+  aspect-ratio: 2/1;
+}
+
+
+.miniature-card:nth-child(8n + 2) {
+  grid-row: span 2;
+  aspect-ratio: 1/2;
+  display: flex;
+  align-items: center;
+}
+
+
+.miniature-card:nth-child(11n + 3) {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 1/1;
+}
+
+.miniature-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.miniature-card:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .minis-pictures-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .minis-pictures-grid {
+    grid-template-columns: 1fr;
+  }
+  
+
+  .miniature-card:nth-child(n) {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    aspect-ratio: 1/1 !important;
+  }
+}
