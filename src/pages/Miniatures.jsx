@@ -11,6 +11,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 export default function Miniatures() {
   const container = useRef();
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage ] = useState(null);
   const [showPictureDetails, setShowPictureDetails] = useState(false);
   const cloudinary_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const tag = "display";
@@ -31,6 +32,7 @@ export default function Miniatures() {
 
   const handleImgClick = (clickedImage) => {
     console.log("Image clicked:", clickedImage.public_id);
+    setSelectedImage(clickedImage);
     setShowPictureDetails(true);
   };
 
@@ -79,7 +81,7 @@ export default function Miniatures() {
       </div>
         {showPictureDetails && (
           <PictureDetails
-            images={images}
+            image={selectedImage}
             onClose={() => setShowPictureDetails(false)}
           />
         )}
