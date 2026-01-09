@@ -13,7 +13,7 @@ export default function Miniatures() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage ] = useState(null);
   const [showPictureDetails, setShowPictureDetails] = useState(false);
-  const cloudinary_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  const cloudinary_name = import.meta.env.CLOUDINARY_CLOUD_NAME;
   const tag = "display";
 
 
