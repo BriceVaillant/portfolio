@@ -23,7 +23,6 @@ export default function Miniatures() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched images:", data);
         setImages(data.resources);
       })
       .catch((error) => {
@@ -35,7 +34,6 @@ export default function Miniatures() {
     let result = /IMG_([A-Za-z0-9]+)_00/i.exec(clickedImage.public_id);
 
     if (result && result[1]) {
-        console.log("Image clicked:", result[1]);
         setSelectedImage(result[1]);
         setShowPictureDetails(true);
     }
