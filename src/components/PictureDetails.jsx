@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./PictureDetails.css";
 
 export default function PictureDetails({ image, onClose }) {
-  const cloudinary_name = import.meta.env.CLOUDINARY_CLOUD_NAME;
+  const cloudinary_name = "dxrlfbw2k";
   const [images, setImages] = useState([]);
   const tag = `${image}`;
   const mainImageUrl = `https://res.cloudinary.com/${cloudinary_name}/image/upload/v1767710557/IMG_${tag}_00.jpg`;

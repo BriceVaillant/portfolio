@@ -5,17 +5,16 @@ import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
 
-import PictureDetails from '../components/PictureDetails';
+import PictureDetails from "../components/PictureDetails";
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
 
 export default function Miniatures() {
   const container = useRef();
   const [images, setImages] = useState([]);
-  const [selectedImage, setSelectedImage ] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [showPictureDetails, setShowPictureDetails] = useState(false);
-  const cloudinary_name = import.meta.env.CLOUDINARY_CLOUD_NAME;
+  const cloudinary_name = "dxrlfbw2k";
   const tag = "display";
-
 
   useEffect(() => {
     fetch(
@@ -34,8 +33,8 @@ export default function Miniatures() {
     let result = /IMG_([A-Za-z0-9]+)_00/i.exec(clickedImage.public_id);
 
     if (result && result[1]) {
-        setSelectedImage(result[1]);
-        setShowPictureDetails(true);
+      setSelectedImage(result[1]);
+      setShowPictureDetails(true);
     }
   };
 
@@ -56,11 +55,11 @@ export default function Miniatures() {
               duration: 0.8,
               stagger: 0.15,
               ease: "power3.out",
-              overwrite: true
+              overwrite: true,
             });
           },
           start: "top 90%",
-          once: true
+          once: true,
         });
       }
     },
@@ -70,24 +69,24 @@ export default function Miniatures() {
   return (
     <section id="minis-container" ref={container}>
       <div className="minis-pictures-grid">
-          {images.map((img) => (
-            <div className="miniature-card" key={img.public_id}>
-              <img
-                src={`https://res.cloudinary.com/${cloudinary_name}/image/upload/v${img.version}/${img.public_id}.${img.format}`}
-                alt={img.public_id}
-                width={img.width}
-                height={img.height}
-                onClick={() => handleImgClick(img)}
-              />
-            </div>
-          ))}
+        {images.map((img) => (
+          <div className="miniature-card" key={img.public_id}>
+            <img
+              src={`https://res.cloudinary.com/${cloudinary_name}/image/upload/v${img.version}/${img.public_id}.${img.format}`}
+              alt={img.public_id}
+              width={img.width}
+              height={img.height}
+              onClick={() => handleImgClick(img)}
+            />
+          </div>
+        ))}
       </div>
-        {showPictureDetails && (
-          <PictureDetails
-            image={selectedImage}
-            onClose={() => setShowPictureDetails(false)}
-          />
-        )}
+      {showPictureDetails && (
+        <PictureDetails
+          image={selectedImage}
+          onClose={() => setShowPictureDetails(false)}
+        />
+      )}
     </section>
   );
 }
