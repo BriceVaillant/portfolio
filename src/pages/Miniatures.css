@@ -3,7 +3,7 @@
   width: 100%;
   z-index: 1;
   position: relative;
-  padding: 5rem 2rem;
+  padding: 10rem 10rem 2rem 10rem;
   display: flex;
   justify-content: center;
 }
@@ -28,20 +28,18 @@
   aspect-ratio: 1/1;
 }
 
-
 .miniature-card:nth-child(5n + 1) {
   grid-column: span 2;
   aspect-ratio: 2/1;
 }
 
-
 .miniature-card:nth-child(8n + 2) {
   grid-row: span 2;
+  grid-column: span 1;
   aspect-ratio: 1/2;
   display: flex;
   align-items: center;
 }
-
 
 .miniature-card:nth-child(11n + 3) {
   grid-column: span 2;
@@ -71,7 +69,6 @@
   .minis-pictures-grid {
     grid-template-columns: 1fr;
   }
-  
 
   .miniature-card:nth-child(n) {
     grid-column: span 1 !important;
